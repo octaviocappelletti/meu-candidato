@@ -5,8 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'divulgacandcontas.tse.jus.br',
-        pathname: '/candidaturas/**',
+        hostname: 'ujuiceqnvkwcizliwvcf.supabase.co',
       },
     ],
   },

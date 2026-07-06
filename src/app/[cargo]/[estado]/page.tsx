@@ -61,7 +61,7 @@ export default async function PaginaCandidatos({ params }: Props) {
         </header>
 
         <DescricaoCargo cargo={infoCargo} />
-        <ListaCandidatos candidatos={candidatos} />
+        <ListaCandidatos candidatos={candidatos} cargo={cargo} uf={estado} />
       </div>
     </main>
   );

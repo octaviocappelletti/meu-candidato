@@ -7,9 +7,11 @@ import CardCandidato from './CardCandidato';
 
 interface Props {
   candidatos: Candidato[];
+  cargo: string;
+  uf: string;
 }
 
-export default function ListaCandidatos({ candidatos }: Props) {
+export default function ListaCandidatos({ candidatos, cargo, uf }: Props) {
   const [busca, setBusca] = useState('');
 
   const filtrados = busca
@@ -45,7 +47,7 @@ export default function ListaCandidatos({ candidatos }: Props) {
           >
             {filtrados.map((candidato) => (
               <li key={candidato.numeroEleitoral}>
-                <CardCandidato candidato={candidato} />
+                <CardCandidato candidato={candidato} cargo={cargo} uf={uf} />
               </li>
             ))}
           </ul>
