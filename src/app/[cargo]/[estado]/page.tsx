@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getCargo } from '@/lib/cargos';
-import { buscarCandidatos } from '@/lib/supabase';
+import { buscarCandidatos, diagnosticar } from '@/lib/supabase';
 import { ESTADOS } from '@/lib/estados';
 import { Candidato } from '@/types';
 import DescricaoCargo from '@/components/DescricaoCargo';
@@ -35,10 +35,12 @@ export default async function PaginaCandidatos({ params }: Props) {
   const estadoNome = uf ? ESTADOS.find((e) => e.uf === uf)?.nome ?? uf : null;
 
   let candidatos: Candidato[] = [];
+  let erroSupabase: string | null = null;
+  const debug = await diagnosticar(cargo, uf);
   try {
     candidatos = await buscarCandidatos(cargo, uf);
-  } catch {
-    // Supabase ainda não configurado — exibe lista vazia
+  } catch (err) {
+    erroSupabase = err instanceof Error ? err.message : String(err);
   }
 
   return (
@@ -61,6 +63,16 @@ export default async function PaginaCandidatos({ params }: Props) {
         </header>
 
         <DescricaoCargo cargo={infoCargo} />
+        <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-xs font-mono break-all space-y-1">
+          <p><strong>DEBUG</strong> — cargo: {cargo} | uf: {uf ?? 'br'} | total linhas (sem filtro): {debug.count ?? '?'}</p>
+          {debug.error && <p className="text-red-600">Erro: {debug.error}</p>}
+          {debug.data && <p>Amostra: {JSON.stringify(debug.data)}</p>}
+        </div>
+        {erroSupabase && (
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700 font-mono break-all">
+            Erro busca: {erroSupabase}
+          </div>
+        )}
         <ListaCandidatos candidatos={candidatos} />
       </div>
     </main>

@@ -17,6 +17,29 @@ function getClient(): SupabaseClient {
   return _client;
 }
 
+// O Supabase retorna snake_case (conforme as colunas do banco); mapeamos para a interface camelCase.
+function mapRow(row: Record<string, unknown>): Candidato {
+  return {
+    nomeUrna:        String(row.nome_urna ?? ''),
+    nomeCompleto:    String(row.nome_completo ?? ''),
+    numeroEleitoral: Number(row.numero_eleitoral),
+    cargo:           row.cargo as Candidato['cargo'],
+    subcargo:        row.subcargo as string | null | undefined,
+    uf:              row.uf as Candidato['uf'],
+    partido:         String(row.partido ?? ''),
+    situacao:        String(row.situacao ?? ''),
+    urlFoto:         String(row.url_foto ?? ''),
+  };
+}
+
+export async function diagnosticar(cargo: string, uf?: string) {
+  const client = getClient();
+  const q = client.from('candidatos').select('cargo, uf, situacao_apta, situacao', { count: 'exact' }).limit(5);
+  if (uf) q.eq('uf', uf.toUpperCase());
+  const { data, count, error } = await q;
+  return { data, count, error: error?.message };
+}
+
 export async function buscarCandidatos(
   cargo: string,
   uf?: string
@@ -27,7 +50,7 @@ export async function buscarCandidatos(
     .from('candidatos')
     .select('*')
     .eq('cargo', cargo)
-    .eq('situacao_apta', true)
+    .in('situacao', ['APTO', 'DEFERIDO', 'DEFERIDO COM RECURSO'])
     .order('nome_urna', { ascending: true });
 
   if (uf) {
@@ -36,5 +59,5 @@ export async function buscarCandidatos(
 
   const { data, error } = await query;
   if (error) throw error;
-  return (data ?? []) as Candidato[];
+  return (data ?? []).map(mapRow);
 }
