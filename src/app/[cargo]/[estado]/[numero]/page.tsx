@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
-import { getCargo } from '@/lib/cargos';
+import FotoAvatar from '@/components/FotoAvatar';
+import { getCargo, CARGO_TITULAR, CARGO_VICE } from '@/lib/cargos';
 import { ESTADOS } from '@/lib/estados';
 import { buscarCandidatoDetalhado, buscarPropostaGoverno } from '@/lib/supabase';
 import BotaoFavoritar from '@/components/BotaoFavoritar';
@@ -22,32 +22,6 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-function urlFotoValida(url: string): string {
-  if (!url) return '';
-  try {
-    const { hostname } = new URL(url);
-    return hostname === 'ujuiceqnvkwcizliwvcf.supabase.co' ? url : '';
-  } catch {
-    return '';
-  }
-}
-
-function AvatarGrande({ src, alt }: { src: string; alt: string }) {
-  const srcValido = urlFotoValida(src);
-  return (
-    <div className="relative w-28 h-28 rounded-full overflow-hidden bg-gray-100 border-4 border-white shadow-md flex-shrink-0">
-      {srcValido ? (
-        <Image src={srcValido} alt={alt} fill sizes="112px" className="object-cover" />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center text-gray-400">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-14 h-14" aria-hidden="true">
-            <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
-          </svg>
-        </div>
-      )}
-    </div>
-  );
-}
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   if (!value) return null;
@@ -71,40 +45,80 @@ export default async function PaginaDetalhe({ params }: Props) {
   const uf = estado.toUpperCase();
   const estadoNome = ESTADOS.find((e) => e.uf === uf)?.nome ?? uf;
 
+  const cargoSlug = cargo as import('@/types').CargoSlug;
+  const titularCargo = CARGO_TITULAR[cargoSlug];
+  const viceCargo = CARGO_VICE[cargoSlug];
+  const isVice = !!titularCargo;
+
   let candidato;
   let proposta = null;
+  let titular = null;
   try {
-    [candidato, proposta] = await Promise.all([
+    const promises: [
+      ReturnType<typeof buscarCandidatoDetalhado>,
+      ReturnType<typeof buscarPropostaGoverno>,
+      ReturnType<typeof buscarCandidatoDetalhado> | Promise<null>,
+    ] = [
       buscarCandidatoDetalhado(cargo, uf === 'BR' ? 'br' : estado, numeroEleitoral),
       buscarPropostaGoverno(cargo, uf === 'BR' ? 'BR' : estado, numeroEleitoral).catch(() => null),
-    ]);
+      isVice
+        ? buscarCandidatoDetalhado(titularCargo!, uf === 'BR' ? 'br' : estado, numeroEleitoral).catch(() => null)
+        : Promise.resolve(null),
+    ];
+    [candidato, proposta, titular] = await Promise.all(promises);
   } catch {
     candidato = null;
   }
 
   if (!candidato) notFound();
 
-  const voltarHref = `/${cargo}/${estado}`;
+  // Vice: volta para página do titular. Titular: volta para lista do cargo.
+  const voltarHref = isVice
+    ? `/${titularCargo}/${estado}/${numero}`
+    : `/${cargo}/${estado}`;
+  const voltarLabel = isVice && titular
+    ? `← ${titular.nomeUrna}`
+    : `← ${infoCargo.nome}${uf !== 'BR' ? ` — ${estadoNome}` : ''}`;
 
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="max-w-2xl mx-auto px-4 py-6">
         <nav className="mb-6">
           <Link href={voltarHref} className="text-sm text-blue-600 hover:underline">
-            ← {infoCargo.nome}{uf !== 'BR' ? ` — ${estadoNome}` : ''}
+            {voltarLabel}
           </Link>
         </nav>
+
+        {/* Banner de titular (exibido apenas na página do vice) */}
+        {isVice && titular && (
+          <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 mb-4 flex items-center gap-3">
+            <FotoAvatar src={titular.urlFoto} alt={titular.nomeUrna} size="sm" />
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-blue-600 font-semibold uppercase tracking-wider">Chapa de</p>
+              <p className="text-sm font-bold text-blue-900 truncate">{titular.nomeUrna}</p>
+            </div>
+            <Link href={voltarHref} className="text-xs text-blue-600 hover:underline flex-shrink-0">
+              Ver titular ↗
+            </Link>
+          </div>
+        )}
 
         {/* Cabeçalho do candidato */}
         <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
           <div className="flex items-start gap-5">
             <div className="flex flex-col items-center gap-2">
-              <AvatarGrande src={candidato.urlFoto} alt={candidato.nomeUrna} />
-              {candidato.nomeVice && (
-                <div className="flex flex-col items-center">
-                  <AvatarGrande src={candidato.urlFotoVice ?? ''} alt={candidato.nomeVice} />
-                  <span className="text-xs text-gray-500 mt-1">Vice</span>
-                </div>
+              <FotoAvatar src={candidato.urlFoto} alt={candidato.nomeUrna} size="lg" />
+              {candidato.nomeVice && viceCargo && (
+                <Link
+                  href={`/${viceCargo}/${estado}/${numero}`}
+                  className="flex flex-col items-center group"
+                  title={`Ver informações de ${candidato.nomeVice}`}
+                >
+                  <div className="ring-2 ring-transparent group-hover:ring-blue-400 rounded-full transition-all">
+                    <FotoAvatar src={candidato.urlFotoVice ?? ''} alt={candidato.nomeVice} size="lg" />
+                  </div>
+                  <span className="text-xs text-blue-600 group-hover:underline mt-1">Vice ↗</span>
+                </Link>
               )}
             </div>
 
@@ -112,8 +126,13 @@ export default async function PaginaDetalhe({ params }: Props) {
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <h1 className="text-xl font-bold text-gray-900">{candidato.nomeUrna}</h1>
-                  {candidato.nomeVice && (
-                    <p className="text-sm text-gray-500">Vice: {candidato.nomeVice}</p>
+                  {candidato.nomeVice && viceCargo && (
+                    <Link
+                      href={`/${viceCargo}/${estado}/${numero}`}
+                      className="text-sm text-blue-600 hover:underline"
+                    >
+                      Vice: {candidato.nomeVice} ↗
+                    </Link>
                   )}
                 </div>
                 <BotaoFavoritar numeroEleitoral={candidato.numeroEleitoral} nomeUrna={candidato.nomeUrna} />

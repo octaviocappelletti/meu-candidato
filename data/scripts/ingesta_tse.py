@@ -20,6 +20,9 @@ import requests
 from dotenv import load_dotenv
 from supabase import create_client
 
+load_dotenv(Path(__file__).parent.parent.parent / ".env.local")
+SUPABASE_URL = os.environ.get("NEXT_PUBLIC_SUPABASE_URL", "")
+
 # ---------------------------------------------------------------------------
 # Configuração
 # ---------------------------------------------------------------------------
@@ -33,11 +36,9 @@ BENS_ZIP_URL = (
     "bem_candidato_2022.zip"
 )
 
-# URL da foto via DivulgaCand (SQ_CANDIDATO = sequencial TSE)
-FOTO_URL_TPL = (
-    "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/"
-    "2022/BR/{uf}/544/candidatos/{sequencial}/foto/{cpf}.jpg"
-)
+# URL pública da foto no Supabase Storage (bucket fotos-candidatos, arquivo {nr_sequencial}.jpg)
+# Defina NEXT_PUBLIC_SUPABASE_URL no .env.local — ex: https://abc.supabase.co
+FOTO_BUCKET = "fotos-candidatos"
 
 ALL_UFS = [
     "AC","AL","AP","AM","BA","CE","DF","ES","GO",
@@ -48,17 +49,20 @@ ALL_UFS = [
 # DS_CARGO (TSE) → slug do projeto
 CARGO_MAP = {
     "PRESIDENTE":        "presidente",
-    "VICE-PRESIDENTE":   "presidente",
+    "VICE-PRESIDENTE":   "vice-presidente",
     "GOVERNADOR":        "governador",
-    "VICE-GOVERNADOR":   "governador",
+    "VICE-GOVERNADOR":   "vice-governador",
     "SENADOR":           "senador",
     "DEPUTADO FEDERAL":  "deputado-federal",
     "DEPUTADO ESTADUAL": "deputado-estadual",
     "DEPUTADO DISTRITAL":"deputado-estadual",
 }
 
-# Cargos com vice (precisam de pairing)
-CARGOS_COM_VICE = {"presidente", "governador"}
+# Cargo do vice → cargo do titular (para o pairing)
+VICE_PARA_TITULAR = {
+    "vice-presidente": "presidente",
+    "vice-governador": "governador",
+}
 
 SITUACOES_APTAS = {"APTO", "DEFERIDO", "DEFERIDO COM RECURSO"}
 
@@ -113,6 +117,8 @@ def normalizar_candidatos(df: pd.DataFrame) -> pd.DataFrame:
     df["situacao_apta"] = df["situacao"].isin(SITUACOES_APTAS)
     df["grau_instrucao"]= col(df, "DS_GRAU_INSTRUCAO").fillna("").str.strip()
     df["ocupacao"]      = col(df, "DS_OCUPACAO").fillna("").str.strip()
+    df["genero"]        = col(df, "DS_GENERO").fillna("").str.strip().str.upper()
+    df["cor_raca"]      = col(df, "DS_COR_RACA").fillna("").str.strip().str.upper()
     df["email_campanha"]= col(df, "DS_EMAIL").fillna("").str.strip().str.lower()
 
     # Data de nascimento DD/MM/AAAA → AAAA-MM-DD
@@ -123,20 +129,13 @@ def normalizar_candidatos(df: pd.DataFrame) -> pd.DataFrame:
     else:
         df["data_nascimento"] = None
 
-    # CPF (só dígitos, zero-padded para 11)
-    df["cpf"] = col(df, "NR_CPF_CANDIDATO").str.replace(r"\D", "", regex=True).str.zfill(11)
-
     # Presidente: UF vira BR
     df.loc[df["cargo"] == "presidente", "uf"] = "BR"
 
-    # URL da foto
-    df["url_foto"] = df.apply(
-        lambda r: FOTO_URL_TPL.format(
-            uf=r["uf"],
-            sequencial=r["nr_sequencial"],
-            cpf=r["cpf"],
-        ) if r["nr_sequencial"] and r["cpf"] else "",
-        axis=1,
+    # URL da foto no Supabase Storage
+    base_storage = f"{SUPABASE_URL.rstrip('/')}/storage/v1/object/public/{FOTO_BUCKET}"
+    df["url_foto"] = df["nr_sequencial"].apply(
+        lambda sq: f"{base_storage}/{sq}.jpg" if sq else ""
     )
 
     # Redes sociais não estão no CSV (enriquecimento futuro via API DivulgaCand)
@@ -153,21 +152,27 @@ def normalizar_candidatos(df: pd.DataFrame) -> pd.DataFrame:
 
 def parear_vices(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Para presidente e governador, os vices são linhas separadas.
-    Aqui fundimos o nome/foto do vice na linha do titular,
-    usando o mesmo número eleitoral (NR_CANDIDATO) como chave.
+    Para presidente e governador, os vices são linhas separadas no CSV do TSE.
+    Este método:
+      1. Mescla o nome/foto do vice na linha do titular (para exibir o par na UI)
+      2. Mantém as linhas dos vices no dataframe (cargo vice-presidente/vice-governador)
+         para que seus bens e redes sociais sejam ingeridos normalmente.
     """
     mask_vice = df["_cargo_tse"].isin({"VICE-PRESIDENTE", "VICE-GOVERNADOR"})
     titulares = df[~mask_vice].copy()
-    vices     = df[mask_vice][["cargo","uf","numero_eleitoral","nome_urna","nr_sequencial","url_foto"]].copy()
-    vices = vices.rename(columns={
+    vices     = df[mask_vice].copy()
+
+    # Monta tabela de pairing: ajusta cargo do vice para o cargo do titular antes do merge
+    vice_info = vices[["cargo","uf","numero_eleitoral","nome_urna","nr_sequencial","url_foto"]].copy()
+    vice_info["cargo"] = vice_info["cargo"].map(VICE_PARA_TITULAR)
+    vice_info = vice_info.rename(columns={
         "nome_urna":     "nome_vice",
         "nr_sequencial": "nr_sequencial_vice",
         "url_foto":      "url_foto_vice",
     })
 
     titulares = titulares.merge(
-        vices,
+        vice_info,
         on=["cargo","uf","numero_eleitoral"],
         how="left",
         suffixes=("","_v"),
@@ -182,7 +187,9 @@ def parear_vices(df: pd.DataFrame) -> pd.DataFrame:
             )
             titulares.drop(columns=[col_v], inplace=True)
 
-    return titulares.reset_index(drop=True)
+    # Vices ficam no banco com seu próprio cargo (vice-presidente/vice-governador)
+    # para que bens e redes sociais possam ser consultados independentemente.
+    return pd.concat([titulares, vices], ignore_index=True).reset_index(drop=True)
 
 
 # ---------------------------------------------------------------------------
@@ -314,7 +321,7 @@ def processar(ufs: list[str], dry_run: bool):
     print(f"\nTotal: {len(df_cand_final)} candidatos, {len(df_bens_final)} bens")
 
     # Salva JSONs locais
-    df_cand_final.drop(columns=["_cargo_tse","nr_candidato","cpf"], errors="ignore").to_json(
+    df_cand_final.drop(columns=["_cargo_tse","nr_candidato"], errors="ignore").to_json(
         OUTPUT_DIR / "candidatos.json", orient="records", force_ascii=False, indent=2
     )
     df_bens_final.to_json(
@@ -334,8 +341,8 @@ def processar(ufs: list[str], dry_run: bool):
         "nome_urna","nome_completo","numero_eleitoral","nr_sequencial",
         "cargo","uf","partido","coligacao","situacao","situacao_apta",
         "nome_vice","nr_sequencial_vice","url_foto","url_foto_vice",
-        "data_nascimento","grau_instrucao","ocupacao","email_campanha",
-        "url_facebook","url_instagram","url_twitter","url_youtube","total_bens",
+        "data_nascimento","grau_instrucao","ocupacao","genero","cor_raca",
+        "email_campanha","url_facebook","url_instagram","url_twitter","url_youtube","total_bens",
     ]
     df_para_db = df_cand_final[[c for c in colunas_db if c in df_cand_final.columns]]
 

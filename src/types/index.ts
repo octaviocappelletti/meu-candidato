@@ -1,6 +1,8 @@
 export type CargoSlug =
   | 'presidente'
+  | 'vice-presidente'
   | 'governador'
+  | 'vice-governador'
   | 'senador'
   | 'deputado-federal'
   | 'deputado-estadual';
@@ -20,6 +22,11 @@ export interface Candidato {
   coligacao: string;
   situacao: string;
   urlFoto: string;
+  genero: string;
+  corRaca: string;
+  grauInstrucao: string;
+  ocupacao: string;
+  dataNascimento: string;
   // Apenas para presidente e governador
   nomeVice?: string;
   urlFotoVice?: string;
@@ -32,9 +39,6 @@ export interface BemCandidato {
 }
 
 export interface CandidatoDetalhado extends Candidato {
-  grauInstrucao: string;
-  ocupacao: string;
-  dataNascimento: string;
   emailCampanha: string;
   urlFacebook: string;
   urlInstagram: string;

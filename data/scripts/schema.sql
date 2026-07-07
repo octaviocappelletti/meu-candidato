@@ -115,3 +115,11 @@ create policy "leitura_publica" on public.propostas_governo
 --   Nome:    propostas-governo
 --   Público: sim (public bucket)
 -- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+-- Migration: colunas para filtros de gênero e cor/raça
+-- Execute no SQL Editor do Supabase se a tabela já existir
+-- ---------------------------------------------------------------------------
+alter table public.candidatos
+  add column if not exists genero   text not null default '',
+  add column if not exists cor_raca text not null default '';

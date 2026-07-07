@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { CARGOS } from '@/lib/cargos';
 
 export default function PaginaCargos() {
-  const cargos = Object.values(CARGOS);
+  const cargos = Object.values(CARGOS).filter(
+    (c) => c.slug !== 'vice-presidente' && c.slug !== 'vice-governador'
+  );
 
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6">

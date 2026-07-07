@@ -17,6 +17,13 @@ function getClient(): SupabaseClient {
   return _client;
 }
 
+// Constrói a URL pública da foto direto do nr_sequencial, sem depender do valor armazenado em url_foto.
+function buildFotoUrl(nrSequencial: string | null | undefined): string {
+  if (!nrSequencial) return '';
+  const base = (process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').replace(/\/+$/, '');
+  return `${base}/storage/v1/object/public/fotos-candidatos/${nrSequencial}.jpeg`;
+}
+
 // ── Tipos internos (linhas brutas do banco, snake_case) ──────────────────────
 
 interface CandidatoRow {
@@ -28,15 +35,17 @@ interface CandidatoRow {
   partido: string;
   coligacao: string;
   situacao: string;
-  url_foto: string;
+  nr_sequencial: string;
+  nr_sequencial_vice: string | null;
   nome_vice: string | null;
-  url_foto_vice: string | null;
-}
-
-interface CandidatoDetalhadoRow extends CandidatoRow {
+  genero: string;
+  cor_raca: string;
   grau_instrucao: string;
   ocupacao: string;
   data_nascimento: string;
+}
+
+interface CandidatoDetalhadoRow extends CandidatoRow {
   email_campanha: string;
   url_facebook: string;
   url_instagram: string;
@@ -63,9 +72,14 @@ function rowToCandidato(row: CandidatoRow): Candidato {
     partido: row.partido,
     coligacao: row.coligacao ?? '',
     situacao: row.situacao,
-    urlFoto: row.url_foto ?? '',
+    urlFoto: buildFotoUrl(row.nr_sequencial),
+    genero: row.genero ?? '',
+    corRaca: row.cor_raca ?? '',
+    grauInstrucao: row.grau_instrucao ?? '',
+    ocupacao: row.ocupacao ?? '',
+    dataNascimento: row.data_nascimento ?? '',
     nomeVice: row.nome_vice ?? undefined,
-    urlFotoVice: row.url_foto_vice ?? undefined,
+    urlFotoVice: buildFotoUrl(row.nr_sequencial_vice) || undefined,
   };
 }
 
@@ -75,9 +89,6 @@ function rowToCandidatoDetalhado(
 ): CandidatoDetalhado {
   return {
     ...rowToCandidato(row),
-    grauInstrucao: row.grau_instrucao ?? '',
-    ocupacao: row.ocupacao ?? '',
-    dataNascimento: row.data_nascimento ?? '',
     emailCampanha: row.email_campanha ?? '',
     urlFacebook: row.url_facebook ?? '',
     urlInstagram: row.url_instagram ?? '',
@@ -108,7 +119,7 @@ export async function buscarCandidatos(
     let query = client
       .from('candidatos')
       .select(
-        'nome_urna, nome_completo, numero_eleitoral, cargo, uf, partido, coligacao, situacao, url_foto, nome_vice, url_foto_vice'
+        'nome_urna, nome_completo, numero_eleitoral, cargo, uf, partido, coligacao, situacao, nr_sequencial, nr_sequencial_vice, nome_vice, genero, cor_raca, grau_instrucao, ocupacao, data_nascimento'
       )
       .eq('cargo', cargo)
       .eq('situacao_apta', true)
@@ -139,7 +150,7 @@ export async function buscarCandidatoDetalhado(
   const { data: candidatoData, error: candidatoError } = await client
     .from('candidatos')
     .select(
-      'nome_urna, nome_completo, numero_eleitoral, cargo, uf, partido, coligacao, situacao, url_foto, nome_vice, url_foto_vice, grau_instrucao, ocupacao, data_nascimento, email_campanha, url_facebook, url_instagram, url_twitter, url_youtube, total_bens'
+      'nome_urna, nome_completo, numero_eleitoral, cargo, uf, partido, coligacao, situacao, nr_sequencial, nr_sequencial_vice, nome_vice, genero, cor_raca, grau_instrucao, ocupacao, data_nascimento, email_campanha, url_facebook, url_instagram, url_twitter, url_youtube, total_bens'
     )
     .eq('cargo', cargo)
     .eq('uf', uf.toUpperCase())

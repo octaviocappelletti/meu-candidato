@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getCargo } from '@/lib/cargos';
@@ -61,7 +62,9 @@ export default async function PaginaCandidatos({ params }: Props) {
         </header>
 
         <DescricaoCargo cargo={infoCargo} />
-        <ListaCandidatos candidatos={candidatos} cargo={cargo} uf={estado} />
+        <Suspense fallback={<p className="text-sm text-gray-400 py-4">Carregando...</p>}>
+          <ListaCandidatos candidatos={candidatos} cargo={cargo} uf={estado} />
+        </Suspense>
       </div>
     </main>
   );

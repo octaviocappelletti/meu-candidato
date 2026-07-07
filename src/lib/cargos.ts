@@ -8,6 +8,16 @@ export interface InfoCargo {
   atribuicoes: string[];
 }
 
+export const CARGO_TITULAR: Partial<Record<CargoSlug, CargoSlug>> = {
+  'vice-presidente': 'presidente',
+  'vice-governador': 'governador',
+};
+
+export const CARGO_VICE: Partial<Record<CargoSlug, CargoSlug>> = {
+  'presidente': 'vice-presidente',
+  'governador': 'vice-governador',
+};
+
 export const CARGOS: Record<CargoSlug, InfoCargo> = {
   presidente: {
     slug: 'presidente',
@@ -23,6 +33,19 @@ export const CARGOS: Record<CargoSlug, InfoCargo> = {
       'Exerce o comando supremo das Forças Armadas',
     ],
   },
+  'vice-presidente': {
+    slug: 'vice-presidente',
+    nome: 'Vice-Presidente',
+    federal: true,
+    descricao:
+      'Substitui o Presidente em casos de impedimento ou vacância e auxilia na condução do governo federal.',
+    atribuicoes: [
+      'Substitui o Presidente quando necessário',
+      'Preside o Conselho da República e o Conselho de Defesa Nacional',
+      'Exerce missões especiais delegadas pelo Presidente',
+      'Participa das reuniões do Conselho de Governo',
+    ],
+  },
   governador: {
     slug: 'governador',
     nome: 'Governador / Vice-Governador',
@@ -35,6 +58,18 @@ export const CARGOS: Record<CargoSlug, InfoCargo> = {
       'Sanciona e veta leis aprovadas pela Assembleia Legislativa',
       'Nomeia Secretários de Estado e demais cargos estaduais',
       'Representa o estado em âmbito nacional e internacional',
+    ],
+  },
+  'vice-governador': {
+    slug: 'vice-governador',
+    nome: 'Vice-Governador',
+    federal: false,
+    descricao:
+      'Substitui o Governador em casos de impedimento ou vacância e auxilia na administração do estado.',
+    atribuicoes: [
+      'Substitui o Governador quando necessário',
+      'Exerce missões e representações delegadas pelo Governador',
+      'Participa do Conselho de Governo estadual',
     ],
   },
   senador: {
