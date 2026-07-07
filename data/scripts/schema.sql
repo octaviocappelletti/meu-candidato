@@ -87,3 +87,31 @@ create policy "leitura_publica" on public.candidatos
 
 create policy "leitura_publica" on public.bens_candidatos
   for select using (true);
+
+-- ---------------------------------------------------------------------------
+-- Tabela: propostas de governo (texto extraído dos PDFs do TSE)
+-- ---------------------------------------------------------------------------
+create table public.propostas_governo (
+  id               uuid    primary key default gen_random_uuid(),
+  numero_eleitoral integer not null,
+  cargo            text    not null,
+  uf               text    not null,
+  texto            text    not null default '',
+  url_pdf          text    not null default '',
+
+  unique (cargo, uf, numero_eleitoral)
+);
+
+create index on public.propostas_governo (numero_eleitoral, cargo, uf);
+
+alter table public.propostas_governo enable row level security;
+
+create policy "leitura_publica" on public.propostas_governo
+  for select using (true);
+
+-- ---------------------------------------------------------------------------
+-- Storage: bucket para os PDFs das propostas
+-- Criar manualmente em: app.supabase.com → Storage → New bucket
+--   Nome:    propostas-governo
+--   Público: sim (public bucket)
+-- ---------------------------------------------------------------------------

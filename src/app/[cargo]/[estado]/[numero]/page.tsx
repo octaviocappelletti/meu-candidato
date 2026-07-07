@@ -3,10 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getCargo } from '@/lib/cargos';
 import { ESTADOS } from '@/lib/estados';
-import { buscarCandidatoDetalhado } from '@/lib/supabase';
+import { buscarCandidatoDetalhado, buscarPropostaGoverno } from '@/lib/supabase';
 import BotaoFavoritar from '@/components/BotaoFavoritar';
 import RedesSociais from '@/components/RedesSociais';
 import ListaBens from '@/components/ListaBens';
+import PropostaGoverno from '@/components/PropostaGoverno';
 
 interface Props {
   params: Promise<{ cargo: string; estado: string; numero: string }>;
@@ -71,8 +72,12 @@ export default async function PaginaDetalhe({ params }: Props) {
   const estadoNome = ESTADOS.find((e) => e.uf === uf)?.nome ?? uf;
 
   let candidato;
+  let proposta = null;
   try {
-    candidato = await buscarCandidatoDetalhado(cargo, uf === 'BR' ? 'br' : estado, numeroEleitoral);
+    [candidato, proposta] = await Promise.all([
+      buscarCandidatoDetalhado(cargo, uf === 'BR' ? 'br' : estado, numeroEleitoral),
+      buscarPropostaGoverno(cargo, uf === 'BR' ? 'BR' : estado, numeroEleitoral).catch(() => null),
+    ]);
   } catch {
     candidato = null;
   }
@@ -149,6 +154,13 @@ export default async function PaginaDetalhe({ params }: Props) {
         <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
           <ListaBens bens={candidato.bens} total={candidato.totalBens} />
         </section>
+
+        {/* Proposta de governo */}
+        {proposta && (
+          <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+            <PropostaGoverno proposta={proposta} />
+          </section>
+        )}
 
         <p className="mt-6 text-center text-xs text-gray-400">
           Dados oficiais do TSE · Eleições 2026

@@ -43,3 +43,8 @@ export interface CandidatoDetalhado extends Candidato {
   totalBens: number;
   bens: BemCandidato[];
 }
+
+export interface PropostaGoverno {
+  texto: string;
+  urlPdf: string;
+}

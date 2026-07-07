@@ -1,5 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { BemCandidato, Candidato, CandidatoDetalhado, CargoSlug, UF } from '@/types';
+import { BemCandidato, Candidato, CandidatoDetalhado, CargoSlug, PropostaGoverno, UF } from '@/types';
 
 let _client: SupabaseClient | null = null;
 
@@ -94,28 +94,39 @@ function rowToCandidatoDetalhado(
 
 // ── Queries públicas ─────────────────────────────────────────────────────────
 
+const PAGE_SIZE = 1000;
+
 export async function buscarCandidatos(
   cargo: string,
   uf?: string
 ): Promise<Candidato[]> {
   const client = getClient();
+  const todos: CandidatoRow[] = [];
+  let from = 0;
 
-  let query = client
-    .from('candidatos')
-    .select(
-      'nome_urna, nome_completo, numero_eleitoral, cargo, uf, partido, coligacao, situacao, url_foto, nome_vice, url_foto_vice'
-    )
-    .eq('cargo', cargo)
-    .eq('situacao_apta', true)
-    .order('nome_urna', { ascending: true });
+  while (true) {
+    let query = client
+      .from('candidatos')
+      .select(
+        'nome_urna, nome_completo, numero_eleitoral, cargo, uf, partido, coligacao, situacao, url_foto, nome_vice, url_foto_vice'
+      )
+      .eq('cargo', cargo)
+      .eq('situacao_apta', true)
+      .order('nome_urna', { ascending: true });
 
-  if (uf) {
-    query = query.eq('uf', uf.toUpperCase());
+    if (uf) {
+      query = query.eq('uf', uf.toUpperCase());
+    }
+
+    const { data, error } = await query.range(from, from + PAGE_SIZE - 1);
+    if (error) throw error;
+
+    todos.push(...((data as CandidatoRow[]) ?? []));
+    if ((data?.length ?? 0) < PAGE_SIZE) break;
+    from += PAGE_SIZE;
   }
 
-  const { data, error } = await query;
-  if (error) throw error;
-  return ((data as CandidatoRow[]) ?? []).map(rowToCandidato);
+  return todos.map(rowToCandidato);
 }
 
 export async function buscarCandidatoDetalhado(
@@ -154,4 +165,30 @@ export async function buscarCandidatoDetalhado(
     candidatoData as CandidatoDetalhadoRow,
     (bensData as BemRow[]) ?? []
   );
+}
+
+export async function buscarPropostaGoverno(
+  cargo: string,
+  uf: string,
+  numeroEleitoral: number
+): Promise<PropostaGoverno | null> {
+  const client = getClient();
+
+  const { data, error } = await client
+    .from('propostas_governo')
+    .select('texto, url_pdf')
+    .eq('cargo', cargo)
+    .eq('uf', uf.toUpperCase())
+    .eq('numero_eleitoral', numeroEleitoral)
+    .single();
+
+  if (error) {
+    if (error.code === 'PGRST116') return null;
+    throw error;
+  }
+
+  return {
+    texto: (data as { texto: string; url_pdf: string }).texto ?? '',
+    urlPdf: (data as { texto: string; url_pdf: string }).url_pdf ?? '',
+  };
 }
