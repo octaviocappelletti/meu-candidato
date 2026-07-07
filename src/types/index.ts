@@ -39,6 +39,7 @@ export interface BemCandidato {
 }
 
 export interface CandidatoDetalhado extends Candidato {
+  nrSequencial: string;
   emailCampanha: string;
   urlFacebook: string;
   urlInstagram: string;

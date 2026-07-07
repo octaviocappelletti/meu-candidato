@@ -43,6 +43,11 @@ next-env.d.ts
 # dados do TSE (gerados pelo pipeline de ingestão)
 data/output/*.json
 data/output/*.csv
+data/output/**/*.json
+data/output/**/*.csv
+
+# cache de downloads do TSE
+data/.cache/
 
 # fotos de candidatos (cache local — servir via CDN em produção)
 public/fotos/*.jpg

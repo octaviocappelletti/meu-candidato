@@ -89,6 +89,7 @@ function rowToCandidatoDetalhado(
 ): CandidatoDetalhado {
   return {
     ...rowToCandidato(row),
+    nrSequencial: row.nr_sequencial ?? '',
     emailCampanha: row.email_campanha ?? '',
     urlFacebook: row.url_facebook ?? '',
     urlInstagram: row.url_instagram ?? '',

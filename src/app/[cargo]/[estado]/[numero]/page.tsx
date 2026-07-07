@@ -8,6 +8,7 @@ import BotaoFavoritar from '@/components/BotaoFavoritar';
 import RedesSociais from '@/components/RedesSociais';
 import ListaBens from '@/components/ListaBens';
 import PropostaGoverno from '@/components/PropostaGoverno';
+import TransparenciaFinanceira from '@/components/TransparenciaFinanceira';
 
 interface Props {
   params: Promise<{ cargo: string; estado: string; numero: string }>;
@@ -170,8 +171,13 @@ export default async function PaginaDetalhe({ params }: Props) {
         </section>
 
         {/* Bens declarados */}
-        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
           <ListaBens bens={candidato.bens} total={candidato.totalBens} />
+        </section>
+
+        {/* Transparência financeira */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
+          <TransparenciaFinanceira nrSequencial={candidato.nrSequencial} uf={uf} />
         </section>
 
         {/* Proposta de governo */}
