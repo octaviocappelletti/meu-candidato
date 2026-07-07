@@ -243,6 +243,25 @@ export default function PainelFiltros({
             onChange={(v) => setLocal({ ...local, apenasFavoritos: v })}
           />
 
+          <label className="flex items-center justify-between cursor-pointer">
+            <span className="text-sm font-medium text-gray-700">Apenas candidatos à reeleição</span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={local.apenasReeleicao}
+              onClick={() => setLocal({ ...local, apenasReeleicao: !local.apenasReeleicao })}
+              className={`relative w-10 h-6 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                local.apenasReeleicao ? 'bg-blue-600' : 'bg-gray-200'
+              }`}
+            >
+              <span
+                className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow transition-transform ${
+                  local.apenasReeleicao ? 'translate-x-4' : ''
+                }`}
+              />
+            </button>
+          </label>
+
           {mostrarColigacao && (
             <ListaCheckbox
               titulo={labelColigacao}

@@ -10,6 +10,7 @@ export interface EstadoFiltros {
   escolaridades: string[];
   ocupacoes: string[];
   apenasFavoritos: boolean;
+  apenasReeleicao: boolean;
 }
 
 export const FILTROS_VAZIOS: EstadoFiltros = {
@@ -22,7 +23,25 @@ export const FILTROS_VAZIOS: EstadoFiltros = {
   escolaridades: [],
   ocupacoes: [],
   apenasFavoritos: false,
+  apenasReeleicao: false,
 };
+
+// Mapa cargo → substrings de DS_OCUPACAO que indicam reeleição
+const OCUPACOES_REELEICAO: Record<string, string[]> = {
+  'presidente':        ['PRESIDENTE DA REPÚBLICA', 'PRESIDENTE'],
+  'vice-presidente':   ['VICE-PRESIDENTE'],
+  'governador':        ['GOVERNADOR'],
+  'vice-governador':   ['VICE-GOVERNADOR'],
+  'senador':           ['SENADOR'],
+  'deputado-federal':  ['DEPUTADO FEDERAL'],
+  'deputado-estadual': ['DEPUTADO ESTADUAL', 'DEPUTADO DISTRITAL'],
+};
+
+export function isReeleicao(candidato: Candidato): boolean {
+  const ocup  = (candidato.ocupacao ?? '').toUpperCase().trim();
+  const alvos = OCUPACOES_REELEICAO[candidato.cargo] ?? [];
+  return alvos.some((a) => ocup.includes(a));
+}
 
 export type FaixaEtaria = '18-29' | '30-44' | '45-59' | '60+';
 
@@ -88,6 +107,7 @@ export function filtrarCandidatos(
       if (!filtros.faixasEtarias.includes(faixa)) return false;
     }
     if (filtros.apenasFavoritos && !favoritos.includes(c.numeroEleitoral)) return false;
+    if (filtros.apenasReeleicao && !isReeleicao(c)) return false;
     return true;
   });
 }
@@ -101,7 +121,8 @@ export function contarFiltrosPainel(filtros: EstadoFiltros): number {
     filtros.faixasEtarias.length +
     filtros.escolaridades.length +
     filtros.ocupacoes.length +
-    (filtros.apenasFavoritos ? 1 : 0)
+    (filtros.apenasFavoritos ? 1 : 0) +
+    (filtros.apenasReeleicao ? 1 : 0)
   );
 }
 
@@ -116,6 +137,7 @@ export function filtrosFromSearchParams(params: URLSearchParams): EstadoFiltros 
     escolaridades: params.get('escolaridade')?.split(',').filter(Boolean) ?? [],
     ocupacoes:     params.get('profissao')?.split(',').filter(Boolean)   ?? [],
     apenasFavoritos: params.get('favoritos') === '1',
+    apenasReeleicao: params.get('reeleicao') === '1',
   };
 }
 
@@ -130,6 +152,7 @@ export function filtrosToSearchParams(filtros: EstadoFiltros): string {
   if (filtros.escolaridades.length) p.set('escolaridade', filtros.escolaridades.join(','));
   if (filtros.ocupacoes.length)   p.set('profissao',   filtros.ocupacoes.join(','));
   if (filtros.apenasFavoritos)    p.set('favoritos',   '1');
+  if (filtros.apenasReeleicao)    p.set('reeleicao',   '1');
   const qs = p.toString();
   return qs ? `?${qs}` : '';
 }

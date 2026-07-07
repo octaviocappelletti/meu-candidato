@@ -51,6 +51,8 @@ export default function ChipsFiltrosAtivos({
   );
   if (filtros.apenasFavoritos)
     chips.push({ label: 'Apenas favoritos', onRemover: () => onChange({ ...filtros, apenasFavoritos: false }) });
+  if (filtros.apenasReeleicao)
+    chips.push({ label: 'Reeleição', onRemover: () => onChange({ ...filtros, apenasReeleicao: false }) });
 
   const filtrado = totalFiltrado < totalGeral;
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Candidato } from '@/types';
+import { isReeleicao } from '@/lib/filtros';
 import BotaoFavoritar from './BotaoFavoritar';
 import FotoAvatar from './FotoAvatar';
 
@@ -10,7 +11,8 @@ interface Props {
 }
 
 export default function CardCandidato({ candidato, cargo, uf }: Props) {
-  const temVice = !!(candidato.nomeVice);
+  const temVice   = !!(candidato.nomeVice);
+  const reeleicao = isReeleicao(candidato);
   const href = `/${cargo}/${uf}/${candidato.numeroEleitoral}`;
 
   return (
@@ -29,7 +31,14 @@ export default function CardCandidato({ candidato, cargo, uf }: Props) {
           {temVice && (
             <p className="text-xs text-gray-500 truncate">Vice: {candidato.nomeVice}</p>
           )}
-          <p className="text-sm text-gray-500 truncate">{candidato.partido}</p>
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="text-sm text-gray-500 truncate">{candidato.partido}</p>
+            {reeleicao && (
+              <span className="inline-block text-xs font-medium px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex-shrink-0">
+                Reeleição
+              </span>
+            )}
+          </div>
           <p className="text-sm font-mono text-gray-700">Nº {candidato.numeroEleitoral}</p>
         </div>
       </Link>
