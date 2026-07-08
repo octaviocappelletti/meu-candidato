@@ -67,6 +67,7 @@ function rowToCandidato(row: CandidatoRow): Candidato {
     nomeUrna: row.nome_urna,
     nomeCompleto: row.nome_completo,
     numeroEleitoral: row.numero_eleitoral,
+    nrSequencial: row.nr_sequencial ?? '',
     cargo: row.cargo as CargoSlug,
     uf: row.uf as UF | 'BR',
     partido: row.partido,

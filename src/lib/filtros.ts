@@ -33,14 +33,20 @@ const OCUPACOES_REELEICAO: Record<string, string[]> = {
   'governador':        ['GOVERNADOR'],
   'vice-governador':   ['VICE-GOVERNADOR'],
   'senador':           ['SENADOR'],
-  'deputado-federal':  ['DEPUTADO FEDERAL'],
-  'deputado-estadual': ['DEPUTADO ESTADUAL', 'DEPUTADO DISTRITAL'],
+  // TSE registra simplesmente "DEPUTADO" para parlamentares em exercício —
+  // sem especificar federal ou estadual. "DEPUTADO" requer match exato para
+  // não casar com "DEPUTADO ESTADUAL" ao filtrar deputados federais.
+  'deputado-federal':  ['DEPUTADO FEDERAL', 'DEPUTADO DISTRITAL', 'DEPUTADO'],
+  'deputado-estadual': ['DEPUTADO ESTADUAL', 'DEPUTADO DISTRITAL', 'DEPUTADO'],
 };
 
 export function isReeleicao(candidato: Candidato): boolean {
   const ocup  = (candidato.ocupacao ?? '').toUpperCase().trim();
   const alvos = OCUPACOES_REELEICAO[candidato.cargo] ?? [];
-  return alvos.some((a) => ocup.includes(a));
+  return alvos.some((a) =>
+    // "DEPUTADO" precisa ser match exato — "DEPUTADO ESTADUAL".includes("DEPUTADO") seria verdadeiro
+    a === 'DEPUTADO' ? ocup === 'DEPUTADO' : ocup.includes(a)
+  );
 }
 
 export type FaixaEtaria = '18-29' | '30-44' | '45-59' | '60+';

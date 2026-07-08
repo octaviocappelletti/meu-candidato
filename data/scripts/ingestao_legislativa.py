@@ -12,6 +12,7 @@ Uso:
 
 import argparse
 import json
+import re
 import time
 import unicodedata
 import xml.etree.ElementTree as ET
@@ -54,7 +55,7 @@ CAMARA_COD_APROVADA = 1140  # "Transformado em Norma Jurídica"
 OCUP_DEP_PATTERN = r"\bDEPUTADO\b"    # TSE usa "DEPUTADO" (sem Federal/Distrital) para deputados em exercício
 OCUP_SEN_PATTERN = r"\bSENADOR\b"
 
-THRESHOLD_MATCH     = 0.70  # mínimo para incluir no de-para
+THRESHOLD_MATCH     = 0.70  # mínimo para incluir no de-para via nome (fallback quando CPF falha)
 THRESHOLD_CONFIANTE = 0.85  # confiança alta
 RATE_LIMIT_S        = 0.40
 
@@ -129,12 +130,43 @@ def fetch_xml_root(url: str, cache_key: str = None) -> ET.Element:
 
 # ── Normalização de nomes ──────────────────────────────────────────────────────
 
+# Prefixos de cargo/título que o TSE inclui no nome de urna mas a API da Câmara/Senado não usa
+_TITULOS = {
+    'DELEGADO', 'DELEGADA', 'CORONEL', 'CORONELA', 'CEL',
+    'CAPITAO', 'CAPITA', 'CAP', 'CABO', 'SOLDADO',
+    'TENENTE', 'TEN', 'MAJOR', 'SARGENTO',
+    'PROFESSOR', 'PROFESSORA', 'PROF',
+    'DOUTOR', 'DOUTORA', 'DR', 'DRA',
+    'MEDICO', 'MEDICA', 'ENFERMEIRO', 'ENFERMEIRA',
+    'VEREADOR', 'VEREADORA', 'DEPUTADO', 'DEPUTADA',
+    'SENADOR', 'SENADORA', 'PREFEITO', 'PREFEITA',
+    'PADRE', 'PASTOR', 'PASTORA',
+}
+
+# Sufixos de partido que candidatos incluem no nome de urna ("GUIMARÃES DO PT")
+_SUFIXOS_PARTIDO = re.compile(
+    r'\s+D[OA]S?\s+(?:PT|PL|PP|MDB|PSD|PSDB|PDT|PSB|PODE|REPUBLICANOS|UNIAO|AVANTE|SOLIDARIEDADE|'
+    r'PROS|PMB|PRTB|DC|PC\s*DO\s*B|PSOL|NOVO|PATRIOTA|CIDADANIA|PV|PTB|AGIR)$'
+)
+
+
 def norm(s: str) -> str:
     if not s:
         return ""
     s = unicodedata.normalize("NFD", s.upper().strip())
     s = "".join(c for c in s if unicodedata.category(c) != "Mn")
     return " ".join(s.split())
+
+
+def strip_titulo(nome_norm: str) -> str:
+    """Remove prefixo de título/cargo e sufixo de partido do nome já normalizado."""
+    # Remove sufixo de partido ("DO PT", "DA UNIAO" etc.)
+    nome_norm = _SUFIXOS_PARTIDO.sub('', nome_norm).strip()
+    # Remove prefixos de título enquanto restar pelo menos 1 palavra
+    palavras = nome_norm.split()
+    while len(palavras) > 1 and palavras[0] in _TITULOS:
+        palavras = palavras[1:]
+    return ' '.join(palavras)
 
 
 def similaridade(a: str, b: str) -> float:
@@ -151,14 +183,24 @@ def palavras_contidas(curto: str, longo: str) -> bool:
 def sim_nome(nome_tse: str, nome_parl: str) -> float:
     """
     Combina SequenceMatcher com verificação de contenção de palavras.
-    Nomes de urna curtos ("DAVI", "KATIA") são subconjuntos do nome completo;
-    SequenceMatcher puro penaliza isso injustamente.
+    Tenta também o nome sem título/prefixo (DELEGADO X → X) e sem sufixo de partido.
     """
-    base = similaridade(nome_tse, nome_parl)
-    if palavras_contidas(nome_tse, nome_parl) or palavras_contidas(nome_parl, nome_tse):
-        n_palavras = len(norm(nome_tse).split())
-        boost = 0.85 if n_palavras >= 2 else 0.78
-        base = max(base, boost)
+    n_tse  = norm(nome_tse)
+    n_parl = norm(nome_parl)
+    base   = SequenceMatcher(None, n_tse, n_parl).ratio()
+
+    # Tenta com título removido
+    n_tse_s = strip_titulo(n_tse)
+    if n_tse_s != n_tse:
+        base = max(base, SequenceMatcher(None, n_tse_s, n_parl).ratio())
+
+    # Boost por contenção de palavras (nome original)
+    for tse_cand in {n_tse, n_tse_s}:
+        if palavras_contidas(tse_cand, n_parl) or palavras_contidas(n_parl, tse_cand):
+            n_palavras = len(tse_cand.split())
+            boost = 0.85 if n_palavras >= 2 else 0.78
+            base = max(base, boost)
+
     return base
 
 
@@ -193,9 +235,69 @@ def buscar_todos_deputados(session: requests.Session) -> list[dict]:
     return todos
 
 
+def _norm_cpf(cpf: str | None) -> str:
+    """Normaliza CPF para 11 dígitos sem pontuação. Retorna '' se inválido."""
+    if not cpf:
+        return ""
+    digits = re.sub(r"\D", "", str(cpf))
+    return digits if len(digits) == 11 else ""
+
+
+def buscar_indice_cpf_camara(session: requests.Session, todos_deps: list[dict]) -> dict[str, dict]:
+    """
+    Busca o detalhe de cada deputado para obter o CPF (não disponível no endpoint de lista).
+    Resultados são cacheados individualmente para evitar re-downloads.
+    Retorna dict {cpf_11_digitos: dados_deputado_lista}.
+    """
+    key_idx = f"camara_cpf_index_{CAMARA_LEGISLATURA}"
+    cached = cache_get(key_idx)
+    if cached is not None:
+        return cached
+
+    indice: dict[str, dict] = {}
+    total = len(todos_deps)
+    for i, dep in enumerate(todos_deps, 1):
+        dep_id = dep["id"]
+        cache_key = f"camara_dep_detalhe_{dep_id}"
+        detalhe = cache_get(cache_key)
+        if detalhe is None:
+            print(f"    buscando CPF dos deputados: {i}/{total}…", end="\r", flush=True)
+            try:
+                resp = fetch_json(session, f"{CAMARA_BASE}/deputados/{dep_id}", cache_key=cache_key)
+                detalhe = resp.get("dados", {})
+            except Exception as exc:
+                print(f"\n    [aviso] falha ao buscar detalhe do deputado {dep_id}: {exc}")
+                detalhe = {}
+            cache_set(cache_key, detalhe)
+
+        cpf = _norm_cpf(detalhe.get("cpf"))
+        if cpf:
+            indice[cpf] = dep  # aponta para o registro da lista (tem siglaUf, siglaPartido, id, nome)
+
+    print()
+    cache_set(key_idx, indice)
+    print(f"  Índice CPF/Câmara: {len(indice)} deputados mapeados de {total}")
+    return indice
+
+
 def match_deputado(
-    nome_tse: str, uf_tse: str, partido_tse: str, todos_deps: list[dict]
-) -> tuple[dict | None, float]:
+    nome_tse: str,
+    uf_tse: str,
+    partido_tse: str,
+    todos_deps: list[dict],
+    cpf_tse: str = "",
+    indice_cpf: dict[str, dict] | None = None,
+) -> tuple[dict | None, float, str]:
+    """
+    Tenta matching por CPF primeiro (confiança 1.0); fallback para nome fuzzy.
+    Retorna (deputado, confiança, método) onde método é 'cpf' ou 'nome'.
+    """
+    # 1. Tentativa por CPF
+    cpf_norm = _norm_cpf(cpf_tse)
+    if cpf_norm and indice_cpf and cpf_norm in indice_cpf:
+        return (indice_cpf[cpf_norm], 1.0, "cpf")
+
+    # 2. Fallback: matching por nome fuzzy filtrado por UF
     melhor, melhor_score = None, 0.0
     for d in todos_deps:
         if norm(d.get("siglaUf", "")) != norm(uf_tse):
@@ -205,7 +307,9 @@ def match_deputado(
             score = min(1.0, score + 0.05)
         if score > melhor_score:
             melhor_score, melhor = score, d
-    return (melhor, melhor_score) if melhor_score >= THRESHOLD_MATCH else (None, melhor_score)
+    if melhor and melhor_score >= THRESHOLD_MATCH:
+        return (melhor, melhor_score, "nome")
+    return (None, melhor_score, "nome")
 
 
 # ── Câmara — proposições ───────────────────────────────────────────────────────
@@ -243,11 +347,20 @@ def buscar_aprovadas_camara(session: requests.Session, id_dep: int) -> list[dict
     return [p for p in todas if p.get("siglaTipo") in TIPOS_CAMARA]
 
 
+
 def agregar_camara(props: list[dict], aprovadas: list[dict]) -> dict:
     por_tipo: dict[str, int] = {}
+    por_ano:  dict[str, int] = {}
+
     for p in props:
         t = p.get("siglaTipo", "outro")
         por_tipo[t] = por_tipo.get(t, 0) + 1
+
+        ano = str(p.get("ano", ""))
+        if ano.isdigit() and int(ano) > 2000:
+            por_ano[ano] = por_ano.get(ano, 0) + 1
+
+    por_ano = dict(sorted(por_ano.items()))
 
     ids_aprov = {p["id"] for p in aprovadas}
 
@@ -270,6 +383,7 @@ def agregar_camara(props: list[dict], aprovadas: list[dict]) -> dict:
         "total_apresentadas": len(props),
         "total_aprovadas": len(ids_aprov),
         "por_tipo": por_tipo,
+        "por_ano": por_ano,
         "exemplos": exemplos,
     }
 
@@ -308,9 +422,72 @@ def buscar_senadores() -> list[dict]:
     return result
 
 
+def buscar_indice_nasc_senado(senadores: list[dict]) -> dict[tuple, dict]:
+    """
+    Busca o detalhe de cada senador para obter DataNascimento (não disponível na lista).
+    Retorna dict {(uf, data_nascimento_iso): senador}.
+    A API do Senado não expõe CPF publicamente; data de nascimento + UF é suficientemente
+    único para o universo de ~160 senadores das legislaturas 55/56.
+    """
+    key_idx = "senado_nasc_index"
+    cached = cache_get(key_idx)
+    if cached is not None:
+        # JSON serializa tuples como listas; re-converte as chaves
+        return {(k[0], k[1]): v for k, v in (item for item in cached)}
+
+    indice: dict[tuple, dict] = {}
+    total = len(senadores)
+    for i, sen in enumerate(senadores, 1):
+        codigo = sen["codigo"]
+        cache_key = f"senado_dep_detalhe_{codigo}"
+        detalhe_raw = cache_get(cache_key)
+        if detalhe_raw is None:
+            print(f"    buscando nascimento dos senadores: {i}/{total}…", end="\r", flush=True)
+            try:
+                root = fetch_xml_root(
+                    f"{SENADO_BASE}/senador/{codigo}",
+                    cache_key=cache_key,
+                )
+                dados = root.find(".//DadosBasicosParlamentar")
+                data_nasc = dados.findtext("DataNascimento", "") if dados is not None else ""
+            except Exception as exc:
+                print(f"\n    [aviso] falha ao buscar detalhe do senador {codigo}: {exc}")
+                data_nasc = ""
+            cache_set(cache_key, {"data_nascimento": data_nasc})
+        else:
+            data_nasc = detalhe_raw.get("data_nascimento", "")
+
+        if data_nasc:
+            chave = (norm(sen["uf"]), data_nasc)
+            indice[chave] = sen
+
+    print()
+    # Serializa como lista de pares para o cache JSON (JSON não suporta tuple como chave)
+    cache_set(key_idx, [[(k[0], k[1]), v] for k, v in indice.items()])
+    print(f"  Índice nascimento/Senado: {len(indice)} senadores mapeados de {total}")
+    return indice
+
+
 def match_senador(
-    nome_tse: str, uf_tse: str, partido_tse: str, senadores: list[dict]
-) -> tuple[dict | None, float]:
+    nome_tse: str,
+    uf_tse: str,
+    partido_tse: str,
+    senadores: list[dict],
+    data_nasc_tse: str = "",
+    indice_nasc: dict[tuple, dict] | None = None,
+) -> tuple[dict | None, float, str]:
+    """
+    Tenta matching por data de nascimento + UF primeiro (confiança 1.0);
+    fallback para nome fuzzy. Retorna (senador, confiança, método).
+    A API do Senado não expõe CPF; data_nascimento+UF é o identificador mais confiável disponível.
+    """
+    # 1. Tentativa por data de nascimento + UF
+    if data_nasc_tse and indice_nasc:
+        chave = (norm(uf_tse), data_nasc_tse)
+        if chave in indice_nasc:
+            return (indice_nasc[chave], 1.0, "nascimento")
+
+    # 2. Fallback: matching por nome fuzzy filtrado por UF
     melhor, melhor_score = None, 0.0
     for s in senadores:
         if norm(s.get("uf", "")) != norm(uf_tse):
@@ -323,7 +500,9 @@ def match_senador(
             score = min(1.0, score + 0.05)
         if score > melhor_score:
             melhor_score, melhor = score, s
-    return (melhor, melhor_score) if melhor_score >= THRESHOLD_MATCH else (None, melhor_score)
+    if melhor and melhor_score >= THRESHOLD_MATCH:
+        return (melhor, melhor_score, "nome")
+    return (None, melhor_score, "nome")
 
 
 # ── Senado — matérias ──────────────────────────────────────────────────────────
@@ -399,7 +578,8 @@ def carregar_reeleicao() -> pd.DataFrame:
             f"{CAND_JSON} não encontrado. "
             "Execute: python ingesta_tse.py --dry-run"
         )
-    df = pd.read_json(CAND_JSON, dtype={"nr_sequencial": str, "numero_eleitoral": int})
+    df = pd.read_json(CAND_JSON, dtype={"nr_sequencial": str, "numero_eleitoral": int,
+                                         "NR_CPF_CANDIDATO": str})
     ocup = df["ocupacao"].fillna("").str.upper().str.strip()
 
     # Diagnóstico: mostra as ocupações mais comuns nos cargos alvo
@@ -415,7 +595,13 @@ def carregar_reeleicao() -> pd.DataFrame:
         (df["cargo"] == "senador") &
         ocup.str.contains(OCUP_SEN_PATTERN, regex=True, na=False)
     )
-    return df[mask].copy().reset_index(drop=True)
+    df = df[mask].copy().reset_index(drop=True)
+
+    # Normaliza CPF para 11 dígitos (campo bruto do TSE pode ter zeros à esquerda truncados)
+    df["cpf"] = df["NR_CPF_CANDIDATO"].fillna("").apply(
+        lambda v: str(v).zfill(11) if re.fullmatch(r"\d{1,11}", str(v)) else re.sub(r"\D", "", str(v))
+    )
+    return df
 
 
 # ── Pipeline principal ─────────────────────────────────────────────────────────
@@ -435,49 +621,60 @@ def processar(dry_run: bool = False) -> None:
     todos_senadores = buscar_senadores()
     print(f"  {len(todos_senadores)} senadores carregados")
 
+    print("Construindo índice nascimento/Senado (busca detalhe de cada senador, usa cache)...")
+    indice_nasc_senado = buscar_indice_nasc_senado(todos_senadores)
+
     print("Carregando lista de deputados (56ª legislatura)...")
     todos_deps = buscar_todos_deputados(session)
-    print(f"  {len(todos_deps)} deputados carregados\n")
+    print(f"  {len(todos_deps)} deputados carregados")
+
+    print("Construindo índice CPF/Câmara (busca detalhe de cada deputado, usa cache)...")
+    indice_cpf = buscar_indice_cpf_camara(session, todos_deps)
+    print()
 
     registros: dict[str, dict] = {}
     depara: list[dict] = []
 
     for _, row in df.iterrows():
-        sq      = str(row["nr_sequencial"])
-        nome    = str(row["nome_urna"])
-        uf      = str(row["uf"])
-        partido = str(row["partido"])
-        cargo   = str(row["cargo"])
+        sq        = str(row["nr_sequencial"])
+        nome      = str(row["nome_urna"])
+        uf        = str(row["uf"])
+        partido   = str(row["partido"])
+        cargo     = str(row["cargo"])
+        cpf       = str(row.get("cpf", ""))
+        data_nasc = str(row.get("data_nascimento", ""))
 
         print(f"  {nome:<40} {cargo:<20} {uf}/{partido}")
 
         base_depara = {
             "sq_candidato": sq, "nome_tse": nome,
             "uf": uf, "partido": partido, "cargo": cargo,
+            "cpf_tse": cpf, "data_nasc_tse": data_nasc,
         }
 
         # ─── Deputado federal ──────────────────────────────────────────────
         if cargo == "deputado-federal":
-            dep, conf = match_deputado(nome, uf, partido, todos_deps)
+            dep, conf, metodo = match_deputado(nome, uf, partido, todos_deps,
+                                               cpf_tse=cpf, indice_cpf=indice_cpf)
 
             if dep is None:
                 print(f"    -> SEM MATCH (conf={conf:.2f})")
                 depara.append({**base_depara, "id_parlamentar": "", "nome_parlamentar": "",
-                               "confianca": round(conf, 3), "status": "sem_match"})
+                               "confianca": round(conf, 3), "status": "sem_match", "metodo": metodo})
                 continue
 
-            status = "ok" if conf >= THRESHOLD_CONFIANTE else "revisar"
-            print(f"    -> {dep['nome']} (id={dep['id']}, conf={conf:.2f}, {status})")
+            status = "cpf_ok" if metodo == "cpf" else ("ok" if conf >= THRESHOLD_CONFIANTE else "revisar")
+            print(f"    -> {dep['nome']} (id={dep['id']}, conf={conf:.2f}, {status}, via {metodo})")
             depara.append({**base_depara, "id_parlamentar": dep["id"],
                            "nome_parlamentar": dep["nome"],
-                           "confianca": round(conf, 3), "status": status})
+                           "confianca": round(conf, 3), "status": status, "metodo": metodo})
 
             if dry_run:
                 continue
 
-            props    = buscar_proposicoes_camara(session, dep["id"])
+            props     = buscar_proposicoes_camara(session, dep["id"])
             aprovadas = buscar_aprovadas_camara(session, dep["id"])
-            agg      = agregar_camara(props, aprovadas)
+            agg       = agregar_camara(props, aprovadas)
 
             registros[sq] = {
                 "sq_candidato": sq, "nome_urna": nome,
@@ -490,19 +687,21 @@ def processar(dry_run: bool = False) -> None:
 
         # ─── Senador ───────────────────────────────────────────────────────
         elif cargo == "senador":
-            sen, conf = match_senador(nome, uf, partido, todos_senadores)
+            sen, conf, metodo = match_senador(nome, uf, partido, todos_senadores,
+                                              data_nasc_tse=data_nasc,
+                                              indice_nasc=indice_nasc_senado)
 
             if sen is None:
                 print(f"    -> SEM MATCH (conf={conf:.2f})")
                 depara.append({**base_depara, "id_parlamentar": "", "nome_parlamentar": "",
-                               "confianca": round(conf, 3), "status": "sem_match"})
+                               "confianca": round(conf, 3), "status": "sem_match", "metodo": metodo})
                 continue
 
-            status = "ok" if conf >= THRESHOLD_CONFIANTE else "revisar"
-            print(f"    -> {sen['nome']} (cod={sen['codigo']}, conf={conf:.2f}, {status})")
+            status = "nasc_ok" if metodo == "nascimento" else ("ok" if conf >= THRESHOLD_CONFIANTE else "revisar")
+            print(f"    -> {sen['nome']} (cod={sen['codigo']}, conf={conf:.2f}, {status}, via {metodo})")
             depara.append({**base_depara, "id_parlamentar": sen["codigo"],
                            "nome_parlamentar": sen["nome"],
-                           "confianca": round(conf, 3), "status": status})
+                           "confianca": round(conf, 3), "status": status, "metodo": metodo})
 
             if dry_run:
                 continue
@@ -525,11 +724,15 @@ def processar(dry_run: bool = False) -> None:
     depara_path = OUTPUT_DIR / "depara.csv"
     df_depara.to_csv(depara_path, index=False, encoding="utf-8")
 
-    ok       = (df_depara["status"] == "ok").sum()
-    revisar  = (df_depara["status"] == "revisar").sum()
+    cpf_ok    = (df_depara["status"] == "cpf_ok").sum()
+    nasc_ok   = (df_depara["status"] == "nasc_ok").sum()
+    ok        = (df_depara["status"] == "ok").sum()
+    revisar   = (df_depara["status"] == "revisar").sum()
     sem_match = (df_depara["status"] == "sem_match").sum()
-    print(f"\nDe-para → {depara_path}")
-    print(f"  ok={ok}  revisar={revisar}  sem_match={sem_match}")
+    total_ok  = cpf_ok + nasc_ok + ok
+    print(f"\nDe-para -> {depara_path}")
+    print(f"  matched={total_ok} (cpf_ok={cpf_ok}, nasc_ok={nasc_ok}, nome_ok={ok})")
+    print(f"  revisar={revisar}  sem_match={sem_match}")
 
     if dry_run:
         print("\n[DRY RUN] Proposições não coletadas.")

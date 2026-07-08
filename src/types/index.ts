@@ -16,6 +16,7 @@ export interface Candidato {
   nomeUrna: string;
   nomeCompleto: string;
   numeroEleitoral: number;
+  nrSequencial: string;
   cargo: CargoSlug;
   uf: UF | 'BR';
   partido: string;
