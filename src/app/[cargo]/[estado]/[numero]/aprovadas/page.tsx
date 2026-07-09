@@ -53,7 +53,10 @@ export default async function PaginaAprovadas({ params }: Props) {
             Projetos de autoria de{' '}
             <span className="font-medium text-gray-700">{candidato.nomeUrna}</span>{' '}
             transformados em Norma Jurídica (Lei, Emenda Constitucional ou Decreto
-            Legislativo) — 56ª Legislatura (2019–2023).
+            Legislativo) —{' '}
+            {cargo === 'senador'
+              ? '55ª e 56ª Legislaturas (2015–2023).'
+              : '56ª Legislatura (2019–2023).'}
           </p>
 
           <ListaProposicoesAprovadas nrSequencial={candidato.nrSequencial} />

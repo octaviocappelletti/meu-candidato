@@ -4,6 +4,8 @@ export interface Exemplo {
   ano: number | string | null;
   ementa: string;
   url: string;
+  data?: string;
+  normaGerada?: string;
 }
 
 export interface Funil {
@@ -23,6 +25,20 @@ export interface LegislativoData {
   por_tipo: Record<string, number>;
   por_ano?: Record<string, number>;
   exemplos: Exemplo[];
+  aprovadas_lista?: Exemplo[];
+  pec_total?: number;
+  pec_autor_principal?: number;
+  pl_total?: number;
+  pl_autor_principal?: number;
+  pec_aprovadas?: number;
+  pec_aprovadas_autor_principal?: number;
+  pl_aprovadas?: number;
+  pl_aprovadas_autor_principal?: number;
+  emendas_mpv_total?: number;
+  emendas_mpv_autor_unico?: number;
+  pec_lista?: Exemplo[];
+  pl_lista?: Exemplo[];
+  emendas_mpv_lista?: Array<{ identificacao: string; ementa: string; url: string; data: string; autor_unico: boolean }>;
   data_referencia: string;
 }
 

@@ -1,12 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import {
   BarChart,
   Bar,
   XAxis,
   YAxis,
   Tooltip,
+  Legend,
   ResponsiveContainer,
   CartesianGrid,
   Cell,
@@ -25,6 +28,7 @@ interface Props {
 
 export default function PainelAtuacao({ nrSequencial, cargo }: Props) {
   const [dados, setDados] = useState<LegislativoData | null | undefined>(undefined);
+  const params = useParams<{ cargo: string; estado: string; numero: string }>();
 
   useEffect(() => {
     if (!CARGOS_APLICAVEIS.includes(cargo) || !nrSequencial) {
@@ -76,6 +80,14 @@ export default function PainelAtuacao({ nrSequencial, cargo }: Props) {
     ? Object.entries(dados.por_ano).map(([ano, qtd]) => ({ ano, qtd }))
     : [];
 
+  const dadosAutoriaSenado =
+    dados.casa === 'senado' && dados.pec_total !== undefined
+      ? [
+          { tipo: 'PEC', total: dados.pec_total, principal: dados.pec_autor_principal ?? 0 },
+          { tipo: 'PL', total: dados.pl_total ?? 0, principal: dados.pl_autor_principal ?? 0 },
+        ]
+      : [];
+
   return (
     <div id="atuacao">
       {/* Cabeçalho */}
@@ -106,7 +118,122 @@ export default function PainelAtuacao({ nrSequencial, cargo }: Props) {
         ))}
       </div>
 
-      {/* Funil de situação */}
+      {/* Autoria legislativa — senadores */}
+      {dados.casa === 'senado' && dados.pec_total !== undefined && (
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wider">
+            Autoria legislativa
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <div className="bg-indigo-50 rounded-xl px-4 py-3 border border-indigo-100">
+              <p className="text-xs text-indigo-600 mb-1 font-medium">PECs</p>
+              <p className="text-xl font-bold text-indigo-800">{dados.pec_total}</p>
+              <p className="text-xs text-indigo-500 mt-0.5">
+                {dados.pec_autor_principal} como autor principal
+              </p>
+            </div>
+            <div className="bg-violet-50 rounded-xl px-4 py-3 border border-violet-100">
+              <p className="text-xs text-violet-600 mb-1 font-medium">PLs</p>
+              <p className="text-xl font-bold text-violet-800">{dados.pl_total}</p>
+              <p className="text-xs text-violet-500 mt-0.5">
+                {dados.pl_autor_principal} como autor principal
+              </p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-400 mt-2">
+            PEC = Proposta de Emenda à Constituição · PL = Projeto de Lei (inclui PLS pré-2019)
+          </p>
+        </div>
+      )}
+
+      {/* Aprovadas — senadores */}
+      {dados.casa === 'senado' &&
+        (dados.pec_aprovadas !== undefined || dados.pl_aprovadas !== undefined) && (
+          <div className="mb-6">
+            <p className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wider">
+              Viraram lei
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {dados.pec_aprovadas !== undefined && (
+                <div className="bg-green-50 rounded-xl px-4 py-3 border border-green-100">
+                  <p className="text-xs text-green-600 mb-1 font-medium">PECs</p>
+                  <p className="text-xl font-bold text-green-800">{dados.pec_aprovadas}</p>
+                  <p className="text-xs text-green-500 mt-0.5">
+                    {dados.pec_aprovadas_autor_principal ?? 0} como autor principal
+                  </p>
+                </div>
+              )}
+              {dados.pl_aprovadas !== undefined && (
+                <div className="bg-green-50 rounded-xl px-4 py-3 border border-green-100">
+                  <p className="text-xs text-green-600 mb-1 font-medium">PLs</p>
+                  <p className="text-xl font-bold text-green-800">{dados.pl_aprovadas}</p>
+                  <p className="text-xs text-green-500 mt-0.5">
+                    {dados.pl_aprovadas_autor_principal ?? 0} como autor principal
+                  </p>
+                </div>
+              )}
+            </div>
+            {dados.aprovadas_lista && dados.aprovadas_lista.length > 0 && (
+              <Link
+                href={`/${params.cargo}/${params.estado}/${params.numero}/aprovadas`}
+                className="inline-block mt-3 text-xs text-green-700 hover:underline font-medium"
+              >
+                Ver lista completa ({dados.aprovadas_lista.length}) ↗
+              </Link>
+            )}
+            <p className="text-xs text-gray-400 mt-2">
+              Transformadas em Norma Jurídica (Lei ou Emenda Constitucional).
+            </p>
+          </div>
+        )}
+
+      {/* Gráfico: autoria por tipo — senadores */}
+      {dadosAutoriaSenado.length > 0 && (
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wider">
+            Autoria por tipo
+          </p>
+          <ResponsiveContainer width="100%" height={Math.max(100, dadosAutoriaSenado.length * 44)}>
+            <BarChart
+              data={dadosAutoriaSenado}
+              layout="vertical"
+              margin={{ top: 4, right: 48, bottom: 4, left: 64 }}
+              barGap={3}
+              barCategoryGap="35%"
+            >
+              <XAxis
+                type="number"
+                tick={{ fontSize: 10 }}
+                tickLine={false}
+                axisLine={false}
+                allowDecimals={false}
+              />
+              <YAxis
+                type="category"
+                dataKey="tipo"
+                tick={{ fontSize: 11 }}
+                tickLine={false}
+                axisLine={false}
+                width={60}
+              />
+              <Tooltip
+                contentStyle={{ fontSize: 12, borderRadius: 8 }}
+                formatter={(v, name) => [v, name === 'total' ? 'Total (incl. coautorias)' : 'Autor principal']}
+              />
+              <Legend
+                iconType="circle"
+                iconSize={8}
+                wrapperStyle={{ fontSize: 11, paddingTop: 6 }}
+                formatter={(value) => value === 'total' ? 'Total (incl. coautorias)' : 'Autor principal'}
+              />
+              <Bar dataKey="total" fill="#c7d2fe" radius={[0, 3, 3, 0]} />
+              <Bar dataKey="principal" fill="#6366f1" radius={[0, 3, 3, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+
+      {/* Funil de situação — câmara */}
       {dados.funil && (
         <div className="mb-6">
           <p className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wider">
@@ -119,12 +246,25 @@ export default function PainelAtuacao({ nrSequencial, cargo }: Props) {
                 {dados.funil.em_tramitacao.toLocaleString('pt-BR')}
               </p>
             </div>
-            <div className="bg-green-50 rounded-xl px-4 py-3 text-center border border-green-100">
-              <p className="text-xs text-green-600 mb-0.5">Viraram lei</p>
-              <p className="text-xl font-bold text-green-800">
-                {dados.funil.aprovadas.toLocaleString('pt-BR')}
-              </p>
-            </div>
+            {dados.aprovadas_lista && dados.aprovadas_lista.length > 0 ? (
+              <Link
+                href={`/${params.cargo}/${params.estado}/${params.numero}/aprovadas`}
+                className="bg-green-50 rounded-xl px-4 py-3 text-center border border-green-100 hover:bg-green-100 hover:border-green-200 transition-colors"
+              >
+                <p className="text-xs text-green-600 mb-0.5">Viraram lei</p>
+                <p className="text-xl font-bold text-green-800">
+                  {dados.funil.aprovadas.toLocaleString('pt-BR')}
+                </p>
+                <p className="text-xs text-green-500 mt-0.5">Ver detalhes ↗</p>
+              </Link>
+            ) : (
+              <div className="bg-green-50 rounded-xl px-4 py-3 text-center border border-green-100">
+                <p className="text-xs text-green-600 mb-0.5">Viraram lei</p>
+                <p className="text-xl font-bold text-green-800">
+                  {dados.funil.aprovadas.toLocaleString('pt-BR')}
+                </p>
+              </div>
+            )}
             <div className="bg-gray-50 rounded-xl px-4 py-3 text-center border border-gray-200">
               <p className="text-xs text-gray-500 mb-0.5">Arquivadas</p>
               <p className="text-xl font-bold text-gray-700">
@@ -164,8 +304,8 @@ export default function PainelAtuacao({ nrSequencial, cargo }: Props) {
         </div>
       )}
 
-      {/* Distribuição por tipo */}
-      {dadosTipo.length > 0 && (
+      {/* Distribuição por tipo — câmara */}
+      {dados.casa === 'camara' && dadosTipo.length > 0 && (
         <div className="mb-6">
           <p className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wider">
             Por tipo de proposição
@@ -203,8 +343,7 @@ export default function PainelAtuacao({ nrSequencial, cargo }: Props) {
             </BarChart>
           </ResponsiveContainer>
           <p className="text-xs text-gray-400 mt-1">
-            PL = Projeto de Lei · PLP = Complementar · PEC = Emenda Constitucional ·
-            PDL = Decreto Legislativo
+            PL = Projeto de Lei · PLP = Complementar · PEC = Emenda Constitucional · PDL = Decreto Legislativo · Inclui coautorias
           </p>
         </div>
       )}
