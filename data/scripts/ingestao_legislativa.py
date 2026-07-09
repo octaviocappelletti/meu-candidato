@@ -438,6 +438,7 @@ def agregar_camara(props: list[dict], detalhes: dict[int, dict]) -> dict:
     por_tipo: dict[str, int] = {}
     por_ano:  dict[str, int] = {}
     funil = {"aprovadas": 0, "arquivadas": 0, "em_tramitacao": 0}
+    aprovadas_lista: list[dict] = []
 
     for p in props:
         t = p.get("siglaTipo", "outro")
@@ -448,7 +449,18 @@ def agregar_camara(props: list[dict], detalhes: dict[int, dict]) -> dict:
             por_ano[ano] = por_ano.get(ano, 0) + 1
 
         cod = (detalhes.get(p["id"]) or {}).get("statusProposicao", {}).get("codSituacao")
-        funil[classificar_situacao(cod)] += 1
+        categoria = classificar_situacao(cod)
+        funil[categoria] += 1
+
+        if categoria == "aprovadas":
+            ementa = (p.get("ementa") or "").strip()
+            aprovadas_lista.append({
+                "sigla":  p.get("siglaTipo", ""),
+                "numero": p.get("numero"),
+                "ano":    p.get("ano"),
+                "ementa": ementa[:220],
+                "url":    f"https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={p['id']}",
+            })
 
     por_ano = dict(sorted(por_ano.items()))
 
@@ -474,6 +486,7 @@ def agregar_camara(props: list[dict], detalhes: dict[int, dict]) -> dict:
         "por_tipo":           por_tipo,
         "por_ano":            por_ano,
         "exemplos":           exemplos,
+        "aprovadas_lista":    aprovadas_lista,
     }
 
 
