@@ -13,9 +13,11 @@ Uso:
 import argparse
 import json
 import re
+import threading
 import time
 import unicodedata
 import xml.etree.ElementTree as ET
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -50,7 +52,11 @@ SIGLA_SENADO = {
     "Proposta de Emenda à Constituição":      "PEC",
     "Projeto de Decreto Legislativo":         "PDL",
 }
-CAMARA_COD_APROVADA = 1140  # "Transformado em Norma Jurídica"
+CODS_APROVADA  = {1140}                          # Transformado em Norma Jurídica
+CODS_ARQUIVADA = {923, 930, 931, 941, 950, 1285, 1292}  # Arquivada / Retirada / Perdeu eficácia / etc.
+
+DETAIL_WORKERS = 5     # threads paralelas para buscar detalhes de proposições
+DETAIL_RATE_S  = 0.10  # pausa por thread (s)
 
 OCUP_DEP_PATTERN = r"\bDEPUTADO\b"    # TSE usa "DEPUTADO" (sem Federal/Distrital) para deputados em exercício
 OCUP_SEN_PATTERN = r"\bSENADOR\b"
@@ -77,13 +83,15 @@ def cache_set(key: str, data) -> None:
 
 # ── HTTP helpers ───────────────────────────────────────────────────────────────
 
-def fetch_json(session: requests.Session, url: str, params: dict = None, cache_key: str = None):
+def fetch_json(session: requests.Session, url: str, params: dict = None,
+               cache_key: str = None, rate_s: float | None = None):
     if cache_key:
         hit = cache_get(cache_key)
         if hit is not None:
             return hit
+    _rate = rate_s if rate_s is not None else RATE_LIMIT_S
     for tentativa in range(4):
-        time.sleep(RATE_LIMIT_S + tentativa * 2)
+        time.sleep(_rate + tentativa * 2)
         try:
             r = session.get(url, params=params, timeout=45)
             if r.status_code in (429, 502, 503, 504) and tentativa < 3:
@@ -126,6 +134,87 @@ def fetch_xml_root(url: str, cache_key: str = None) -> ET.Element:
                 continue
             raise
     raise RuntimeError(f"Falha após 4 tentativas: {url}")
+
+
+# ── Sessions por thread + classificação de situação ───────────────────────────
+
+_tls = threading.local()
+
+
+def _session() -> requests.Session:
+    """Retorna uma requests.Session exclusiva da thread atual."""
+    if not hasattr(_tls, "session"):
+        s = requests.Session()
+        s.headers.update({"Accept": "application/json"})
+        _tls.session = s
+    return _tls.session
+
+
+def classificar_situacao(cod) -> str:
+    """Classifica codSituacao em 'aprovadas', 'arquivadas' ou 'em_tramitacao'."""
+    if cod is None:
+        return "em_tramitacao"
+    cod = int(cod)
+    if cod in CODS_APROVADA:
+        return "aprovadas"
+    if cod in CODS_ARQUIVADA:
+        return "arquivadas"
+    return "em_tramitacao"
+
+
+def buscar_detalhe_proposicao(id_prop: int) -> dict:
+    """
+    Busca o detalhe de uma proposição via GET /proposicoes/{id}.
+    Retorna apenas o objeto 'dados' (inclui statusProposicao.codSituacao).
+    Seguro para uso em threads paralelas — usa session por thread e cache em disco.
+    """
+    key = f"camara_prop_detalhe_{id_prop}"
+    cached = cache_get(key)
+    if cached is not None:
+        return cached
+    try:
+        resp = fetch_json(_session(), f"{CAMARA_BASE}/proposicoes/{id_prop}",
+                          cache_key=key, rate_s=DETAIL_RATE_S)
+        dados = resp.get("dados", {}) if isinstance(resp, dict) else {}
+        cache_set(key, dados)   # sobrescreve o cache com só o 'dados' (menor)
+        return dados
+    except Exception as exc:
+        print(f"\n    [aviso] detalhe prop {id_prop}: {exc}")
+        return {}
+
+
+def buscar_detalhes_paralelo(ids: list[int]) -> dict[int, dict]:
+    """
+    Busca detalhes de múltiplas proposições em paralelo via ThreadPoolExecutor.
+    Retorna dict {id_prop: dados}.
+    """
+    if not ids:
+        return {}
+
+    cache_misses = sum(
+        1 for i in ids if cache_get(f"camara_prop_detalhe_{i}") is None
+    )
+    print(f"      {len(ids)} proposicoes — {cache_misses} novas chamadas, "
+          f"{len(ids) - cache_misses} em cache", flush=True)
+
+    resultados: dict[int, dict] = {}
+    concluidos = 0
+
+    with ThreadPoolExecutor(max_workers=DETAIL_WORKERS) as executor:
+        futures = {executor.submit(buscar_detalhe_proposicao, i): i for i in ids}
+        for future in as_completed(futures):
+            id_prop = futures[future]
+            concluidos += 1
+            try:
+                resultados[id_prop] = future.result()
+            except Exception as exc:
+                resultados[id_prop] = {}
+            if cache_misses > 0 and (concluidos % 100 == 0 or concluidos == len(ids)):
+                print(f"      {concluidos}/{len(ids)}...", end="\r", flush=True)
+
+    if cache_misses > 0:
+        print()
+    return resultados
 
 
 # ── Normalização de nomes ──────────────────────────────────────────────────────
@@ -341,16 +430,14 @@ def buscar_proposicoes_camara(session: requests.Session, id_dep: int) -> list[di
     return todas
 
 
-def buscar_aprovadas_camara(session: requests.Session, id_dep: int) -> list[dict]:
-    params = {"idDeputadoAutor": id_dep, "codSituacao": CAMARA_COD_APROVADA}
-    todas = _paginado_camara(session, params, f"camara_aprov_{id_dep}")
-    return [p for p in todas if p.get("siglaTipo") in TIPOS_CAMARA]
-
-
-
-def agregar_camara(props: list[dict], aprovadas: list[dict]) -> dict:
+def agregar_camara(props: list[dict], detalhes: dict[int, dict]) -> dict:
+    """
+    Agrega proposições em KPIs.
+    detalhes: dict {id_prop: dados_detalhe} com statusProposicao.codSituacao.
+    """
     por_tipo: dict[str, int] = {}
     por_ano:  dict[str, int] = {}
+    funil = {"aprovadas": 0, "arquivadas": 0, "em_tramitacao": 0}
 
     for p in props:
         t = p.get("siglaTipo", "outro")
@@ -360,9 +447,10 @@ def agregar_camara(props: list[dict], aprovadas: list[dict]) -> dict:
         if ano.isdigit() and int(ano) > 2000:
             por_ano[ano] = por_ano.get(ano, 0) + 1
 
-    por_ano = dict(sorted(por_ano.items()))
+        cod = (detalhes.get(p["id"]) or {}).get("statusProposicao", {}).get("codSituacao")
+        funil[classificar_situacao(cod)] += 1
 
-    ids_aprov = {p["id"] for p in aprovadas}
+    por_ano = dict(sorted(por_ano.items()))
 
     exemplos = []
     for p in props:
@@ -381,10 +469,11 @@ def agregar_camara(props: list[dict], aprovadas: list[dict]) -> dict:
 
     return {
         "total_apresentadas": len(props),
-        "total_aprovadas": len(ids_aprov),
-        "por_tipo": por_tipo,
-        "por_ano": por_ano,
-        "exemplos": exemplos,
+        "total_aprovadas":    funil["aprovadas"],
+        "funil":              funil,
+        "por_tipo":           por_tipo,
+        "por_ano":            por_ano,
+        "exemplos":           exemplos,
     }
 
 
@@ -672,9 +761,9 @@ def processar(dry_run: bool = False) -> None:
             if dry_run:
                 continue
 
-            props     = buscar_proposicoes_camara(session, dep["id"])
-            aprovadas = buscar_aprovadas_camara(session, dep["id"])
-            agg       = agregar_camara(props, aprovadas)
+            props    = buscar_proposicoes_camara(session, dep["id"])
+            detalhes = buscar_detalhes_paralelo([p["id"] for p in props])
+            agg      = agregar_camara(props, detalhes)
 
             registros[sq] = {
                 "sq_candidato": sq, "nome_urna": nome,

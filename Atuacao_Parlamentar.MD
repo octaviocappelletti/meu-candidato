@@ -22,8 +22,63 @@ Pipeline Python que:
 4. Exporta `public/legislativo/legislativo.json` — um dicionário keyed por
    `nr_sequencial` (= `sq_candidato` do TSE) com os agregados de cada parlamentar.
 
-**Resultado:** 333 registros (325 matches por CPF, 5 por data de nascimento+UF,
+**Resultado inicial:** 333 registros (325 matches por CPF, 5 por data de nascimento+UF,
 3 por nome com confiança >= 0.70, 3 para revisão manual, 100 sem correspondência).
+
+**Resultado após expansão por busca de nome (ver seção abaixo):** 371 registros.
+
+### Expansão de matching via busca por nome (`data/scripts/verificar_sem_match.py` + `adicionar_novos_matches.py`)
+
+Os 94 deputados sem correspondência na ingestão principal não constavam na lista da 56ª
+legislatura (`/deputados?idLegislatura=56`) porque eram ex-deputados (55ª ou anterior)
+candidatos à reeleição — o campo `ocupacao=DEPUTADO` do TSE não distingue mandato vigente
+de mandato anterior.
+
+**Dois scripts foram criados para recuperar esses casos:**
+
+#### `verificar_sem_match.py`
+
+Para cada candidato sem match, gera até 3 variações de query a partir do nome de urna
+(nome limpo, sem título, palavra mais longa) e chama `GET /api/v2/deputados?nome={query}`.
+Pontua cada resultado: **+2 mesma UF**, **+1 mesmo partido**. Gera dois CSVs:
+
+- `sem_match_resultados.csv` — um resultado de API por linha, com flag `OK` / `REVISAR` / `VERIFICAR`
+- `sem_match_sem_resultado.csv` — candidatos sem nenhum resultado na API
+
+**Resultado:** 63 de 94 encontrados na API; 31 sem resultado (não aparecem em nenhuma consulta).
+
+#### `adicionar_novos_matches.py`
+
+Lê `sem_match_resultados.csv` e aplica dois critérios de validação automática:
+1. Flag `OK` (mesma UF, score ≥ 2)
+2. Primeira palavra significativa do nome de urna (>3 chars, excluindo títulos) aparece no nome retornado pela API
+
+Falsos positivos identificados e excluídos por ID:
+- `id=74856` — Laura Carneiro (casou por sobrenome com WALDECK CARNEIRO)
+- `id=160600` — Arthur Oliveira Maia (casou por sobrenome com TALITA OLIVEIRA)
+- `id=221338` — Professora Luciene (casou pelo prefixo "Professor" com PROFESSOR HOC)
+
+Override manual para apelido não detectável automaticamente:
+- `TOINHO ANDRADE` (apelido de Antonio) → `id=220544` (Antonio Andrade, TO/PSDB)
+
+Após validação: **38 novos matches confirmados**. Para cada um, busca proposições via
+`buscar_proposicoes_camara()` (reaproveitando funções e cache de `ingestao_legislativa.py`)
+e adiciona ao `legislativo.json`.
+
+Gera também `matches_finais.csv` consolidando todos os matches conhecidos:
+
+| Status | Qtd | Descrição |
+|---|---|---|
+| `cpf_ok` | 325 | Match por CPF (deputados federais) |
+| `nome_api_ok` | 38 | Match por busca de nome na API da Câmara |
+| `nasc_ok` | 5 | Match por data de nascimento + UF (senadores) |
+| `revisar` | 3 | Match por nome com confiança ≥ 0.70, aguarda revisão manual |
+| **Total** | **371** | |
+
+Sem correspondência (56 candidatos): ex-parlamentares cujo nome de urna não retorna
+resultados na API da Câmara — provável não-reeleição em 2018 com nome de urna atípico.
+
+---
 
 ### Estratégia de matching (evolução)
 
@@ -64,17 +119,60 @@ Campos gravados por registro:
 | `id_parlamentar` | number | ID na API da Câmara ou código no Senado |
 | `confianca_match` | float | 1.0 para CPF/nascimento; 0.70–1.0 para nome |
 | `total_apresentadas` | int | Total de PL+PLP+PEC+PDL de autoria |
-| `total_aprovadas` | int | Campo reservado — não confiável (ver limitações) |
+| `total_aprovadas` | int | Contagem de proposições com `codSituacao=1140` (derivado do funil) |
+| `funil` | object | `{"aprovadas": N, "arquivadas": N, "em_tramitacao": N}` — só Câmara |
 | `por_tipo` | object | Contagem por sigla: `{"PL": 35, "PLP": 4, ...}` |
 | `por_ano` | object | Série temporal: `{"2019": 8, "2020": 12, ...}` |
 | `exemplos` | array | Até 5 proposições com sigla, número, ano, ementa e URL |
 | `data_referencia` | string | Data ISO da coleta (`YYYY-MM-DD`) |
+
+### Funil de situação das proposições (`ingestao_legislativa.py` — segunda fase)
+
+O endpoint `/proposicoes?idDeputadoAutor={id}` (lista) retorna apenas 8 campos e **não inclui
+`statusProposicao`**. Para obter a situação atual de cada proposição, é necessária uma chamada
+individual a `GET /proposicoes/{id}`, que retorna o objeto `statusProposicao.codSituacao`.
+
+> **Nota:** `/proposicoes/{id}/tramitacoes` também funciona (HTTP 200) mas retorna o histórico
+> completo de etapas — mais dados e mais payload. O endpoint de detalhe `/proposicoes/{id}` já
+> traz o status atual diretamente, sendo a abordagem mais eficiente.
+
+**Implementação:**
+
+- `buscar_detalhe_proposicao(id_prop)` — chama `/proposicoes/{id}`, armazena só o objeto
+  `dados` no cache `camara_prop_detalhe_{id}.json`. Usa session por thread (`threading.local`).
+- `buscar_detalhes_paralelo(ids)` — `ThreadPoolExecutor(max_workers=5)` com `DETAIL_RATE_S=0.1s`
+  por thread. Exibe progresso e quantidade de novas chamadas vs cache.
+- `classificar_situacao(cod)` — mapeia `codSituacao` para três categorias:
+  - `"aprovadas"` → `{1140}` (Transformado em Norma Jurídica)
+  - `"arquivadas"` → `{923, 930, 931, 941, 950, 1285, 1292}` (Arquivada, Retirada, etc.)
+  - `"em_tramitacao"` → tudo mais (incluindo `None`)
+- `agregar_camara(props, detalhes)` — recebe o dict de detalhes e computa `funil` por proposição.
+  `total_aprovadas` passa a ser derivado do funil (correto).
+- `buscar_aprovadas_camara()` — **removida** (usava `codSituacao` como filtro, que era ignorado).
+
+**Volume na primeira execução:** ~29.700 chamadas para 328 deputados (PL/PLP/PEC/PDL).
+Com 5 threads e 0.1s/thread: ~35–50 min. Execuções seguintes: < 1 min (tudo em cache).
+
+**Resultado agregado (Câmara, 328 deputados, 49.919 proposições):**
+
+| Situação | Qtd | % |
+|---|---|---|
+| Em tramitação | 34.998 | 70,1% |
+| Arquivadas | 13.191 | 26,4% |
+| Viraram lei | 1.730 | 3,5% |
+
+**Ordem de execução correta** (o `ingestao_legislativa.py` sobrescreve o JSON do zero):
+```powershell
+python ingestao_legislativa.py        # 333 registros com funil
+python adicionar_novos_matches.py     # +38 registros → 371 total com funil
+```
 
 ### Componente React (`src/components/PainelAtuacao.tsx`)
 
 Substitui o componente original `AtuacaoParlamentar.tsx` (removido). Exibe:
 
 - **KPIs**: total apresentadas + breakdown por tipo em cards.
+- **Funil de situação**: 3 cards coloridos — Em tramitação (azul) · Viraram lei (verde) · Arquivadas (cinza). Renderizado apenas quando `dados.funil` está presente (não exibido para senadores).
 - **Série temporal**: gráfico de barras (recharts) com proposições por ano.
 - **Distribuição por tipo**: gráfico de barras horizontal (recharts) com PL/PLP/PEC/PDL.
 - **Exemplos**: lista com link para a ficha de tramitação na Câmara.
@@ -288,6 +386,17 @@ mas antes de coletar as proposições — deixando o JSON desatualizado.
 
 ### 13. Contador de resumo exibindo `ok=0` após nova estratégia de matching
 
+---
+
+### 14. `KeyError: 'arquivada'` no funil — singular vs plural
+
+**Problema:** `classificar_situacao()` retornava strings no singular (`"aprovada"`,
+`"arquivada"`) mas o dict `funil` usava chaves no plural (`"aprovadas"`, `"arquivadas"`),
+alinhadas à interface TypeScript `Funil`. O script abortava na primeira proposição arquivada.
+
+**Resolução:** padronizar `classificar_situacao()` para retornar sempre o plural:
+`"aprovadas"`, `"arquivadas"`, `"em_tramitacao"` — igual às chaves do dict e da interface.
+
 **Problema:** os novos status `cpf_ok` e `nasc_ok` não eram contabilizados na
 variável `ok` do resumo final, que ficava em 0 mesmo com 330 matches bem-sucedidos.
 
@@ -308,7 +417,7 @@ Documentado aqui para evitar retrabalho em iterações futuras.
 
 | Feature desejada | Endpoint tentado | Resultado | Motivo |
 |---|---|---|---|
-| Funil de situação | `/proposicoes?codSituacao={cod}&idDeputadoAutor={id}` | Dados incorretos | `codSituacao` é ignorado quando combinado com `idDeputadoAutor` |
+| Funil de situação via filtro | `/proposicoes?codSituacao={cod}&idDeputadoAutor={id}` | Dados incorretos | `codSituacao` é ignorado quando combinado com `idDeputadoAutor` — **solução alternativa:** usar `GET /proposicoes/{id}` individualmente (implementado) |
 | Votações nominais por deputado | `/deputados/{id}/votacoes` | 405 | Endpoint não existe na v2 |
 | Votações nominais por deputado | `/deputados/{id}/votos` | 405 | Endpoint não existe na v2 |
 | Presença em sessões plenárias | Sem endpoint conhecido | — | Dado não exposto via API v2 pública |
@@ -321,9 +430,9 @@ Documentado aqui para evitar retrabalho em iterações futuras.
 | Limitação | Impacto | Caminho de resolução |
 |---|---|---|
 | Dados de 2022, não de 2026 | Todos os números referem-se à 56ª legislatura | Reexecutar o script com dados da 57ª legislatura em 2026 |
-| ~100 candidatos sem correspondência | Não exibe a seção para esses candidatos | Revisão manual do `depara.csv`; muitos são nomes de urna de uma palavra (TUM, MAX, ALBA) |
+| ~56 candidatos sem correspondência | Não exibe a seção para esses candidatos | Não aparecem na API da Câmara por nenhuma variação de nome; muitos são nomes de urna atípicos (TUM, ALBA, BIN LADEN GARI) ou ex-parlamentares da 54ª legislatura |
 | Inclui coautorias | Total de projetos pode estar inflado | Filtragem por autoria principal disponível na API mas requer chamadas adicionais |
-| `total_aprovadas` não confiável | Campo no JSON mas não exibido no front-end | Verificar status individualmente via `GET /proposicoes/{id}` (custoso) |
+| Senadores sem funil | `funil` ausente nos 5 registros de senadores | `agregar_senado()` usa API do Senado (estrutura diferente); funil para senadores requer implementação análoga com a API do Senado |
 | Alan Rick e outros por eleição suplementar | Não aparecem nas listas de legislatura da API do Senado | Adicionar manualmente ao de-para |
 | ~513 chamadas extras à API da Câmara | Primeira execução lenta (~5 min só para índice de CPF) | Cache em disco mitiga execuções subsequentes |
 
@@ -342,9 +451,14 @@ cd data/scripts
 python ingestao_legislativa.py --dry-run
 # -> gera data/output/legislativo/depara.csv para revisão
 
-# Passo 2: ingestão completa (~15 min na primeira execução, ~2 min depois)
+# Passo 2: ingestão completa + funil via GET /proposicoes/{id} em paralelo
+# (~35-50 min na primeira execução; ~2 min depois com cache)
 python ingestao_legislativa.py
-# -> gera public/legislativo/legislativo.json (333 registros)
+# -> gera public/legislativo/legislativo.json (333 registros com funil)
+
+# Passo 3: adiciona os 38 matches por busca de nome (também com funil)
+python adicionar_novos_matches.py
+# -> atualiza public/legislativo/legislativo.json (371 registros)
 ```
 
 ```bash
@@ -366,18 +480,26 @@ Excluir essa pasta força o re-download completo.
 | `data/output/candidatos_reeleicao.csv` | Todos os 1.046 candidatos à reeleição em 2022 (todos os cargos), filtrados como aptos |
 | `data/output/reeleicao_dep_federal_legislativo.csv` | 415 deputados federais candidatos à reeleição cruzados com histórico legislativo |
 | `data/output/reeleicao_senador_legislativo.csv` | 10 senadores candidatos à reeleição cruzados com histórico legislativo |
-| `data/output/legislativo/depara.csv` | Tabela de matching candidato TSE ↔ parlamentar API (auditoria) |
+| `data/output/legislativo/depara.csv` | Tabela de matching original: 333 registros (TSE ↔ API Câmara/Senado) |
+| `data/output/legislativo/matches_finais.csv` | Tabela consolidada final: 371 registros incluindo os 38 novos matches por nome |
+| `data/output/legislativo/sem_match_resultados.csv` | Resultados da busca por nome para os 94 sem match (um resultado por linha) |
+| `data/output/legislativo/sem_match_sem_resultado.csv` | 31 candidatos cujo nome não retornou nenhum resultado na API da Câmara |
 
 ---
 
 ## Arquivos criados/modificados
 
 ```
-data/scripts/ingestao_legislativa.py              modificado — matching CPF/nascimento + por_ano
-public/legislativo/legislativo.json               gerado — JSON público para o front-end (333 registros)
-data/output/legislativo/depara.csv                gerado — tabela de matching (não versionado)
-src/lib/legislativo.ts                            novo — tipos compartilhados + fetch singleton
-src/components/PainelAtuacao.tsx                  novo — painel completo (recharts)
+data/scripts/ingestao_legislativa.py              modificado — matching CPF/nascimento + por_ano + funil via GET /proposicoes/{id} paralelo
+data/scripts/verificar_sem_match.py               novo — busca por nome os 94 sem match inicial
+data/scripts/adicionar_novos_matches.py           novo — valida e ingere os novos 38 matches
+public/legislativo/legislativo.json               gerado — JSON público para o front-end (371 registros)
+data/output/legislativo/depara.csv                gerado — tabela de matching original (não versionado)
+data/output/legislativo/matches_finais.csv        gerado — todos os 371 matches consolidados (não versionado)
+data/output/legislativo/sem_match_resultados.csv  gerado — resultados da busca por nome (não versionado)
+data/output/legislativo/sem_match_sem_resultado.csv gerado — 31 sem resultado na API (não versionado)
+src/lib/legislativo.ts                            modificado — interface Funil adicionada; funil?: Funil em LegislativoData
+src/components/PainelAtuacao.tsx                  modificado — seção funil com 3 cards (em tramitação / viraram lei / arquivadas)
 src/components/ResumoAtuacao.tsx                  novo — badge compacto no card da lista
 src/components/AtuacaoParlamentar.tsx             removido — substituído pelo PainelAtuacao
 src/components/CardCandidato.tsx                  modificado — inclui ResumoAtuacao

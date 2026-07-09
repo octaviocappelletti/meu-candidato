@@ -6,6 +6,12 @@ export interface Exemplo {
   url: string;
 }
 
+export interface Funil {
+  aprovadas: number;
+  arquivadas: number;
+  em_tramitacao: number;
+}
+
 export interface LegislativoData {
   sq_candidato: string;
   casa: 'camara' | 'senado';
@@ -13,6 +19,7 @@ export interface LegislativoData {
   confianca_match: number;
   total_apresentadas: number;
   total_aprovadas: number;
+  funil?: Funil;
   por_tipo: Record<string, number>;
   por_ano?: Record<string, number>;
   exemplos: Exemplo[];

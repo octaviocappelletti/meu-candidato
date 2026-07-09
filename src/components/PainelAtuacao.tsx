@@ -106,6 +106,38 @@ export default function PainelAtuacao({ nrSequencial, cargo }: Props) {
         ))}
       </div>
 
+      {/* Funil de situação */}
+      {dados.funil && (
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wider">
+            Situação atual
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <div className="bg-blue-50 rounded-xl px-4 py-3 text-center border border-blue-100">
+              <p className="text-xs text-blue-600 mb-0.5">Em tramitação</p>
+              <p className="text-xl font-bold text-blue-800">
+                {dados.funil.em_tramitacao.toLocaleString('pt-BR')}
+              </p>
+            </div>
+            <div className="bg-green-50 rounded-xl px-4 py-3 text-center border border-green-100">
+              <p className="text-xs text-green-600 mb-0.5">Viraram lei</p>
+              <p className="text-xl font-bold text-green-800">
+                {dados.funil.aprovadas.toLocaleString('pt-BR')}
+              </p>
+            </div>
+            <div className="bg-gray-50 rounded-xl px-4 py-3 text-center border border-gray-200">
+              <p className="text-xs text-gray-500 mb-0.5">Arquivadas</p>
+              <p className="text-xl font-bold text-gray-700">
+                {dados.funil.arquivadas.toLocaleString('pt-BR')}
+              </p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-400 mt-2">
+            "Viraram lei" = Transformadas em Norma Jurídica (Lei, EC ou Decreto Legislativo).
+          </p>
+        </div>
+      )}
+
       {/* Série temporal */}
       {dadosAno.length > 1 && (
         <div className="mb-6">

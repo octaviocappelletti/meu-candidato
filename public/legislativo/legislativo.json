@@ -9,7 +9,12 @@
     "id_parlamentar": 141434,
     "confianca_match": 1.0,
     "total_apresentadas": 40,
-    "total_aprovadas": 40,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 15,
+      "em_tramitacao": 23
+    },
     "por_tipo": {
       "PL": 17,
       "PLP": 2,
@@ -77,7 +82,12 @@
     "id_parlamentar": 204435,
     "confianca_match": 1.0,
     "total_apresentadas": 63,
-    "total_aprovadas": 63,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 16,
+      "em_tramitacao": 44
+    },
     "por_tipo": {
       "PL": 39,
       "PEC": 8,
@@ -138,7 +148,12 @@
     "id_parlamentar": 123756,
     "confianca_match": 1.0,
     "total_apresentadas": 62,
-    "total_aprovadas": 62,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 8,
+      "em_tramitacao": 54
+    },
     "por_tipo": {
       "PL": 22,
       "PEC": 39,
@@ -202,7 +217,12 @@
     "id_parlamentar": 178825,
     "confianca_match": 1.0,
     "total_apresentadas": 123,
-    "total_aprovadas": 123,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 22,
+      "em_tramitacao": 96
+    },
     "por_tipo": {
       "PL": 81,
       "PLP": 1,
@@ -268,7 +288,12 @@
     "id_parlamentar": 204466,
     "confianca_match": 1.0,
     "total_apresentadas": 117,
-    "total_aprovadas": 117,
+    "total_aprovadas": 11,
+    "funil": {
+      "aprovadas": 11,
+      "arquivadas": 27,
+      "em_tramitacao": 79
+    },
     "por_tipo": {
       "PL": 97,
       "PLP": 4,
@@ -331,7 +356,12 @@
     "id_parlamentar": 204437,
     "confianca_match": 1.0,
     "total_apresentadas": 34,
-    "total_aprovadas": 34,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 4,
+      "em_tramitacao": 28
+    },
     "por_tipo": {
       "PL": 26,
       "PLP": 1,
@@ -392,7 +422,12 @@
     "id_parlamentar": 178843,
     "confianca_match": 1.0,
     "total_apresentadas": 232,
-    "total_aprovadas": 232,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 27,
+      "em_tramitacao": 201
+    },
     "por_tipo": {
       "PL": 187,
       "PLP": 2,
@@ -461,7 +496,12 @@
     "id_parlamentar": 178844,
     "confianca_match": 1.0,
     "total_apresentadas": 27,
-    "total_aprovadas": 27,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 9,
+      "em_tramitacao": 15
+    },
     "por_tipo": {
       "PL": 20,
       "PLP": 3,
@@ -522,7 +562,12 @@
     "id_parlamentar": 204436,
     "confianca_match": 1.0,
     "total_apresentadas": 53,
-    "total_aprovadas": 53,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 3,
+      "em_tramitacao": 42
+    },
     "por_tipo": {
       "PL": 21,
       "PLP": 6,
@@ -587,7 +632,12 @@
     "id_parlamentar": 171617,
     "confianca_match": 1.0,
     "total_apresentadas": 224,
-    "total_aprovadas": 224,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 37,
+      "em_tramitacao": 180
+    },
     "por_tipo": {
       "PL": 146,
       "PLP": 6,
@@ -657,7 +707,12 @@
     "id_parlamentar": 204375,
     "confianca_match": 1.0,
     "total_apresentadas": 32,
-    "total_aprovadas": 32,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 8,
+      "em_tramitacao": 23
+    },
     "por_tipo": {
       "PL": 27,
       "PEC": 5
@@ -716,7 +771,12 @@
     "id_parlamentar": 160591,
     "confianca_match": 1.0,
     "total_apresentadas": 32,
-    "total_aprovadas": 32,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 8,
+      "em_tramitacao": 24
+    },
     "por_tipo": {
       "PL": 20,
       "PEC": 12
@@ -785,7 +845,12 @@
     "id_parlamentar": 160641,
     "confianca_match": 1.0,
     "total_apresentadas": 75,
-    "total_aprovadas": 75,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 17,
+      "em_tramitacao": 53
+    },
     "por_tipo": {
       "PL": 57,
       "PLP": 3,
@@ -853,7 +918,12 @@
     "id_parlamentar": 160645,
     "confianca_match": 1.0,
     "total_apresentadas": 14,
-    "total_aprovadas": 14,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 4,
+      "em_tramitacao": 9
+    },
     "por_tipo": {
       "PL": 9,
       "PEC": 5
@@ -915,7 +985,12 @@
     "id_parlamentar": 204353,
     "confianca_match": 1.0,
     "total_apresentadas": 62,
-    "total_aprovadas": 62,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 12,
+      "em_tramitacao": 45
+    },
     "por_tipo": {
       "PL": 49,
       "PLP": 3,
@@ -1034,7 +1109,12 @@
     "id_parlamentar": 204352,
     "confianca_match": 1.0,
     "total_apresentadas": 129,
-    "total_aprovadas": 129,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 31,
+      "em_tramitacao": 96
+    },
     "por_tipo": {
       "PL": 99,
       "PLP": 6,
@@ -1096,7 +1176,12 @@
     "id_parlamentar": 178831,
     "confianca_match": 1.0,
     "total_apresentadas": 19,
-    "total_aprovadas": 19,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 8,
+      "em_tramitacao": 10
+    },
     "por_tipo": {
       "PL": 9,
       "PEC": 10
@@ -1159,7 +1244,12 @@
     "id_parlamentar": 204379,
     "confianca_match": 1.0,
     "total_apresentadas": 77,
-    "total_aprovadas": 77,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 8,
+      "em_tramitacao": 68
+    },
     "por_tipo": {
       "PL": 54,
       "PEC": 23
@@ -1223,7 +1313,12 @@
     "id_parlamentar": 204556,
     "confianca_match": 1.0,
     "total_apresentadas": 67,
-    "total_aprovadas": 67,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 12,
+      "em_tramitacao": 53
+    },
     "por_tipo": {
       "PL": 44,
       "PLP": 7,
@@ -1285,7 +1380,12 @@
     "id_parlamentar": 204557,
     "confianca_match": 1.0,
     "total_apresentadas": 109,
-    "total_aprovadas": 109,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 13,
+      "em_tramitacao": 93
+    },
     "por_tipo": {
       "PL": 73,
       "PLP": 7,
@@ -1351,7 +1451,12 @@
     "id_parlamentar": 204569,
     "confianca_match": 1.0,
     "total_apresentadas": 39,
-    "total_aprovadas": 39,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 6,
+      "em_tramitacao": 32
+    },
     "por_tipo": {
       "PL": 35,
       "PEC": 3,
@@ -1412,7 +1517,12 @@
     "id_parlamentar": 74356,
     "confianca_match": 1.0,
     "total_apresentadas": 235,
-    "total_aprovadas": 235,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 102,
+      "em_tramitacao": 129
+    },
     "por_tipo": {
       "PL": 106,
       "PLP": 3,
@@ -1491,7 +1601,12 @@
     "id_parlamentar": 204572,
     "confianca_match": 1.0,
     "total_apresentadas": 423,
-    "total_aprovadas": 423,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 38,
+      "em_tramitacao": 373
+    },
     "por_tipo": {
       "PL": 333,
       "PLP": 8,
@@ -1613,7 +1728,12 @@
     "id_parlamentar": 74090,
     "confianca_match": 1.0,
     "total_apresentadas": 271,
-    "total_aprovadas": 271,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 187,
+      "em_tramitacao": 78
+    },
     "por_tipo": {
       "PL": 45,
       "PLP": 4,
@@ -1688,7 +1808,12 @@
     "id_parlamentar": 204555,
     "confianca_match": 1.0,
     "total_apresentadas": 254,
-    "total_aprovadas": 254,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 57,
+      "em_tramitacao": 191
+    },
     "por_tipo": {
       "PL": 175,
       "PLP": 9,
@@ -1750,7 +1875,12 @@
     "id_parlamentar": 160553,
     "confianca_match": 1.0,
     "total_apresentadas": 63,
-    "total_aprovadas": 63,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 9,
+      "em_tramitacao": 44
+    },
     "por_tipo": {
       "PL": 37,
       "PLP": 2,
@@ -1823,7 +1953,12 @@
     "id_parlamentar": 139285,
     "confianca_match": 1.0,
     "total_apresentadas": 275,
-    "total_aprovadas": 275,
+    "total_aprovadas": 14,
+    "funil": {
+      "aprovadas": 14,
+      "arquivadas": 65,
+      "em_tramitacao": 196
+    },
     "por_tipo": {
       "PL": 195,
       "PLP": 11,
@@ -1893,7 +2028,12 @@
     "id_parlamentar": 178857,
     "confianca_match": 1.0,
     "total_apresentadas": 338,
-    "total_aprovadas": 338,
+    "total_aprovadas": 14,
+    "funil": {
+      "aprovadas": 14,
+      "arquivadas": 67,
+      "em_tramitacao": 257
+    },
     "por_tipo": {
       "PL": 252,
       "PLP": 13,
@@ -1963,7 +2103,12 @@
     "id_parlamentar": 74057,
     "confianca_match": 1.0,
     "total_apresentadas": 416,
-    "total_aprovadas": 416,
+    "total_aprovadas": 21,
+    "funil": {
+      "aprovadas": 21,
+      "arquivadas": 156,
+      "em_tramitacao": 239
+    },
     "por_tipo": {
       "PL": 213,
       "PLP": 7,
@@ -2044,7 +2189,12 @@
     "id_parlamentar": 204559,
     "confianca_match": 1.0,
     "total_apresentadas": 150,
-    "total_aprovadas": 150,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 16,
+      "em_tramitacao": 128
+    },
     "por_tipo": {
       "PL": 102,
       "PLP": 9,
@@ -2110,7 +2260,12 @@
     "id_parlamentar": 92102,
     "confianca_match": 1.0,
     "total_apresentadas": 32,
-    "total_aprovadas": 32,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 2,
+      "em_tramitacao": 28
+    },
     "por_tipo": {
       "PL": 10,
       "PLP": 1,
@@ -2175,7 +2330,12 @@
     "id_parlamentar": 204564,
     "confianca_match": 1.0,
     "total_apresentadas": 35,
-    "total_aprovadas": 35,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 2,
+      "em_tramitacao": 33
+    },
     "por_tipo": {
       "PL": 34,
       "PEC": 1
@@ -2235,7 +2395,12 @@
     "id_parlamentar": 73808,
     "confianca_match": 1.0,
     "total_apresentadas": 62,
-    "total_aprovadas": 62,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 35,
+      "em_tramitacao": 24
+    },
     "por_tipo": {
       "PL": 26,
       "PLP": 1,
@@ -2299,7 +2464,12 @@
     "id_parlamentar": 69871,
     "confianca_match": 1.0,
     "total_apresentadas": 150,
-    "total_aprovadas": 150,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 14,
+      "em_tramitacao": 130
+    },
     "por_tipo": {
       "PL": 96,
       "PLP": 5,
@@ -2369,7 +2539,12 @@
     "id_parlamentar": 178863,
     "confianca_match": 1.0,
     "total_apresentadas": 40,
-    "total_aprovadas": 40,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 9,
+      "em_tramitacao": 29
+    },
     "por_tipo": {
       "PL": 31,
       "PLP": 1,
@@ -2433,7 +2608,12 @@
     "id_parlamentar": 204565,
     "confianca_match": 1.0,
     "total_apresentadas": 32,
-    "total_aprovadas": 32,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 4,
+      "em_tramitacao": 28
+    },
     "por_tipo": {
       "PL": 28,
       "PEC": 2,
@@ -2494,7 +2674,12 @@
     "id_parlamentar": 150418,
     "confianca_match": 1.0,
     "total_apresentadas": 126,
-    "total_aprovadas": 126,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 20,
+      "em_tramitacao": 102
+    },
     "por_tipo": {
       "PL": 97,
       "PLP": 1,
@@ -2568,7 +2753,12 @@
     "id_parlamentar": 74537,
     "confianca_match": 1.0,
     "total_apresentadas": 99,
-    "total_aprovadas": 99,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 53,
+      "em_tramitacao": 40
+    },
     "por_tipo": {
       "PL": 22,
       "PLP": 4,
@@ -2644,7 +2834,12 @@
     "id_parlamentar": 74141,
     "confianca_match": 1.0,
     "total_apresentadas": 37,
-    "total_aprovadas": 37,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 19,
+      "em_tramitacao": 18
+    },
     "por_tipo": {
       "PL": 13,
       "PEC": 24
@@ -2710,7 +2905,12 @@
     "id_parlamentar": 178854,
     "confianca_match": 1.0,
     "total_apresentadas": 34,
-    "total_aprovadas": 34,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 4,
+      "em_tramitacao": 26
+    },
     "por_tipo": {
       "PL": 14,
       "PLP": 1,
@@ -2777,7 +2977,12 @@
     "id_parlamentar": 74554,
     "confianca_match": 1.0,
     "total_apresentadas": 126,
-    "total_aprovadas": 126,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 71,
+      "em_tramitacao": 53
+    },
     "por_tipo": {
       "PL": 25,
       "PLP": 2,
@@ -2857,7 +3062,12 @@
     "id_parlamentar": 205476,
     "confianca_match": 1.0,
     "total_apresentadas": 96,
-    "total_aprovadas": 96,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 7,
+      "em_tramitacao": 87
+    },
     "por_tipo": {
       "PL": 69,
       "PLP": 6,
@@ -2922,7 +3132,12 @@
     "id_parlamentar": 214865,
     "confianca_match": 1.0,
     "total_apresentadas": 16,
-    "total_aprovadas": 16,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 0,
+      "em_tramitacao": 16
+    },
     "por_tipo": {
       "PL": 16
     },
@@ -2978,7 +3193,12 @@
     "id_parlamentar": 204573,
     "confianca_match": 1.0,
     "total_apresentadas": 102,
-    "total_aprovadas": 102,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 10,
+      "em_tramitacao": 88
+    },
     "por_tipo": {
       "PL": 59,
       "PLP": 12,
@@ -3042,7 +3262,12 @@
     "id_parlamentar": 204560,
     "confianca_match": 1.0,
     "total_apresentadas": 29,
-    "total_aprovadas": 29,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 3,
+      "em_tramitacao": 24
+    },
     "por_tipo": {
       "PL": 19,
       "PEC": 9,
@@ -3106,7 +3331,12 @@
     "id_parlamentar": 141458,
     "confianca_match": 1.0,
     "total_apresentadas": 52,
-    "total_aprovadas": 52,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 10,
+      "em_tramitacao": 38
+    },
     "por_tipo": {
       "PL": 8,
       "PLP": 2,
@@ -3175,7 +3405,12 @@
     "id_parlamentar": 160600,
     "confianca_match": 1.0,
     "total_apresentadas": 64,
-    "total_aprovadas": 64,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 7,
+      "em_tramitacao": 54
+    },
     "por_tipo": {
       "PL": 36,
       "PLP": 5,
@@ -3248,7 +3483,12 @@
     "id_parlamentar": 74574,
     "confianca_match": 1.0,
     "total_apresentadas": 112,
-    "total_aprovadas": 112,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 56,
+      "em_tramitacao": 54
+    },
     "por_tipo": {
       "PL": 44,
       "PLP": 2,
@@ -3327,7 +3567,12 @@
     "id_parlamentar": 204558,
     "confianca_match": 1.0,
     "total_apresentadas": 38,
-    "total_aprovadas": 38,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 11,
+      "em_tramitacao": 24
+    },
     "por_tipo": {
       "PL": 22,
       "PEC": 9,
@@ -3388,7 +3633,12 @@
     "id_parlamentar": 160666,
     "confianca_match": 1.0,
     "total_apresentadas": 195,
-    "total_aprovadas": 195,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 32,
+      "em_tramitacao": 158
+    },
     "por_tipo": {
       "PL": 145,
       "PLP": 13,
@@ -3462,7 +3712,12 @@
     "id_parlamentar": 204553,
     "confianca_match": 1.0,
     "total_apresentadas": 143,
-    "total_aprovadas": 143,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 16,
+      "em_tramitacao": 127
+    },
     "por_tipo": {
       "PL": 112,
       "PLP": 2,
@@ -3528,7 +3783,12 @@
     "id_parlamentar": 178858,
     "confianca_match": 1.0,
     "total_apresentadas": 56,
-    "total_aprovadas": 56,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 8,
+      "em_tramitacao": 46
+    },
     "por_tipo": {
       "PL": 30,
       "PEC": 24,
@@ -3596,7 +3856,12 @@
     "id_parlamentar": 160569,
     "confianca_match": 1.0,
     "total_apresentadas": 243,
-    "total_aprovadas": 243,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 36,
+      "em_tramitacao": 197
+    },
     "por_tipo": {
       "PL": 168,
       "PLP": 7,
@@ -3667,7 +3932,12 @@
     "id_parlamentar": 74060,
     "confianca_match": 1.0,
     "total_apresentadas": 486,
-    "total_aprovadas": 486,
+    "total_aprovadas": 16,
+    "funil": {
+      "aprovadas": 16,
+      "arquivadas": 297,
+      "em_tramitacao": 173
+    },
     "por_tipo": {
       "PL": 119,
       "PLP": 5,
@@ -3804,7 +4074,12 @@
     "id_parlamentar": 178997,
     "confianca_match": 1.0,
     "total_apresentadas": 108,
-    "total_aprovadas": 108,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 13,
+      "em_tramitacao": 92
+    },
     "por_tipo": {
       "PL": 59,
       "PLP": 4,
@@ -3874,7 +4149,12 @@
     "id_parlamentar": 133439,
     "confianca_match": 1.0,
     "total_apresentadas": 454,
-    "total_aprovadas": 454,
+    "total_aprovadas": 21,
+    "funil": {
+      "aprovadas": 21,
+      "arquivadas": 166,
+      "em_tramitacao": 267
+    },
     "por_tipo": {
       "PL": 210,
       "PLP": 22,
@@ -3950,7 +4230,12 @@
     "id_parlamentar": 204549,
     "confianca_match": 1.0,
     "total_apresentadas": 35,
-    "total_aprovadas": 35,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 4,
+      "em_tramitacao": 29
+    },
     "por_tipo": {
       "PL": 16,
       "PEC": 19
@@ -4014,7 +4299,12 @@
     "id_parlamentar": 141470,
     "confianca_match": 1.0,
     "total_apresentadas": 511,
-    "total_aprovadas": 511,
+    "total_aprovadas": 32,
+    "funil": {
+      "aprovadas": 32,
+      "arquivadas": 118,
+      "em_tramitacao": 361
+    },
     "por_tipo": {
       "PL": 335,
       "PLP": 14,
@@ -4090,7 +4380,12 @@
     "id_parlamentar": 204548,
     "confianca_match": 1.0,
     "total_apresentadas": 62,
-    "total_aprovadas": 62,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 9,
+      "em_tramitacao": 53
+    },
     "por_tipo": {
       "PL": 54,
       "PEC": 5,
@@ -4151,7 +4446,12 @@
     "id_parlamentar": 204533,
     "confianca_match": 1.0,
     "total_apresentadas": 52,
-    "total_aprovadas": 52,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 9,
+      "em_tramitacao": 38
+    },
     "por_tipo": {
       "PL": 38,
       "PLP": 1,
@@ -4216,7 +4516,12 @@
     "id_parlamentar": 204488,
     "confianca_match": 1.0,
     "total_apresentadas": 484,
-    "total_aprovadas": 484,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 60,
+      "em_tramitacao": 417
+    },
     "por_tipo": {
       "PL": 420,
       "PLP": 9,
@@ -4290,7 +4595,12 @@
     "id_parlamentar": 141464,
     "confianca_match": 1.0,
     "total_apresentadas": 233,
-    "total_aprovadas": 233,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 53,
+      "em_tramitacao": 170
+    },
     "por_tipo": {
       "PL": 167,
       "PLP": 6,
@@ -4368,7 +4678,12 @@
     "id_parlamentar": 178866,
     "confianca_match": 1.0,
     "total_apresentadas": 260,
-    "total_aprovadas": 260,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 43,
+      "em_tramitacao": 205
+    },
     "por_tipo": {
       "PL": 190,
       "PLP": 6,
@@ -4438,7 +4753,12 @@
     "id_parlamentar": 143632,
     "confianca_match": 1.0,
     "total_apresentadas": 133,
-    "total_aprovadas": 133,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 17,
+      "em_tramitacao": 110
+    },
     "por_tipo": {
       "PL": 87,
       "PLP": 5,
@@ -4510,7 +4830,12 @@
     "id_parlamentar": 204374,
     "confianca_match": 1.0,
     "total_apresentadas": 177,
-    "total_aprovadas": 177,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 19,
+      "em_tramitacao": 153
+    },
     "por_tipo": {
       "PL": 91,
       "PLP": 7,
@@ -4576,7 +4901,12 @@
     "id_parlamentar": 204372,
     "confianca_match": 1.0,
     "total_apresentadas": 172,
-    "total_aprovadas": 172,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 13,
+      "em_tramitacao": 149
+    },
     "por_tipo": {
       "PL": 139,
       "PLP": 6,
@@ -4642,7 +4972,12 @@
     "id_parlamentar": 160517,
     "confianca_match": 1.0,
     "total_apresentadas": 91,
-    "total_aprovadas": 91,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 23,
+      "em_tramitacao": 63
+    },
     "por_tipo": {
       "PL": 63,
       "PLP": 5,
@@ -4712,7 +5047,12 @@
     "id_parlamentar": 204371,
     "confianca_match": 1.0,
     "total_apresentadas": 118,
-    "total_aprovadas": 118,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 22,
+      "em_tramitacao": 90
+    },
     "por_tipo": {
       "PL": 88,
       "PLP": 7,
@@ -4774,7 +5114,12 @@
     "id_parlamentar": 74165,
     "confianca_match": 1.0,
     "total_apresentadas": 391,
-    "total_aprovadas": 391,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 282,
+      "em_tramitacao": 102
+    },
     "por_tipo": {
       "PL": 73,
       "PLP": 3,
@@ -4840,7 +5185,12 @@
     "id_parlamentar": 160598,
     "confianca_match": 1.0,
     "total_apresentadas": 279,
-    "total_aprovadas": 279,
+    "total_aprovadas": 13,
+    "funil": {
+      "aprovadas": 13,
+      "arquivadas": 34,
+      "em_tramitacao": 232
+    },
     "por_tipo": {
       "PL": 225,
       "PLP": 11,
@@ -4914,7 +5264,12 @@
     "id_parlamentar": 74371,
     "confianca_match": 1.0,
     "total_apresentadas": 543,
-    "total_aprovadas": 543,
+    "total_aprovadas": 14,
+    "funil": {
+      "aprovadas": 14,
+      "arquivadas": 206,
+      "em_tramitacao": 323
+    },
     "por_tipo": {
       "PL": 281,
       "PLP": 5,
@@ -4989,7 +5344,12 @@
     "id_parlamentar": 204392,
     "confianca_match": 1.0,
     "total_apresentadas": 81,
-    "total_aprovadas": 81,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 11,
+      "em_tramitacao": 66
+    },
     "por_tipo": {
       "PL": 74,
       "PLP": 3,
@@ -5050,7 +5410,12 @@
     "id_parlamentar": 166402,
     "confianca_match": 1.0,
     "total_apresentadas": 65,
-    "total_aprovadas": 65,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 6,
+      "em_tramitacao": 57
+    },
     "por_tipo": {
       "PL": 41,
       "PLP": 1,
@@ -5121,7 +5486,12 @@
     "id_parlamentar": 178879,
     "confianca_match": 1.0,
     "total_apresentadas": 47,
-    "total_aprovadas": 47,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 9,
+      "em_tramitacao": 33
+    },
     "por_tipo": {
       "PL": 28,
       "PLP": 5,
@@ -5187,7 +5557,12 @@
     "id_parlamentar": 204389,
     "confianca_match": 1.0,
     "total_apresentadas": 62,
-    "total_aprovadas": 62,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 16,
+      "em_tramitacao": 46
+    },
     "por_tipo": {
       "PL": 39,
       "PLP": 4,
@@ -5249,7 +5624,12 @@
     "id_parlamentar": 204419,
     "confianca_match": 1.0,
     "total_apresentadas": 63,
-    "total_aprovadas": 63,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 5,
+      "em_tramitacao": 56
+    },
     "por_tipo": {
       "PL": 43,
       "PLP": 2,
@@ -5315,7 +5695,12 @@
     "id_parlamentar": 204391,
     "confianca_match": 1.0,
     "total_apresentadas": 359,
-    "total_aprovadas": 359,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 29,
+      "em_tramitacao": 329
+    },
     "por_tipo": {
       "PL": 317,
       "PLP": 10,
@@ -5381,7 +5766,12 @@
     "id_parlamentar": 204413,
     "confianca_match": 1.0,
     "total_apresentadas": 4,
-    "total_aprovadas": 4,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 0,
+      "em_tramitacao": 4
+    },
     "por_tipo": {
       "PL": 1,
       "PEC": 3
@@ -5433,7 +5823,12 @@
     "id_parlamentar": 121948,
     "confianca_match": 1.0,
     "total_apresentadas": 41,
-    "total_aprovadas": 41,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 3,
+      "em_tramitacao": 36
+    },
     "por_tipo": {
       "PL": 28,
       "PEC": 10,
@@ -5498,7 +5893,12 @@
     "id_parlamentar": 128760,
     "confianca_match": 1.0,
     "total_apresentadas": 10,
-    "total_aprovadas": 10,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 0,
+      "em_tramitacao": 10
+    },
     "por_tipo": {
       "PL": 2,
       "PEC": 8
@@ -5559,7 +5959,12 @@
     "id_parlamentar": 204574,
     "confianca_match": 1.0,
     "total_apresentadas": 28,
-    "total_aprovadas": 28,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 1,
+      "em_tramitacao": 27
+    },
     "por_tipo": {
       "PL": 10,
       "PEC": 18
@@ -5621,7 +6026,12 @@
     "id_parlamentar": 178884,
     "confianca_match": 1.0,
     "total_apresentadas": 215,
-    "total_aprovadas": 215,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 31,
+      "em_tramitacao": 177
+    },
     "por_tipo": {
       "PL": 171,
       "PLP": 10,
@@ -5693,7 +6103,12 @@
     "id_parlamentar": 204566,
     "confianca_match": 1.0,
     "total_apresentadas": 112,
-    "total_aprovadas": 112,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 17,
+      "em_tramitacao": 94
+    },
     "por_tipo": {
       "PL": 89,
       "PLP": 3,
@@ -5758,7 +6173,12 @@
     "id_parlamentar": 141408,
     "confianca_match": 1.0,
     "total_apresentadas": 461,
-    "total_aprovadas": 461,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 82,
+      "em_tramitacao": 376
+    },
     "por_tipo": {
       "PL": 255,
       "PLP": 124,
@@ -5836,7 +6256,12 @@
     "id_parlamentar": 112437,
     "confianca_match": 1.0,
     "total_apresentadas": 9,
-    "total_aprovadas": 9,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 1,
+      "em_tramitacao": 6
+    },
     "por_tipo": {
       "PL": 5,
       "PEC": 4
@@ -5896,7 +6321,12 @@
     "id_parlamentar": 178881,
     "confianca_match": 1.0,
     "total_apresentadas": 113,
-    "total_aprovadas": 113,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 8,
+      "em_tramitacao": 103
+    },
     "por_tipo": {
       "PL": 67,
       "PLP": 1,
@@ -5965,7 +6395,12 @@
     "id_parlamentar": 204570,
     "confianca_match": 1.0,
     "total_apresentadas": 212,
-    "total_aprovadas": 212,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 21,
+      "em_tramitacao": 188
+    },
     "por_tipo": {
       "PL": 190,
       "PLP": 2,
@@ -6031,7 +6466,12 @@
     "id_parlamentar": 204563,
     "confianca_match": 1.0,
     "total_apresentadas": 14,
-    "total_aprovadas": 14,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 1,
+      "em_tramitacao": 11
+    },
     "por_tipo": {
       "PL": 8,
       "PEC": 6
@@ -6093,7 +6533,12 @@
     "id_parlamentar": 204575,
     "confianca_match": 1.0,
     "total_apresentadas": 25,
-    "total_aprovadas": 25,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 2,
+      "em_tramitacao": 21
+    },
     "por_tipo": {
       "PL": 17,
       "PEC": 8
@@ -6153,7 +6598,12 @@
     "id_parlamentar": 141401,
     "confianca_match": 1.0,
     "total_apresentadas": 844,
-    "total_aprovadas": 844,
+    "total_aprovadas": 14,
+    "funil": {
+      "aprovadas": 14,
+      "arquivadas": 240,
+      "em_tramitacao": 590
+    },
     "por_tipo": {
       "PL": 784,
       "PLP": 48,
@@ -6227,7 +6677,12 @@
     "id_parlamentar": 204467,
     "confianca_match": 1.0,
     "total_apresentadas": 308,
-    "total_aprovadas": 308,
+    "total_aprovadas": 18,
+    "funil": {
+      "aprovadas": 18,
+      "arquivadas": 71,
+      "em_tramitacao": 219
+    },
     "por_tipo": {
       "PL": 228,
       "PLP": 9,
@@ -6290,7 +6745,12 @@
     "id_parlamentar": 198783,
     "confianca_match": 1.0,
     "total_apresentadas": 110,
-    "total_aprovadas": 110,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 12,
+      "em_tramitacao": 94
+    },
     "por_tipo": {
       "PL": 75,
       "PLP": 7,
@@ -6356,7 +6816,12 @@
     "id_parlamentar": 204472,
     "confianca_match": 1.0,
     "total_apresentadas": 500,
-    "total_aprovadas": 500,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 29,
+      "em_tramitacao": 470
+    },
     "por_tipo": {
       "PL": 376,
       "PLP": 24,
@@ -6478,7 +6943,12 @@
     "id_parlamentar": 204439,
     "confianca_match": 1.0,
     "total_apresentadas": 52,
-    "total_aprovadas": 52,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 10,
+      "em_tramitacao": 39
+    },
     "por_tipo": {
       "PL": 40,
       "PLP": 1,
@@ -6540,7 +7010,12 @@
     "id_parlamentar": 204474,
     "confianca_match": 1.0,
     "total_apresentadas": 48,
-    "total_aprovadas": 48,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 3,
+      "em_tramitacao": 43
+    },
     "por_tipo": {
       "PL": 17,
       "PLP": 2,
@@ -6606,7 +7081,12 @@
     "id_parlamentar": 204382,
     "confianca_match": 1.0,
     "total_apresentadas": 50,
-    "total_aprovadas": 50,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 3,
+      "em_tramitacao": 47
+    },
     "por_tipo": {
       "PL": 43,
       "PLP": 4,
@@ -6668,7 +7148,12 @@
     "id_parlamentar": 141411,
     "confianca_match": 1.0,
     "total_apresentadas": 191,
-    "total_aprovadas": 191,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 53,
+      "em_tramitacao": 133
+    },
     "por_tipo": {
       "PL": 122,
       "PLP": 5,
@@ -6742,7 +7227,12 @@
     "id_parlamentar": 74376,
     "confianca_match": 1.0,
     "total_apresentadas": 325,
-    "total_aprovadas": 325,
+    "total_aprovadas": 13,
+    "funil": {
+      "aprovadas": 13,
+      "arquivadas": 105,
+      "em_tramitacao": 207
+    },
     "por_tipo": {
       "PL": 183,
       "PLP": 10,
@@ -6822,7 +7312,12 @@
     "id_parlamentar": 204520,
     "confianca_match": 1.0,
     "total_apresentadas": 174,
-    "total_aprovadas": 174,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 12,
+      "em_tramitacao": 161
+    },
     "por_tipo": {
       "PL": 101,
       "PLP": 6,
@@ -6888,7 +7383,12 @@
     "id_parlamentar": 204547,
     "confianca_match": 1.0,
     "total_apresentadas": 22,
-    "total_aprovadas": 22,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 3,
+      "em_tramitacao": 18
+    },
     "por_tipo": {
       "PL": 19,
       "PLP": 2,
@@ -6949,7 +7449,12 @@
     "id_parlamentar": 204524,
     "confianca_match": 1.0,
     "total_apresentadas": 108,
-    "total_aprovadas": 108,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 7,
+      "em_tramitacao": 97
+    },
     "por_tipo": {
       "PL": 69,
       "PLP": 3,
@@ -7015,7 +7520,12 @@
     "id_parlamentar": 160632,
     "confianca_match": 1.0,
     "total_apresentadas": 145,
-    "total_aprovadas": 145,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 22,
+      "em_tramitacao": 115
+    },
     "por_tipo": {
       "PL": 109,
       "PLP": 8,
@@ -7088,7 +7598,12 @@
     "id_parlamentar": 204482,
     "confianca_match": 1.0,
     "total_apresentadas": 43,
-    "total_aprovadas": 43,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 6,
+      "em_tramitacao": 35
+    },
     "por_tipo": {
       "PL": 18,
       "PLP": 1,
@@ -7153,7 +7668,12 @@
     "id_parlamentar": 204492,
     "confianca_match": 1.0,
     "total_apresentadas": 149,
-    "total_aprovadas": 149,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 13,
+      "em_tramitacao": 129
+    },
     "por_tipo": {
       "PL": 102,
       "PLP": 5,
@@ -7219,7 +7739,12 @@
     "id_parlamentar": 204494,
     "confianca_match": 1.0,
     "total_apresentadas": 175,
-    "total_aprovadas": 175,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 18,
+      "em_tramitacao": 147
+    },
     "por_tipo": {
       "PL": 155,
       "PLP": 2,
@@ -7286,7 +7811,12 @@
     "id_parlamentar": 204483,
     "confianca_match": 1.0,
     "total_apresentadas": 104,
-    "total_aprovadas": 104,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 39,
+      "em_tramitacao": 64
+    },
     "por_tipo": {
       "PL": 81,
       "PLP": 1,
@@ -7348,7 +7878,12 @@
     "id_parlamentar": 204508,
     "confianca_match": 1.0,
     "total_apresentadas": 59,
-    "total_aprovadas": 59,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 5,
+      "em_tramitacao": 52
+    },
     "por_tipo": {
       "PL": 38,
       "PLP": 4,
@@ -7414,7 +7949,12 @@
     "id_parlamentar": 179000,
     "confianca_match": 1.0,
     "total_apresentadas": 86,
-    "total_aprovadas": 86,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 8,
+      "em_tramitacao": 76
+    },
     "por_tipo": {
       "PL": 55,
       "PEC": 29,
@@ -7481,7 +8021,12 @@
     "id_parlamentar": 204491,
     "confianca_match": 1.0,
     "total_apresentadas": 146,
-    "total_aprovadas": 146,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 8,
+      "em_tramitacao": 133
+    },
     "por_tipo": {
       "PL": 84,
       "PLP": 4,
@@ -7548,7 +8093,12 @@
     "id_parlamentar": 204518,
     "confianca_match": 1.0,
     "total_apresentadas": 100,
-    "total_aprovadas": 100,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 8,
+      "em_tramitacao": 86
+    },
     "por_tipo": {
       "PL": 57,
       "PLP": 6,
@@ -7614,7 +8164,12 @@
     "id_parlamentar": 74161,
     "confianca_match": 1.0,
     "total_apresentadas": 489,
-    "total_aprovadas": 489,
+    "total_aprovadas": 15,
+    "funil": {
+      "aprovadas": 15,
+      "arquivadas": 192,
+      "em_tramitacao": 282
+    },
     "por_tipo": {
       "PL": 229,
       "PLP": 11,
@@ -7695,7 +8250,12 @@
     "id_parlamentar": 74159,
     "confianca_match": 1.0,
     "total_apresentadas": 457,
-    "total_aprovadas": 457,
+    "total_aprovadas": 15,
+    "funil": {
+      "aprovadas": 15,
+      "arquivadas": 295,
+      "em_tramitacao": 147
+    },
     "por_tipo": {
       "PL": 94,
       "PLP": 9,
@@ -7771,7 +8331,12 @@
     "id_parlamentar": 160599,
     "confianca_match": 1.0,
     "total_apresentadas": 67,
-    "total_aprovadas": 67,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 11,
+      "em_tramitacao": 54
+    },
     "por_tipo": {
       "PL": 43,
       "PLP": 1,
@@ -7841,7 +8406,12 @@
     "id_parlamentar": 141372,
     "confianca_match": 1.0,
     "total_apresentadas": 64,
-    "total_aprovadas": 64,
+    "total_aprovadas": 9,
+    "funil": {
+      "aprovadas": 9,
+      "arquivadas": 31,
+      "em_tramitacao": 24
+    },
     "por_tipo": {
       "PL": 31,
       "PLP": 2,
@@ -7910,7 +8480,12 @@
     "id_parlamentar": 74646,
     "confianca_match": 1.0,
     "total_apresentadas": 55,
-    "total_aprovadas": 55,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 18,
+      "em_tramitacao": 35
+    },
     "por_tipo": {
       "PL": 43,
       "PLP": 2,
@@ -7975,7 +8550,12 @@
     "id_parlamentar": 161550,
     "confianca_match": 1.0,
     "total_apresentadas": 40,
-    "total_aprovadas": 40,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 6,
+      "em_tramitacao": 31
+    },
     "por_tipo": {
       "PL": 16,
       "PLP": 1,
@@ -8041,7 +8621,12 @@
     "id_parlamentar": 198197,
     "confianca_match": 1.0,
     "total_apresentadas": 97,
-    "total_aprovadas": 97,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 9,
+      "em_tramitacao": 84
+    },
     "por_tipo": {
       "PL": 58,
       "PLP": 7,
@@ -8107,7 +8692,12 @@
     "id_parlamentar": 74158,
     "confianca_match": 1.0,
     "total_apresentadas": 587,
-    "total_aprovadas": 587,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 326,
+      "em_tramitacao": 253
+    },
     "por_tipo": {
       "PL": 193,
       "PLP": 10,
@@ -8186,7 +8776,12 @@
     "id_parlamentar": 160556,
     "confianca_match": 1.0,
     "total_apresentadas": 294,
-    "total_aprovadas": 294,
+    "total_aprovadas": 15,
+    "funil": {
+      "aprovadas": 15,
+      "arquivadas": 41,
+      "em_tramitacao": 238
+    },
     "por_tipo": {
       "PL": 203,
       "PLP": 13,
@@ -8259,7 +8854,12 @@
     "id_parlamentar": 204480,
     "confianca_match": 1.0,
     "total_apresentadas": 319,
-    "total_aprovadas": 319,
+    "total_aprovadas": 9,
+    "funil": {
+      "aprovadas": 9,
+      "arquivadas": 52,
+      "em_tramitacao": 258
+    },
     "por_tipo": {
       "PL": 206,
       "PLP": 10,
@@ -8325,7 +8925,12 @@
     "id_parlamentar": 178896,
     "confianca_match": 1.0,
     "total_apresentadas": 58,
-    "total_aprovadas": 58,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 11,
+      "em_tramitacao": 44
+    },
     "por_tipo": {
       "PL": 26,
       "PLP": 4,
@@ -8395,7 +9000,12 @@
     "id_parlamentar": 74585,
     "confianca_match": 1.0,
     "total_apresentadas": 594,
-    "total_aprovadas": 594,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 334,
+      "em_tramitacao": 250
+    },
     "por_tipo": {
       "PL": 306,
       "PLP": 9,
@@ -8479,7 +9089,12 @@
     "id_parlamentar": 141531,
     "confianca_match": 1.0,
     "total_apresentadas": 71,
-    "total_aprovadas": 71,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 22,
+      "em_tramitacao": 46
+    },
     "por_tipo": {
       "PL": 19,
       "PLP": 1,
@@ -8551,7 +9166,12 @@
     "id_parlamentar": 92776,
     "confianca_match": 1.0,
     "total_apresentadas": 57,
-    "total_aprovadas": 57,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 5,
+      "em_tramitacao": 51
+    },
     "por_tipo": {
       "PL": 25,
       "PEC": 30,
@@ -8621,7 +9241,12 @@
     "id_parlamentar": 204515,
     "confianca_match": 1.0,
     "total_apresentadas": 60,
-    "total_aprovadas": 60,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 14,
+      "em_tramitacao": 43
+    },
     "por_tipo": {
       "PL": 44,
       "PLP": 5,
@@ -8687,7 +9312,12 @@
     "id_parlamentar": 74156,
     "confianca_match": 1.0,
     "total_apresentadas": 460,
-    "total_aprovadas": 460,
+    "total_aprovadas": 13,
+    "funil": {
+      "aprovadas": 13,
+      "arquivadas": 180,
+      "em_tramitacao": 267
+    },
     "por_tipo": {
       "PL": 188,
       "PLP": 9,
@@ -8763,7 +9393,12 @@
     "id_parlamentar": 98057,
     "confianca_match": 1.0,
     "total_apresentadas": 94,
-    "total_aprovadas": 94,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 7,
+      "em_tramitacao": 86
+    },
     "por_tipo": {
       "PL": 34,
       "PLP": 2,
@@ -8829,7 +9464,12 @@
     "id_parlamentar": 160510,
     "confianca_match": 1.0,
     "total_apresentadas": 77,
-    "total_aprovadas": 77,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 16,
+      "em_tramitacao": 54
+    },
     "por_tipo": {
       "PL": 55,
       "PLP": 4,
@@ -8900,7 +9540,12 @@
     "id_parlamentar": 204490,
     "confianca_match": 1.0,
     "total_apresentadas": 27,
-    "total_aprovadas": 27,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 5,
+      "em_tramitacao": 21
+    },
     "por_tipo": {
       "PL": 22,
       "PEC": 5
@@ -8960,7 +9605,12 @@
     "id_parlamentar": 74655,
     "confianca_match": 1.0,
     "total_apresentadas": 518,
-    "total_aprovadas": 518,
+    "total_aprovadas": 20,
+    "funil": {
+      "aprovadas": 20,
+      "arquivadas": 328,
+      "em_tramitacao": 170
+    },
     "por_tipo": {
       "PL": 127,
       "PLP": 5,
@@ -9040,7 +9690,12 @@
     "id_parlamentar": 74352,
     "confianca_match": 1.0,
     "total_apresentadas": 327,
-    "total_aprovadas": 327,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 258,
+      "em_tramitacao": 65
+    },
     "por_tipo": {
       "PL": 11,
       "PEC": 316
@@ -9106,7 +9761,12 @@
     "id_parlamentar": 74075,
     "confianca_match": 1.0,
     "total_apresentadas": 128,
-    "total_aprovadas": 128,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 46,
+      "em_tramitacao": 75
+    },
     "por_tipo": {
       "PL": 84,
       "PLP": 7,
@@ -9185,7 +9845,12 @@
     "id_parlamentar": 204499,
     "confianca_match": 1.0,
     "total_apresentadas": 95,
-    "total_aprovadas": 95,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 21,
+      "em_tramitacao": 73
+    },
     "por_tipo": {
       "PL": 77,
       "PLP": 2,
@@ -9247,7 +9912,12 @@
     "id_parlamentar": 204497,
     "confianca_match": 1.0,
     "total_apresentadas": 71,
-    "total_aprovadas": 71,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 13,
+      "em_tramitacao": 57
+    },
     "por_tipo": {
       "PL": 41,
       "PLP": 4,
@@ -9313,7 +9983,12 @@
     "id_parlamentar": 74079,
     "confianca_match": 1.0,
     "total_apresentadas": 112,
-    "total_aprovadas": 112,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 57,
+      "em_tramitacao": 50
+    },
     "por_tipo": {
       "PL": 32,
       "PLP": 1,
@@ -9385,7 +10060,12 @@
     "id_parlamentar": 178909,
     "confianca_match": 1.0,
     "total_apresentadas": 53,
-    "total_aprovadas": 53,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 10,
+      "em_tramitacao": 40
+    },
     "por_tipo": {
       "PL": 30,
       "PLP": 3,
@@ -9452,7 +10132,12 @@
     "id_parlamentar": 135054,
     "confianca_match": 1.0,
     "total_apresentadas": 5,
-    "total_aprovadas": 5,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 0,
+      "em_tramitacao": 4
+    },
     "por_tipo": {
       "PEC": 5
     },
@@ -9509,7 +10194,12 @@
     "id_parlamentar": 204495,
     "confianca_match": 1.0,
     "total_apresentadas": 274,
-    "total_aprovadas": 274,
+    "total_aprovadas": 13,
+    "funil": {
+      "aprovadas": 13,
+      "arquivadas": 39,
+      "em_tramitacao": 222
+    },
     "por_tipo": {
       "PL": 184,
       "PLP": 6,
@@ -9575,7 +10265,12 @@
     "id_parlamentar": 204500,
     "confianca_match": 1.0,
     "total_apresentadas": 80,
-    "total_aprovadas": 80,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 18,
+      "em_tramitacao": 62
+    },
     "por_tipo": {
       "PL": 62,
       "PLP": 8,
@@ -9636,7 +10331,12 @@
     "id_parlamentar": 178910,
     "confianca_match": 1.0,
     "total_apresentadas": 89,
-    "total_aprovadas": 89,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 9,
+      "em_tramitacao": 79
+    },
     "por_tipo": {
       "PL": 30,
       "PLP": 10,
@@ -9705,7 +10405,12 @@
     "id_parlamentar": 178908,
     "confianca_match": 1.0,
     "total_apresentadas": 104,
-    "total_aprovadas": 104,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 6,
+      "em_tramitacao": 96
+    },
     "por_tipo": {
       "PL": 58,
       "PLP": 4,
@@ -9774,7 +10479,12 @@
     "id_parlamentar": 215044,
     "confianca_match": 1.0,
     "total_apresentadas": 81,
-    "total_aprovadas": 81,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 13,
+      "em_tramitacao": 66
+    },
     "por_tipo": {
       "PL": 41,
       "PLP": 1,
@@ -9834,7 +10544,12 @@
     "id_parlamentar": 204538,
     "confianca_match": 1.0,
     "total_apresentadas": 111,
-    "total_aprovadas": 111,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 12,
+      "em_tramitacao": 97
+    },
     "por_tipo": {
       "PL": 98,
       "PLP": 7,
@@ -9896,7 +10611,12 @@
     "id_parlamentar": 204498,
     "confianca_match": 1.0,
     "total_apresentadas": 35,
-    "total_aprovadas": 35,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 2,
+      "em_tramitacao": 31
+    },
     "por_tipo": {
       "PL": 16,
       "PLP": 1,
@@ -9962,7 +10682,12 @@
     "id_parlamentar": 204505,
     "confianca_match": 1.0,
     "total_apresentadas": 23,
-    "total_aprovadas": 23,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 2,
+      "em_tramitacao": 19
+    },
     "por_tipo": {
       "PL": 18,
       "PLP": 1,
@@ -10023,7 +10748,12 @@
     "id_parlamentar": 204394,
     "confianca_match": 1.0,
     "total_apresentadas": 110,
-    "total_aprovadas": 110,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 29,
+      "em_tramitacao": 77
+    },
     "por_tipo": {
       "PL": 78,
       "PLP": 3,
@@ -10089,7 +10819,12 @@
     "id_parlamentar": 204420,
     "confianca_match": 1.0,
     "total_apresentadas": 29,
-    "total_aprovadas": 29,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 4,
+      "em_tramitacao": 24
+    },
     "por_tipo": {
       "PL": 23,
       "PLP": 2,
@@ -10150,7 +10885,12 @@
     "id_parlamentar": 74467,
     "confianca_match": 1.0,
     "total_apresentadas": 175,
-    "total_aprovadas": 175,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 73,
+      "em_tramitacao": 95
+    },
     "por_tipo": {
       "PL": 72,
       "PLP": 5,
@@ -10230,7 +10970,12 @@
     "id_parlamentar": 204393,
     "confianca_match": 1.0,
     "total_apresentadas": 272,
-    "total_aprovadas": 272,
+    "total_aprovadas": 9,
+    "funil": {
+      "aprovadas": 9,
+      "arquivadas": 56,
+      "em_tramitacao": 207
+    },
     "por_tipo": {
       "PL": 195,
       "PLP": 7,
@@ -10292,7 +11037,12 @@
     "id_parlamentar": 160527,
     "confianca_match": 1.0,
     "total_apresentadas": 80,
-    "total_aprovadas": 80,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 30,
+      "em_tramitacao": 45
+    },
     "por_tipo": {
       "PL": 68,
       "PEC": 11,
@@ -10356,7 +11106,12 @@
     "id_parlamentar": 160635,
     "confianca_match": 1.0,
     "total_apresentadas": 92,
-    "total_aprovadas": 92,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 16,
+      "em_tramitacao": 75
+    },
     "por_tipo": {
       "PL": 57,
       "PLP": 1,
@@ -10426,7 +11181,12 @@
     "id_parlamentar": 74043,
     "confianca_match": 1.0,
     "total_apresentadas": 212,
-    "total_aprovadas": 212,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 126,
+      "em_tramitacao": 80
+    },
     "por_tipo": {
       "PL": 27,
       "PLP": 4,
@@ -10501,7 +11261,12 @@
     "id_parlamentar": 178931,
     "confianca_match": 1.0,
     "total_apresentadas": 194,
-    "total_aprovadas": 194,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 43,
+      "em_tramitacao": 143
+    },
     "por_tipo": {
       "PL": 151,
       "PLP": 2,
@@ -10570,7 +11335,12 @@
     "id_parlamentar": 205865,
     "confianca_match": 1.0,
     "total_apresentadas": 70,
-    "total_aprovadas": 70,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 6,
+      "em_tramitacao": 62
+    },
     "por_tipo": {
       "PL": 35,
       "PLP": 1,
@@ -10635,7 +11405,12 @@
     "id_parlamentar": 204411,
     "confianca_match": 1.0,
     "total_apresentadas": 118,
-    "total_aprovadas": 118,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 6,
+      "em_tramitacao": 109
+    },
     "por_tipo": {
       "PL": 72,
       "PLP": 4,
@@ -10701,7 +11476,12 @@
     "id_parlamentar": 73772,
     "confianca_match": 1.0,
     "total_apresentadas": 99,
-    "total_aprovadas": 99,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 74,
+      "em_tramitacao": 21
+    },
     "por_tipo": {
       "PL": 37,
       "PLP": 3,
@@ -10770,7 +11550,12 @@
     "id_parlamentar": 178933,
     "confianca_match": 1.0,
     "total_apresentadas": 78,
-    "total_aprovadas": 78,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 6,
+      "em_tramitacao": 69
+    },
     "por_tipo": {
       "PL": 50,
       "PLP": 3,
@@ -10840,7 +11625,12 @@
     "id_parlamentar": 178832,
     "confianca_match": 1.0,
     "total_apresentadas": 99,
-    "total_aprovadas": 99,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 18,
+      "em_tramitacao": 69
+    },
     "por_tipo": {
       "PL": 78,
       "PLP": 9,
@@ -10908,7 +11698,12 @@
     "id_parlamentar": 132504,
     "confianca_match": 1.0,
     "total_apresentadas": 226,
-    "total_aprovadas": 226,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 51,
+      "em_tramitacao": 169
+    },
     "por_tipo": {
       "PL": 151,
       "PLP": 8,
@@ -10974,7 +11769,12 @@
     "id_parlamentar": 204395,
     "confianca_match": 1.0,
     "total_apresentadas": 87,
-    "total_aprovadas": 87,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 3,
+      "em_tramitacao": 81
+    },
     "por_tipo": {
       "PL": 27,
       "PLP": 5,
@@ -11040,7 +11840,12 @@
     "id_parlamentar": 178928,
     "confianca_match": 1.0,
     "total_apresentadas": 37,
-    "total_aprovadas": 37,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 7,
+      "em_tramitacao": 28
+    },
     "por_tipo": {
       "PL": 30,
       "PLP": 2,
@@ -11105,7 +11910,12 @@
     "id_parlamentar": 204410,
     "confianca_match": 1.0,
     "total_apresentadas": 126,
-    "total_aprovadas": 126,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 13,
+      "em_tramitacao": 103
+    },
     "por_tipo": {
       "PL": 77,
       "PLP": 6,
@@ -11172,7 +11982,12 @@
     "id_parlamentar": 73788,
     "confianca_match": 1.0,
     "total_apresentadas": 301,
-    "total_aprovadas": 301,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 223,
+      "em_tramitacao": 71
+    },
     "por_tipo": {
       "PL": 62,
       "PLP": 7,
@@ -11246,7 +12061,12 @@
     "id_parlamentar": 178927,
     "confianca_match": 1.0,
     "total_apresentadas": 120,
-    "total_aprovadas": 120,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 33,
+      "em_tramitacao": 86
+    },
     "por_tipo": {
       "PL": 83,
       "PLP": 2,
@@ -11316,7 +12136,12 @@
     "id_parlamentar": 160592,
     "confianca_match": 1.0,
     "total_apresentadas": 146,
-    "total_aprovadas": 146,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 25,
+      "em_tramitacao": 116
+    },
     "por_tipo": {
       "PL": 97,
       "PLP": 9,
@@ -11385,7 +12210,12 @@
     "id_parlamentar": 204387,
     "confianca_match": 1.0,
     "total_apresentadas": 167,
-    "total_aprovadas": 167,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 9,
+      "em_tramitacao": 155
+    },
     "por_tipo": {
       "PL": 100,
       "PLP": 4,
@@ -11451,7 +12281,12 @@
     "id_parlamentar": 178929,
     "confianca_match": 1.0,
     "total_apresentadas": 177,
-    "total_aprovadas": 177,
+    "total_aprovadas": 9,
+    "funil": {
+      "aprovadas": 9,
+      "arquivadas": 15,
+      "em_tramitacao": 153
+    },
     "por_tipo": {
       "PL": 117,
       "PLP": 5,
@@ -11521,7 +12356,12 @@
     "id_parlamentar": 74383,
     "confianca_match": 1.0,
     "total_apresentadas": 160,
-    "total_aprovadas": 160,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 101,
+      "em_tramitacao": 56
+    },
     "por_tipo": {
       "PL": 34,
       "PLP": 4,
@@ -11595,7 +12435,12 @@
     "id_parlamentar": 160621,
     "confianca_match": 1.0,
     "total_apresentadas": 50,
-    "total_aprovadas": 50,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 14,
+      "em_tramitacao": 33
+    },
     "por_tipo": {
       "PL": 35,
       "PLP": 6,
@@ -11665,7 +12510,12 @@
     "id_parlamentar": 107283,
     "confianca_match": 1.0,
     "total_apresentadas": 212,
-    "total_aprovadas": 212,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 36,
+      "em_tramitacao": 168
+    },
     "por_tipo": {
       "PL": 145,
       "PLP": 10,
@@ -11731,7 +12581,12 @@
     "id_parlamentar": 73466,
     "confianca_match": 1.0,
     "total_apresentadas": 371,
-    "total_aprovadas": 371,
+    "total_aprovadas": 17,
+    "funil": {
+      "aprovadas": 17,
+      "arquivadas": 195,
+      "em_tramitacao": 159
+    },
     "por_tipo": {
       "PL": 329,
       "PLP": 12,
@@ -11803,7 +12658,12 @@
     "id_parlamentar": 178920,
     "confianca_match": 1.0,
     "total_apresentadas": 14,
-    "total_aprovadas": 14,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 2,
+      "em_tramitacao": 11
+    },
     "por_tipo": {
       "PL": 13,
       "PLP": 1
@@ -11863,7 +12723,12 @@
     "id_parlamentar": 141421,
     "confianca_match": 1.0,
     "total_apresentadas": 360,
-    "total_aprovadas": 360,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 110,
+      "em_tramitacao": 247
+    },
     "por_tipo": {
       "PL": 264,
       "PLP": 20,
@@ -11941,7 +12806,12 @@
     "id_parlamentar": 178922,
     "confianca_match": 1.0,
     "total_apresentadas": 61,
-    "total_aprovadas": 61,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 17,
+      "em_tramitacao": 39
+    },
     "por_tipo": {
       "PL": 37,
       "PLP": 3,
@@ -12007,7 +12877,12 @@
     "id_parlamentar": 73801,
     "confianca_match": 1.0,
     "total_apresentadas": 205,
-    "total_aprovadas": 205,
+    "total_aprovadas": 9,
+    "funil": {
+      "aprovadas": 9,
+      "arquivadas": 112,
+      "em_tramitacao": 84
+    },
     "por_tipo": {
       "PL": 65,
       "PLP": 3,
@@ -12079,7 +12954,12 @@
     "id_parlamentar": 74419,
     "confianca_match": 1.0,
     "total_apresentadas": 588,
-    "total_aprovadas": 588,
+    "total_aprovadas": 14,
+    "funil": {
+      "aprovadas": 14,
+      "arquivadas": 400,
+      "em_tramitacao": 174
+    },
     "por_tipo": {
       "PL": 210,
       "PLP": 11,
@@ -12159,7 +13039,12 @@
     "id_parlamentar": 204426,
     "confianca_match": 1.0,
     "total_apresentadas": 295,
-    "total_aprovadas": 295,
+    "total_aprovadas": 11,
+    "funil": {
+      "aprovadas": 11,
+      "arquivadas": 67,
+      "em_tramitacao": 217
+    },
     "por_tipo": {
       "PL": 187,
       "PLP": 10,
@@ -12226,7 +13111,12 @@
     "id_parlamentar": 204427,
     "confianca_match": 1.0,
     "total_apresentadas": 126,
-    "total_aprovadas": 126,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 20,
+      "em_tramitacao": 104
+    },
     "por_tipo": {
       "PL": 83,
       "PLP": 4,
@@ -12292,7 +13182,12 @@
     "id_parlamentar": 92699,
     "confianca_match": 1.0,
     "total_apresentadas": 49,
-    "total_aprovadas": 49,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 9,
+      "em_tramitacao": 36
+    },
     "por_tipo": {
       "PL": 32,
       "PLP": 1,
@@ -12362,7 +13257,12 @@
     "id_parlamentar": 160642,
     "confianca_match": 1.0,
     "total_apresentadas": 147,
-    "total_aprovadas": 147,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 16,
+      "em_tramitacao": 129
+    },
     "por_tipo": {
       "PL": 93,
       "PLP": 4,
@@ -12436,7 +13336,12 @@
     "id_parlamentar": 141431,
     "confianca_match": 1.0,
     "total_apresentadas": 56,
-    "total_aprovadas": 56,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 21,
+      "em_tramitacao": 34
+    },
     "por_tipo": {
       "PL": 30,
       "PLP": 2,
@@ -12506,7 +13411,12 @@
     "id_parlamentar": 74439,
     "confianca_match": 1.0,
     "total_apresentadas": 127,
-    "total_aprovadas": 127,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 58,
+      "em_tramitacao": 65
+    },
     "por_tipo": {
       "PL": 58,
       "PLP": 4,
@@ -12575,7 +13485,12 @@
     "id_parlamentar": 204422,
     "confianca_match": 1.0,
     "total_apresentadas": 83,
-    "total_aprovadas": 83,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 6,
+      "em_tramitacao": 74
+    },
     "por_tipo": {
       "PL": 64,
       "PLP": 1,
@@ -12639,7 +13554,12 @@
     "id_parlamentar": 204425,
     "confianca_match": 1.0,
     "total_apresentadas": 25,
-    "total_aprovadas": 25,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 5,
+      "em_tramitacao": 18
+    },
     "por_tipo": {
       "PL": 10,
       "PEC": 15
@@ -12701,7 +13621,12 @@
     "id_parlamentar": 92172,
     "confianca_match": 1.0,
     "total_apresentadas": 20,
-    "total_aprovadas": 20,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 5,
+      "em_tramitacao": 13
+    },
     "por_tipo": {
       "PL": 9,
       "PEC": 6,
@@ -12760,7 +13685,12 @@
     "id_parlamentar": 72442,
     "confianca_match": 1.0,
     "total_apresentadas": 275,
-    "total_aprovadas": 275,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 20,
+      "em_tramitacao": 243
+    },
     "por_tipo": {
       "PL": 231,
       "PLP": 10,
@@ -12829,7 +13759,12 @@
     "id_parlamentar": 157130,
     "confianca_match": 1.0,
     "total_apresentadas": 193,
-    "total_aprovadas": 193,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 28,
+      "em_tramitacao": 155
+    },
     "por_tipo": {
       "PL": 124,
       "PLP": 3,
@@ -12896,7 +13831,12 @@
     "id_parlamentar": 160665,
     "confianca_match": 1.0,
     "total_apresentadas": 129,
-    "total_aprovadas": 129,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 15,
+      "em_tramitacao": 107
+    },
     "por_tipo": {
       "PL": 83,
       "PLP": 4,
@@ -12969,7 +13909,12 @@
     "id_parlamentar": 141523,
     "confianca_match": 1.0,
     "total_apresentadas": 78,
-    "total_aprovadas": 78,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 39,
+      "em_tramitacao": 32
+    },
     "por_tipo": {
       "PL": 43,
       "PEC": 34,
@@ -13037,7 +13982,12 @@
     "id_parlamentar": 204423,
     "confianca_match": 1.0,
     "total_apresentadas": 55,
-    "total_aprovadas": 55,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 3,
+      "em_tramitacao": 47
+    },
     "por_tipo": {
       "PL": 22,
       "PEC": 31,
@@ -13101,7 +14051,12 @@
     "id_parlamentar": 74317,
     "confianca_match": 1.0,
     "total_apresentadas": 353,
-    "total_aprovadas": 353,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 248,
+      "em_tramitacao": 100
+    },
     "por_tipo": {
       "PL": 39,
       "PLP": 13,
@@ -13179,7 +14134,12 @@
     "id_parlamentar": 74319,
     "confianca_match": 1.0,
     "total_apresentadas": 370,
-    "total_aprovadas": 370,
+    "total_aprovadas": 9,
+    "funil": {
+      "aprovadas": 9,
+      "arquivadas": 281,
+      "em_tramitacao": 80
+    },
     "por_tipo": {
       "PL": 99,
       "PLP": 5,
@@ -13253,7 +14213,12 @@
     "id_parlamentar": 191923,
     "confianca_match": 1.0,
     "total_apresentadas": 107,
-    "total_aprovadas": 107,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 8,
+      "em_tramitacao": 94
+    },
     "por_tipo": {
       "PL": 86,
       "PLP": 2,
@@ -13320,7 +14285,12 @@
     "id_parlamentar": 178925,
     "confianca_match": 1.0,
     "total_apresentadas": 394,
-    "total_aprovadas": 394,
+    "total_aprovadas": 18,
+    "funil": {
+      "aprovadas": 18,
+      "arquivadas": 85,
+      "em_tramitacao": 291
+    },
     "por_tipo": {
       "PL": 342,
       "PLP": 13,
@@ -13385,7 +14355,12 @@
     "id_parlamentar": 178924,
     "confianca_match": 1.0,
     "total_apresentadas": 39,
-    "total_aprovadas": 39,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 8,
+      "em_tramitacao": 30
+    },
     "por_tipo": {
       "PL": 32,
       "PEC": 7
@@ -13505,7 +14480,12 @@
     "id_parlamentar": 115746,
     "confianca_match": 1.0,
     "total_apresentadas": 3,
-    "total_aprovadas": 3,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 1,
+      "em_tramitacao": 2
+    },
     "por_tipo": {
       "PL": 3
     },
@@ -13548,7 +14528,12 @@
     "id_parlamentar": 178946,
     "confianca_match": 1.0,
     "total_apresentadas": 114,
-    "total_aprovadas": 114,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 17,
+      "em_tramitacao": 85
+    },
     "por_tipo": {
       "PL": 72,
       "PLP": 6,
@@ -13618,7 +14603,12 @@
     "id_parlamentar": 204440,
     "confianca_match": 1.0,
     "total_apresentadas": 47,
-    "total_aprovadas": 47,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 8,
+      "em_tramitacao": 35
+    },
     "por_tipo": {
       "PL": 37,
       "PLP": 3,
@@ -13679,7 +14669,12 @@
     "id_parlamentar": 204462,
     "confianca_match": 1.0,
     "total_apresentadas": 156,
-    "total_aprovadas": 156,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 9,
+      "em_tramitacao": 145
+    },
     "por_tipo": {
       "PL": 93,
       "PLP": 2,
@@ -13745,7 +14740,12 @@
     "id_parlamentar": 178947,
     "confianca_match": 1.0,
     "total_apresentadas": 169,
-    "total_aprovadas": 169,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 14,
+      "em_tramitacao": 148
+    },
     "por_tipo": {
       "PL": 104,
       "PLP": 6,
@@ -13815,7 +14815,12 @@
     "id_parlamentar": 204444,
     "confianca_match": 1.0,
     "total_apresentadas": 251,
-    "total_aprovadas": 251,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 38,
+      "em_tramitacao": 211
+    },
     "por_tipo": {
       "PL": 190,
       "PLP": 8,
@@ -13881,7 +14886,12 @@
     "id_parlamentar": 196358,
     "confianca_match": 1.0,
     "total_apresentadas": 20,
-    "total_aprovadas": 20,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 2,
+      "em_tramitacao": 17
+    },
     "por_tipo": {
       "PL": 15,
       "PLP": 1,
@@ -13941,7 +14951,12 @@
     "id_parlamentar": 74848,
     "confianca_match": 1.0,
     "total_apresentadas": 341,
-    "total_aprovadas": 341,
+    "total_aprovadas": 21,
+    "funil": {
+      "aprovadas": 21,
+      "arquivadas": 129,
+      "em_tramitacao": 191
+    },
     "por_tipo": {
       "PL": 200,
       "PLP": 8,
@@ -14021,7 +15036,12 @@
     "id_parlamentar": 204452,
     "confianca_match": 1.0,
     "total_apresentadas": 33,
-    "total_aprovadas": 33,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 7,
+      "em_tramitacao": 25
+    },
     "por_tipo": {
       "PL": 30,
       "PEC": 2,
@@ -14082,7 +15102,12 @@
     "id_parlamentar": 204456,
     "confianca_match": 1.0,
     "total_apresentadas": 77,
-    "total_aprovadas": 77,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 9,
+      "em_tramitacao": 63
+    },
     "por_tipo": {
       "PL": 48,
       "PLP": 2,
@@ -14148,7 +15173,12 @@
     "id_parlamentar": 204448,
     "confianca_match": 1.0,
     "total_apresentadas": 25,
-    "total_aprovadas": 25,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 5,
+      "em_tramitacao": 18
+    },
     "por_tipo": {
       "PL": 17,
       "PLP": 5,
@@ -14211,7 +15241,12 @@
     "id_parlamentar": 152605,
     "confianca_match": 1.0,
     "total_apresentadas": 248,
-    "total_aprovadas": 248,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 47,
+      "em_tramitacao": 199
+    },
     "por_tipo": {
       "PL": 121,
       "PLP": 12,
@@ -14286,7 +15321,12 @@
     "id_parlamentar": 122158,
     "confianca_match": 1.0,
     "total_apresentadas": 88,
-    "total_aprovadas": 88,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 7,
+      "em_tramitacao": 73
+    },
     "por_tipo": {
       "PL": 44,
       "PLP": 13,
@@ -14355,7 +15395,12 @@
     "id_parlamentar": 141450,
     "confianca_match": 1.0,
     "total_apresentadas": 245,
-    "total_aprovadas": 245,
+    "total_aprovadas": 14,
+    "funil": {
+      "aprovadas": 14,
+      "arquivadas": 52,
+      "em_tramitacao": 179
+    },
     "por_tipo": {
       "PL": 183,
       "PLP": 13,
@@ -14433,7 +15478,12 @@
     "id_parlamentar": 204450,
     "confianca_match": 1.0,
     "total_apresentadas": 108,
-    "total_aprovadas": 108,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 10,
+      "em_tramitacao": 86
+    },
     "por_tipo": {
       "PL": 71,
       "PLP": 7,
@@ -14499,7 +15549,12 @@
     "id_parlamentar": 73701,
     "confianca_match": 1.0,
     "total_apresentadas": 370,
-    "total_aprovadas": 370,
+    "total_aprovadas": 22,
+    "funil": {
+      "aprovadas": 22,
+      "arquivadas": 97,
+      "em_tramitacao": 251
+    },
     "por_tipo": {
       "PL": 296,
       "PLP": 6,
@@ -14572,7 +15627,12 @@
     "id_parlamentar": 204478,
     "confianca_match": 1.0,
     "total_apresentadas": 54,
-    "total_aprovadas": 54,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 9,
+      "em_tramitacao": 42
+    },
     "por_tipo": {
       "PL": 48,
       "PLP": 1,
@@ -14634,7 +15694,12 @@
     "id_parlamentar": 178945,
     "confianca_match": 1.0,
     "total_apresentadas": 64,
-    "total_aprovadas": 64,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 7,
+      "em_tramitacao": 51
+    },
     "por_tipo": {
       "PL": 50,
       "PLP": 3,
@@ -14702,7 +15767,12 @@
     "id_parlamentar": 204460,
     "confianca_match": 1.0,
     "total_apresentadas": 157,
-    "total_aprovadas": 157,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 17,
+      "em_tramitacao": 136
+    },
     "por_tipo": {
       "PL": 90,
       "PLP": 5,
@@ -14768,7 +15838,12 @@
     "id_parlamentar": 204458,
     "confianca_match": 1.0,
     "total_apresentadas": 65,
-    "total_aprovadas": 65,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 9,
+      "em_tramitacao": 55
+    },
     "por_tipo": {
       "PL": 62,
       "PEC": 3
@@ -14828,7 +15903,12 @@
     "id_parlamentar": 178937,
     "confianca_match": 1.0,
     "total_apresentadas": 70,
-    "total_aprovadas": 70,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 4,
+      "em_tramitacao": 63
+    },
     "por_tipo": {
       "PL": 37,
       "PLP": 2,
@@ -14895,7 +15975,12 @@
     "id_parlamentar": 204477,
     "confianca_match": 1.0,
     "total_apresentadas": 43,
-    "total_aprovadas": 43,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 3,
+      "em_tramitacao": 39
+    },
     "por_tipo": {
       "PL": 35,
       "PLP": 1,
@@ -14957,7 +16042,12 @@
     "id_parlamentar": 204446,
     "confianca_match": 1.0,
     "total_apresentadas": 30,
-    "total_aprovadas": 30,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 5,
+      "em_tramitacao": 23
+    },
     "por_tipo": {
       "PL": 24,
       "PEC": 4,
@@ -15018,7 +16108,12 @@
     "id_parlamentar": 160512,
     "confianca_match": 1.0,
     "total_apresentadas": 401,
-    "total_aprovadas": 401,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 54,
+      "em_tramitacao": 341
+    },
     "por_tipo": {
       "PL": 340,
       "PLP": 27,
@@ -15092,7 +16187,12 @@
     "id_parlamentar": 215045,
     "confianca_match": 1.0,
     "total_apresentadas": 12,
-    "total_aprovadas": 12,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 1,
+      "em_tramitacao": 11
+    },
     "por_tipo": {
       "PL": 10,
       "PEC": 2
@@ -15149,7 +16249,12 @@
     "id_parlamentar": 204464,
     "confianca_match": 1.0,
     "total_apresentadas": 342,
-    "total_aprovadas": 342,
+    "total_aprovadas": 9,
+    "funil": {
+      "aprovadas": 9,
+      "arquivadas": 63,
+      "em_tramitacao": 270
+    },
     "por_tipo": {
       "PL": 219,
       "PLP": 5,
@@ -15215,7 +16320,12 @@
     "id_parlamentar": 217480,
     "confianca_match": 1.0,
     "total_apresentadas": 15,
-    "total_aprovadas": 15,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 2,
+      "em_tramitacao": 11
+    },
     "por_tipo": {
       "PL": 8,
       "PEC": 7
@@ -15274,7 +16384,12 @@
     "id_parlamentar": 205548,
     "confianca_match": 1.0,
     "total_apresentadas": 168,
-    "total_aprovadas": 168,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 43,
+      "em_tramitacao": 120
+    },
     "por_tipo": {
       "PL": 87,
       "PLP": 3,
@@ -15336,7 +16451,12 @@
     "id_parlamentar": 178833,
     "confianca_match": 0.778,
     "total_apresentadas": 20,
-    "total_aprovadas": 20,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 3,
+      "em_tramitacao": 16
+    },
     "por_tipo": {
       "PL": 18,
       "PLP": 1,
@@ -15398,7 +16518,12 @@
     "id_parlamentar": 204441,
     "confianca_match": 1.0,
     "total_apresentadas": 103,
-    "total_aprovadas": 103,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 3,
+      "em_tramitacao": 97
+    },
     "por_tipo": {
       "PL": 63,
       "PLP": 1,
@@ -15464,7 +16589,12 @@
     "id_parlamentar": 204455,
     "confianca_match": 1.0,
     "total_apresentadas": 226,
-    "total_aprovadas": 226,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 23,
+      "em_tramitacao": 197
+    },
     "por_tipo": {
       "PL": 137,
       "PLP": 15,
@@ -15530,7 +16660,12 @@
     "id_parlamentar": 204442,
     "confianca_match": 1.0,
     "total_apresentadas": 48,
-    "total_aprovadas": 48,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 2,
+      "em_tramitacao": 45
+    },
     "por_tipo": {
       "PL": 42,
       "PLP": 1,
@@ -15592,7 +16727,12 @@
     "id_parlamentar": 204459,
     "confianca_match": 1.0,
     "total_apresentadas": 87,
-    "total_aprovadas": 87,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 17,
+      "em_tramitacao": 67
+    },
     "por_tipo": {
       "PL": 63,
       "PLP": 5,
@@ -15657,7 +16797,12 @@
     "id_parlamentar": 204476,
     "confianca_match": 1.0,
     "total_apresentadas": 49,
-    "total_aprovadas": 49,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 12,
+      "em_tramitacao": 37
+    },
     "por_tipo": {
       "PL": 39,
       "PLP": 1,
@@ -15720,7 +16865,12 @@
     "id_parlamentar": 204433,
     "confianca_match": 1.0,
     "total_apresentadas": 51,
-    "total_aprovadas": 51,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 6,
+      "em_tramitacao": 40
+    },
     "por_tipo": {
       "PL": 43,
       "PLP": 1,
@@ -15783,7 +16933,12 @@
     "id_parlamentar": 204473,
     "confianca_match": 1.0,
     "total_apresentadas": 144,
-    "total_aprovadas": 144,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 13,
+      "em_tramitacao": 130
+    },
     "por_tipo": {
       "PL": 73,
       "PLP": 3,
@@ -15849,7 +17004,12 @@
     "id_parlamentar": 141459,
     "confianca_match": 1.0,
     "total_apresentadas": 52,
-    "total_aprovadas": 52,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 12,
+      "em_tramitacao": 36
+    },
     "por_tipo": {
       "PL": 23,
       "PLP": 1,
@@ -15917,7 +17077,12 @@
     "id_parlamentar": 109429,
     "confianca_match": 1.0,
     "total_apresentadas": 115,
-    "total_aprovadas": 115,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 10,
+      "em_tramitacao": 104
+    },
     "por_tipo": {
       "PL": 77,
       "PLP": 1,
@@ -15983,7 +17148,12 @@
     "id_parlamentar": 178948,
     "confianca_match": 1.0,
     "total_apresentadas": 65,
-    "total_aprovadas": 65,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 9,
+      "em_tramitacao": 53
+    },
     "por_tipo": {
       "PL": 53,
       "PLP": 1,
@@ -16049,7 +17219,12 @@
     "id_parlamentar": 160552,
     "confianca_match": 1.0,
     "total_apresentadas": 63,
-    "total_aprovadas": 63,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 19,
+      "em_tramitacao": 43
+    },
     "por_tipo": {
       "PL": 57,
       "PLP": 2,
@@ -16120,7 +17295,12 @@
     "id_parlamentar": 133810,
     "confianca_match": 1.0,
     "total_apresentadas": 75,
-    "total_aprovadas": 75,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 9,
+      "em_tramitacao": 64
+    },
     "por_tipo": {
       "PL": 39,
       "PLP": 5,
@@ -16186,7 +17366,12 @@
     "id_parlamentar": 204407,
     "confianca_match": 1.0,
     "total_apresentadas": 386,
-    "total_aprovadas": 386,
+    "total_aprovadas": 11,
+    "funil": {
+      "aprovadas": 11,
+      "arquivadas": 64,
+      "em_tramitacao": 311
+    },
     "por_tipo": {
       "PL": 224,
       "PLP": 17,
@@ -16253,7 +17438,12 @@
     "id_parlamentar": 74400,
     "confianca_match": 1.0,
     "total_apresentadas": 419,
-    "total_aprovadas": 419,
+    "total_aprovadas": 16,
+    "funil": {
+      "aprovadas": 16,
+      "arquivadas": 172,
+      "em_tramitacao": 231
+    },
     "por_tipo": {
       "PL": 237,
       "PLP": 11,
@@ -16331,7 +17521,12 @@
     "id_parlamentar": 74398,
     "confianca_match": 1.0,
     "total_apresentadas": 536,
-    "total_aprovadas": 536,
+    "total_aprovadas": 24,
+    "funil": {
+      "aprovadas": 24,
+      "arquivadas": 162,
+      "em_tramitacao": 350
+    },
     "por_tipo": {
       "PL": 314,
       "PLP": 11,
@@ -16410,7 +17605,12 @@
     "id_parlamentar": 178962,
     "confianca_match": 1.0,
     "total_apresentadas": 39,
-    "total_aprovadas": 39,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 3,
+      "em_tramitacao": 31
+    },
     "por_tipo": {
       "PL": 28,
       "PLP": 2,
@@ -16477,7 +17677,12 @@
     "id_parlamentar": 136811,
     "confianca_match": 1.0,
     "total_apresentadas": 134,
-    "total_aprovadas": 134,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 25,
+      "em_tramitacao": 97
+    },
     "por_tipo": {
       "PL": 80,
       "PLP": 7,
@@ -16556,7 +17761,12 @@
     "id_parlamentar": 204415,
     "confianca_match": 1.0,
     "total_apresentadas": 160,
-    "total_aprovadas": 160,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 19,
+      "em_tramitacao": 139
+    },
     "por_tipo": {
       "PL": 145,
       "PLP": 7,
@@ -16618,7 +17828,12 @@
     "id_parlamentar": 178963,
     "confianca_match": 1.0,
     "total_apresentadas": 103,
-    "total_aprovadas": 103,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 8,
+      "em_tramitacao": 90
+    },
     "por_tipo": {
       "PL": 67,
       "PLP": 7,
@@ -16686,7 +17901,12 @@
     "id_parlamentar": 204404,
     "confianca_match": 1.0,
     "total_apresentadas": 100,
-    "total_aprovadas": 100,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 4,
+      "em_tramitacao": 91
+    },
     "por_tipo": {
       "PL": 68,
       "PLP": 3,
@@ -16752,7 +17972,12 @@
     "id_parlamentar": 75431,
     "confianca_match": 1.0,
     "total_apresentadas": 40,
-    "total_aprovadas": 40,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 6,
+      "em_tramitacao": 34
+    },
     "por_tipo": {
       "PL": 30,
       "PLP": 5,
@@ -16814,7 +18039,12 @@
     "id_parlamentar": 160535,
     "confianca_match": 1.0,
     "total_apresentadas": 341,
-    "total_aprovadas": 341,
+    "total_aprovadas": 11,
+    "funil": {
+      "aprovadas": 11,
+      "arquivadas": 64,
+      "em_tramitacao": 266
+    },
     "por_tipo": {
       "PL": 228,
       "PLP": 10,
@@ -16887,7 +18117,12 @@
     "id_parlamentar": 179001,
     "confianca_match": 1.0,
     "total_apresentadas": 22,
-    "total_aprovadas": 22,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 4,
+      "em_tramitacao": 15
+    },
     "por_tipo": {
       "PL": 9,
       "PEC": 13
@@ -16950,7 +18185,12 @@
     "id_parlamentar": 160673,
     "confianca_match": 1.0,
     "total_apresentadas": 248,
-    "total_aprovadas": 248,
+    "total_aprovadas": 13,
+    "funil": {
+      "aprovadas": 13,
+      "arquivadas": 57,
+      "em_tramitacao": 178
+    },
     "por_tipo": {
       "PL": 192,
       "PLP": 11,
@@ -17024,7 +18264,12 @@
     "id_parlamentar": 160538,
     "confianca_match": 1.0,
     "total_apresentadas": 224,
-    "total_aprovadas": 224,
+    "total_aprovadas": 11,
+    "funil": {
+      "aprovadas": 11,
+      "arquivadas": 32,
+      "em_tramitacao": 181
+    },
     "por_tipo": {
       "PL": 136,
       "PLP": 8,
@@ -17097,7 +18342,12 @@
     "id_parlamentar": 204405,
     "confianca_match": 0.764,
     "total_apresentadas": 32,
-    "total_aprovadas": 32,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 6,
+      "em_tramitacao": 25
+    },
     "por_tipo": {
       "PL": 29,
       "PEC": 3
@@ -17157,7 +18407,12 @@
     "id_parlamentar": 219592,
     "confianca_match": 1.0,
     "total_apresentadas": 4,
-    "total_aprovadas": 4,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 0,
+      "em_tramitacao": 4
+    },
     "por_tipo": {
       "PL": 3,
       "PEC": 1
@@ -17207,7 +18462,12 @@
     "id_parlamentar": 204360,
     "confianca_match": 1.0,
     "total_apresentadas": 85,
-    "total_aprovadas": 85,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 3,
+      "em_tramitacao": 79
+    },
     "por_tipo": {
       "PL": 43,
       "PLP": 4,
@@ -17273,7 +18533,12 @@
     "id_parlamentar": 141508,
     "confianca_match": 1.0,
     "total_apresentadas": 226,
-    "total_aprovadas": 226,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 109,
+      "em_tramitacao": 111
+    },
     "por_tipo": {
       "PL": 154,
       "PLP": 2,
@@ -17340,7 +18605,12 @@
     "id_parlamentar": 178953,
     "confianca_match": 1.0,
     "total_apresentadas": 54,
-    "total_aprovadas": 54,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 11,
+      "em_tramitacao": 43
+    },
     "por_tipo": {
       "PL": 45,
       "PLP": 2,
@@ -17405,7 +18675,12 @@
     "id_parlamentar": 204475,
     "confianca_match": 1.0,
     "total_apresentadas": 15,
-    "total_aprovadas": 15,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 1,
+      "em_tramitacao": 10
+    },
     "por_tipo": {
       "PL": 9,
       "PLP": 1,
@@ -17466,7 +18741,12 @@
     "id_parlamentar": 204479,
     "confianca_match": 1.0,
     "total_apresentadas": 181,
-    "total_aprovadas": 181,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 15,
+      "em_tramitacao": 166
+    },
     "por_tipo": {
       "PL": 111,
       "PLP": 9,
@@ -17532,7 +18812,12 @@
     "id_parlamentar": 204468,
     "confianca_match": 1.0,
     "total_apresentadas": 75,
-    "total_aprovadas": 75,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 12,
+      "em_tramitacao": 58
+    },
     "por_tipo": {
       "PL": 42,
       "PEC": 6,
@@ -17593,7 +18878,12 @@
     "id_parlamentar": 160531,
     "confianca_match": 1.0,
     "total_apresentadas": 41,
-    "total_aprovadas": 41,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 9,
+      "em_tramitacao": 29
+    },
     "por_tipo": {
       "PL": 31,
       "PLP": 3,
@@ -17661,7 +18951,12 @@
     "id_parlamentar": 164360,
     "confianca_match": 1.0,
     "total_apresentadas": 257,
-    "total_aprovadas": 257,
+    "total_aprovadas": 22,
+    "funil": {
+      "aprovadas": 22,
+      "arquivadas": 48,
+      "em_tramitacao": 187
+    },
     "por_tipo": {
       "PL": 228,
       "PLP": 14,
@@ -17734,7 +19029,12 @@
     "id_parlamentar": 204362,
     "confianca_match": 1.0,
     "total_apresentadas": 32,
-    "total_aprovadas": 32,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 3,
+      "em_tramitacao": 28
+    },
     "por_tipo": {
       "PL": 8,
       "PLP": 1,
@@ -17799,7 +19099,12 @@
     "id_parlamentar": 204373,
     "confianca_match": 1.0,
     "total_apresentadas": 21,
-    "total_aprovadas": 21,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 4,
+      "em_tramitacao": 16
+    },
     "por_tipo": {
       "PL": 14,
       "PLP": 1,
@@ -17860,7 +19165,12 @@
     "id_parlamentar": 116379,
     "confianca_match": 1.0,
     "total_apresentadas": 92,
-    "total_aprovadas": 92,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 11,
+      "em_tramitacao": 78
+    },
     "por_tipo": {
       "PL": 68,
       "PLP": 8,
@@ -17924,7 +19234,12 @@
     "id_parlamentar": 73696,
     "confianca_match": 1.0,
     "total_apresentadas": 70,
-    "total_aprovadas": 70,
+    "total_aprovadas": 9,
+    "funil": {
+      "aprovadas": 9,
+      "arquivadas": 25,
+      "em_tramitacao": 36
+    },
     "por_tipo": {
       "PL": 44,
       "PLP": 4,
@@ -17987,7 +19302,12 @@
     "id_parlamentar": 160604,
     "confianca_match": 1.0,
     "total_apresentadas": 385,
-    "total_aprovadas": 385,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 56,
+      "em_tramitacao": 317
+    },
     "por_tipo": {
       "PL": 277,
       "PLP": 13,
@@ -18061,7 +19381,12 @@
     "id_parlamentar": 204368,
     "confianca_match": 1.0,
     "total_apresentadas": 65,
-    "total_aprovadas": 65,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 9,
+      "em_tramitacao": 55
+    },
     "por_tipo": {
       "PL": 36,
       "PLP": 2,
@@ -18127,7 +19452,12 @@
     "id_parlamentar": 178983,
     "confianca_match": 1.0,
     "total_apresentadas": 47,
-    "total_aprovadas": 47,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 9,
+      "em_tramitacao": 33
+    },
     "por_tipo": {
       "PL": 24,
       "PLP": 2,
@@ -18197,7 +19527,12 @@
     "id_parlamentar": 204531,
     "confianca_match": 1.0,
     "total_apresentadas": 91,
-    "total_aprovadas": 91,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 12,
+      "em_tramitacao": 76
+    },
     "por_tipo": {
       "PL": 78,
       "PLP": 5,
@@ -18260,7 +19595,12 @@
     "id_parlamentar": 204521,
     "confianca_match": 1.0,
     "total_apresentadas": 48,
-    "total_aprovadas": 48,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 6,
+      "em_tramitacao": 41
+    },
     "por_tipo": {
       "PL": 41,
       "PEC": 4,
@@ -18321,7 +19661,12 @@
     "id_parlamentar": 204484,
     "confianca_match": 1.0,
     "total_apresentadas": 60,
-    "total_aprovadas": 60,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 7,
+      "em_tramitacao": 48
+    },
     "por_tipo": {
       "PL": 49,
       "PLP": 3,
@@ -18382,7 +19727,12 @@
     "id_parlamentar": 74270,
     "confianca_match": 1.0,
     "total_apresentadas": 325,
-    "total_aprovadas": 325,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 209,
+      "em_tramitacao": 115
+    },
     "por_tipo": {
       "PL": 52,
       "PLP": 1,
@@ -18455,7 +19805,12 @@
     "id_parlamentar": 141553,
     "confianca_match": 1.0,
     "total_apresentadas": 88,
-    "total_aprovadas": 88,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 25,
+      "em_tramitacao": 57
+    },
     "por_tipo": {
       "PL": 51,
       "PLP": 5,
@@ -18528,7 +19883,12 @@
     "id_parlamentar": 141488,
     "confianca_match": 1.0,
     "total_apresentadas": 427,
-    "total_aprovadas": 427,
+    "total_aprovadas": 18,
+    "funil": {
+      "aprovadas": 18,
+      "arquivadas": 106,
+      "em_tramitacao": 303
+    },
     "por_tipo": {
       "PL": 300,
       "PLP": 17,
@@ -18604,7 +19964,12 @@
     "id_parlamentar": 154178,
     "confianca_match": 1.0,
     "total_apresentadas": 49,
-    "total_aprovadas": 49,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 10,
+      "em_tramitacao": 36
+    },
     "por_tipo": {
       "PL": 36,
       "PLP": 3,
@@ -18669,7 +20034,12 @@
     "id_parlamentar": 204504,
     "confianca_match": 1.0,
     "total_apresentadas": 87,
-    "total_aprovadas": 87,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 5,
+      "em_tramitacao": 75
+    },
     "por_tipo": {
       "PL": 57,
       "PLP": 4,
@@ -18735,7 +20105,12 @@
     "id_parlamentar": 74273,
     "confianca_match": 1.0,
     "total_apresentadas": 388,
-    "total_aprovadas": 388,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 230,
+      "em_tramitacao": 153
+    },
     "por_tipo": {
       "PL": 135,
       "PLP": 8,
@@ -18814,7 +20189,12 @@
     "id_parlamentar": 73531,
     "confianca_match": 1.0,
     "total_apresentadas": 468,
-    "total_aprovadas": 468,
+    "total_aprovadas": 10,
+    "funil": {
+      "aprovadas": 10,
+      "arquivadas": 151,
+      "em_tramitacao": 307
+    },
     "por_tipo": {
       "PL": 226,
       "PLP": 12,
@@ -18896,7 +20276,12 @@
     "id_parlamentar": 160532,
     "confianca_match": 1.0,
     "total_apresentadas": 39,
-    "total_aprovadas": 39,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 11,
+      "em_tramitacao": 28
+    },
     "por_tipo": {
       "PL": 33,
       "PLP": 4,
@@ -18965,7 +20350,12 @@
     "id_parlamentar": 141391,
     "confianca_match": 1.0,
     "total_apresentadas": 103,
-    "total_aprovadas": 103,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 27,
+      "em_tramitacao": 68
+    },
     "por_tipo": {
       "PL": 62,
       "PLP": 7,
@@ -19039,7 +20429,12 @@
     "id_parlamentar": 178972,
     "confianca_match": 1.0,
     "total_apresentadas": 130,
-    "total_aprovadas": 130,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 18,
+      "em_tramitacao": 109
+    },
     "por_tipo": {
       "PL": 99,
       "PLP": 2,
@@ -19109,7 +20504,12 @@
     "id_parlamentar": 204540,
     "confianca_match": 1.0,
     "total_apresentadas": 124,
-    "total_aprovadas": 124,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 15,
+      "em_tramitacao": 105
+    },
     "por_tipo": {
       "PL": 102,
       "PLP": 3,
@@ -19175,7 +20575,12 @@
     "id_parlamentar": 204485,
     "confianca_match": 1.0,
     "total_apresentadas": 93,
-    "total_aprovadas": 93,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 8,
+      "em_tramitacao": 82
+    },
     "por_tipo": {
       "PL": 44,
       "PLP": 3,
@@ -19241,7 +20646,12 @@
     "id_parlamentar": 160545,
     "confianca_match": 1.0,
     "total_apresentadas": 72,
-    "total_aprovadas": 72,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 23,
+      "em_tramitacao": 48
+    },
     "por_tipo": {
       "PL": 58,
       "PEC": 14
@@ -19313,7 +20723,12 @@
     "id_parlamentar": 73604,
     "confianca_match": 1.0,
     "total_apresentadas": 130,
-    "total_aprovadas": 130,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 16,
+      "em_tramitacao": 108
+    },
     "por_tipo": {
       "PL": 88,
       "PLP": 2,
@@ -19379,7 +20794,12 @@
     "id_parlamentar": 204522,
     "confianca_match": 1.0,
     "total_apresentadas": 26,
-    "total_aprovadas": 26,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 8,
+      "em_tramitacao": 14
+    },
     "por_tipo": {
       "PL": 15,
       "PLP": 4,
@@ -19441,7 +20861,12 @@
     "id_parlamentar": 160601,
     "confianca_match": 1.0,
     "total_apresentadas": 175,
-    "total_aprovadas": 175,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 39,
+      "em_tramitacao": 132
+    },
     "por_tipo": {
       "PL": 114,
       "PLP": 3,
@@ -19514,7 +20939,12 @@
     "id_parlamentar": 92346,
     "confianca_match": 1.0,
     "total_apresentadas": 110,
-    "total_aprovadas": 110,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 18,
+      "em_tramitacao": 90
+    },
     "por_tipo": {
       "PL": 74,
       "PLP": 4,
@@ -19583,7 +21013,12 @@
     "id_parlamentar": 178985,
     "confianca_match": 1.0,
     "total_apresentadas": 78,
-    "total_aprovadas": 78,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 12,
+      "em_tramitacao": 62
+    },
     "por_tipo": {
       "PL": 46,
       "PLP": 2,
@@ -19652,7 +21087,12 @@
     "id_parlamentar": 178989,
     "confianca_match": 1.0,
     "total_apresentadas": 403,
-    "total_aprovadas": 403,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 45,
+      "em_tramitacao": 350
+    },
     "por_tipo": {
       "PL": 351,
       "PLP": 10,
@@ -19722,7 +21162,12 @@
     "id_parlamentar": 204513,
     "confianca_match": 1.0,
     "total_apresentadas": 69,
-    "total_aprovadas": 69,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 4,
+      "em_tramitacao": 65
+    },
     "por_tipo": {
       "PL": 63,
       "PLP": 2,
@@ -19784,7 +21229,12 @@
     "id_parlamentar": 141518,
     "confianca_match": 1.0,
     "total_apresentadas": 63,
-    "total_aprovadas": 63,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 26,
+      "em_tramitacao": 36
+    },
     "por_tipo": {
       "PL": 48,
       "PEC": 14,
@@ -19854,7 +21304,12 @@
     "id_parlamentar": 204516,
     "confianca_match": 1.0,
     "total_apresentadas": 90,
-    "total_aprovadas": 90,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 7,
+      "em_tramitacao": 83
+    },
     "por_tipo": {
       "PL": 74,
       "PLP": 10,
@@ -19915,7 +21370,12 @@
     "id_parlamentar": 160653,
     "confianca_match": 1.0,
     "total_apresentadas": 294,
-    "total_aprovadas": 294,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 51,
+      "em_tramitacao": 236
+    },
     "por_tipo": {
       "PL": 276,
       "PLP": 5,
@@ -19984,7 +21444,12 @@
     "id_parlamentar": 213274,
     "confianca_match": 1.0,
     "total_apresentadas": 132,
-    "total_aprovadas": 132,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 18,
+      "em_tramitacao": 111
+    },
     "por_tipo": {
       "PL": 112,
       "PLP": 1,
@@ -20046,7 +21511,12 @@
     "id_parlamentar": 178829,
     "confianca_match": 1.0,
     "total_apresentadas": 387,
-    "total_aprovadas": 387,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 43,
+      "em_tramitacao": 337
+    },
     "por_tipo": {
       "PL": 349,
       "PLP": 6,
@@ -20120,7 +21590,12 @@
     "id_parlamentar": 204535,
     "confianca_match": 1.0,
     "total_apresentadas": 360,
-    "total_aprovadas": 360,
+    "total_aprovadas": 11,
+    "funil": {
+      "aprovadas": 11,
+      "arquivadas": 61,
+      "em_tramitacao": 288
+    },
     "por_tipo": {
       "PL": 216,
       "PLP": 17,
@@ -20186,7 +21661,12 @@
     "id_parlamentar": 204511,
     "confianca_match": 1.0,
     "total_apresentadas": 197,
-    "total_aprovadas": 197,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 18,
+      "em_tramitacao": 176
+    },
     "por_tipo": {
       "PL": 155,
       "PLP": 5,
@@ -20253,7 +21733,12 @@
     "id_parlamentar": 178992,
     "confianca_match": 1.0,
     "total_apresentadas": 87,
-    "total_aprovadas": 87,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 7,
+      "em_tramitacao": 72
+    },
     "por_tipo": {
       "PL": 51,
       "PLP": 10,
@@ -20326,7 +21811,12 @@
     "id_parlamentar": 178986,
     "confianca_match": 1.0,
     "total_apresentadas": 443,
-    "total_aprovadas": 443,
+    "total_aprovadas": 13,
+    "funil": {
+      "aprovadas": 13,
+      "arquivadas": 70,
+      "em_tramitacao": 360
+    },
     "por_tipo": {
       "PL": 301,
       "PLP": 22,
@@ -20396,7 +21886,12 @@
     "id_parlamentar": 73441,
     "confianca_match": 1.0,
     "total_apresentadas": 474,
-    "total_aprovadas": 474,
+    "total_aprovadas": 17,
+    "funil": {
+      "aprovadas": 17,
+      "arquivadas": 288,
+      "em_tramitacao": 169
+    },
     "por_tipo": {
       "PL": 250,
       "PLP": 7,
@@ -20475,7 +21970,12 @@
     "id_parlamentar": 141555,
     "confianca_match": 1.0,
     "total_apresentadas": 207,
-    "total_aprovadas": 207,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 49,
+      "em_tramitacao": 150
+    },
     "por_tipo": {
       "PL": 168,
       "PLP": 5,
@@ -20549,7 +22049,12 @@
     "id_parlamentar": 204381,
     "confianca_match": 1.0,
     "total_apresentadas": 116,
-    "total_aprovadas": 116,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 27,
+      "em_tramitacao": 88
+    },
     "por_tipo": {
       "PL": 99,
       "PLP": 6,
@@ -20611,7 +22116,12 @@
     "id_parlamentar": 204507,
     "confianca_match": 1.0,
     "total_apresentadas": 163,
-    "total_aprovadas": 163,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 22,
+      "em_tramitacao": 138
+    },
     "por_tipo": {
       "PL": 117,
       "PLP": 2,
@@ -20676,7 +22186,12 @@
     "id_parlamentar": 160558,
     "confianca_match": 1.0,
     "total_apresentadas": 45,
-    "total_aprovadas": 45,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 6,
+      "em_tramitacao": 36
+    },
     "por_tipo": {
       "PL": 19,
       "PLP": 2,
@@ -20746,7 +22261,12 @@
     "id_parlamentar": 204514,
     "confianca_match": 1.0,
     "total_apresentadas": 122,
-    "total_aprovadas": 122,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 10,
+      "em_tramitacao": 111
+    },
     "por_tipo": {
       "PL": 110,
       "PLP": 2,
@@ -20809,7 +22329,12 @@
     "id_parlamentar": 204534,
     "confianca_match": 1.0,
     "total_apresentadas": 291,
-    "total_aprovadas": 291,
+    "total_aprovadas": 20,
+    "funil": {
+      "aprovadas": 20,
+      "arquivadas": 42,
+      "em_tramitacao": 229
+    },
     "por_tipo": {
       "PL": 230,
       "PLP": 14,
@@ -20877,7 +22402,12 @@
     "id_parlamentar": 204530,
     "confianca_match": 1.0,
     "total_apresentadas": 148,
-    "total_aprovadas": 148,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 19,
+      "em_tramitacao": 126
+    },
     "por_tipo": {
       "PL": 123,
       "PLP": 3,
@@ -20939,7 +22469,12 @@
     "id_parlamentar": 152610,
     "confianca_match": 1.0,
     "total_apresentadas": 74,
-    "total_aprovadas": 74,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 20,
+      "em_tramitacao": 46
+    },
     "por_tipo": {
       "PL": 67,
       "PEC": 6,
@@ -21005,7 +22540,12 @@
     "id_parlamentar": 160976,
     "confianca_match": 1.0,
     "total_apresentadas": 57,
-    "total_aprovadas": 57,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 7,
+      "em_tramitacao": 49
+    },
     "por_tipo": {
       "PL": 42,
       "PLP": 2,
@@ -21076,7 +22616,12 @@
     "id_parlamentar": 204525,
     "confianca_match": 1.0,
     "total_apresentadas": 158,
-    "total_aprovadas": 158,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 24,
+      "em_tramitacao": 129
+    },
     "por_tipo": {
       "PL": 117,
       "PLP": 3,
@@ -21142,7 +22687,12 @@
     "id_parlamentar": 74262,
     "confianca_match": 1.0,
     "total_apresentadas": 243,
-    "total_aprovadas": 243,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 79,
+      "em_tramitacao": 157
+    },
     "por_tipo": {
       "PL": 181,
       "PLP": 7,
@@ -21222,7 +22772,12 @@
     "id_parlamentar": 178977,
     "confianca_match": 1.0,
     "total_apresentadas": 35,
-    "total_aprovadas": 35,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 4,
+      "em_tramitacao": 27
+    },
     "por_tipo": {
       "PL": 22,
       "PLP": 7,
@@ -21287,7 +22842,12 @@
     "id_parlamentar": 178987,
     "confianca_match": 1.0,
     "total_apresentadas": 160,
-    "total_aprovadas": 160,
+    "total_aprovadas": 8,
+    "funil": {
+      "aprovadas": 8,
+      "arquivadas": 25,
+      "em_tramitacao": 127
+    },
     "por_tipo": {
       "PL": 110,
       "PLP": 7,
@@ -21357,7 +22917,12 @@
     "id_parlamentar": 204503,
     "confianca_match": 1.0,
     "total_apresentadas": 262,
-    "total_aprovadas": 262,
+    "total_aprovadas": 17,
+    "funil": {
+      "aprovadas": 17,
+      "arquivadas": 54,
+      "em_tramitacao": 191
+    },
     "por_tipo": {
       "PL": 187,
       "PLP": 6,
@@ -21419,7 +22984,12 @@
     "id_parlamentar": 204529,
     "confianca_match": 1.0,
     "total_apresentadas": 67,
-    "total_aprovadas": 67,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 3,
+      "em_tramitacao": 62
+    },
     "por_tipo": {
       "PL": 63,
       "PLP": 2,
@@ -21480,7 +23050,12 @@
     "id_parlamentar": 141398,
     "confianca_match": 1.0,
     "total_apresentadas": 204,
-    "total_aprovadas": 204,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 43,
+      "em_tramitacao": 149
+    },
     "por_tipo": {
       "PL": 122,
       "PLP": 8,
@@ -21555,7 +23130,12 @@
     "id_parlamentar": 204514,
     "confianca_match": 0.786,
     "total_apresentadas": 122,
-    "total_aprovadas": 122,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 10,
+      "em_tramitacao": 111
+    },
     "por_tipo": {
       "PL": 110,
       "PLP": 2,
@@ -21618,7 +23198,12 @@
     "id_parlamentar": 105534,
     "confianca_match": 1.0,
     "total_apresentadas": 1,
-    "total_aprovadas": 1,
+    "total_aprovadas": 0,
+    "funil": {
+      "aprovadas": 0,
+      "arquivadas": 0,
+      "em_tramitacao": 1
+    },
     "por_tipo": {
       "PL": 1
     },
@@ -21646,7 +23231,12 @@
     "id_parlamentar": 204408,
     "confianca_match": 1.0,
     "total_apresentadas": 45,
-    "total_aprovadas": 45,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 7,
+      "em_tramitacao": 37
+    },
     "por_tipo": {
       "PL": 32,
       "PLP": 1,
@@ -21711,7 +23301,12 @@
     "id_parlamentar": 74052,
     "confianca_match": 1.0,
     "total_apresentadas": 301,
-    "total_aprovadas": 301,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 210,
+      "em_tramitacao": 86
+    },
     "por_tipo": {
       "PL": 55,
       "PLP": 1,
@@ -21777,7 +23372,12 @@
     "id_parlamentar": 178970,
     "confianca_match": 1.0,
     "total_apresentadas": 499,
-    "total_aprovadas": 499,
+    "total_aprovadas": 12,
+    "funil": {
+      "aprovadas": 12,
+      "arquivadas": 75,
+      "em_tramitacao": 412
+    },
     "por_tipo": {
       "PL": 368,
       "PLP": 11,
@@ -21848,7 +23448,12 @@
     "id_parlamentar": 171623,
     "confianca_match": 1.0,
     "total_apresentadas": 40,
-    "total_aprovadas": 40,
+    "total_aprovadas": 2,
+    "funil": {
+      "aprovadas": 2,
+      "arquivadas": 7,
+      "em_tramitacao": 31
+    },
     "por_tipo": {
       "PL": 29,
       "PLP": 3,
@@ -21916,7 +23521,12 @@
     "id_parlamentar": 141480,
     "confianca_match": 1.0,
     "total_apresentadas": 46,
-    "total_aprovadas": 46,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 18,
+      "em_tramitacao": 27
+    },
     "por_tipo": {
       "PL": 20,
       "PEC": 26
@@ -21984,7 +23594,12 @@
     "id_parlamentar": 137070,
     "confianca_match": 1.0,
     "total_apresentadas": 128,
-    "total_aprovadas": 128,
+    "total_aprovadas": 5,
+    "funil": {
+      "aprovadas": 5,
+      "arquivadas": 19,
+      "em_tramitacao": 104
+    },
     "por_tipo": {
       "PL": 88,
       "PLP": 1,
@@ -22054,7 +23669,12 @@
     "id_parlamentar": 178994,
     "confianca_match": 1.0,
     "total_apresentadas": 52,
-    "total_aprovadas": 52,
+    "total_aprovadas": 7,
+    "funil": {
+      "aprovadas": 7,
+      "arquivadas": 16,
+      "em_tramitacao": 29
+    },
     "por_tipo": {
       "PL": 42,
       "PLP": 3,
@@ -22118,7 +23738,12 @@
     "id_parlamentar": 143084,
     "confianca_match": 1.0,
     "total_apresentadas": 36,
-    "total_aprovadas": 36,
+    "total_aprovadas": 4,
+    "funil": {
+      "aprovadas": 4,
+      "arquivadas": 8,
+      "em_tramitacao": 24
+    },
     "por_tipo": {
       "PL": 24,
       "PLP": 4,
@@ -22182,7 +23807,12 @@
     "id_parlamentar": 204364,
     "confianca_match": 1.0,
     "total_apresentadas": 72,
-    "total_aprovadas": 72,
+    "total_aprovadas": 1,
+    "funil": {
+      "aprovadas": 1,
+      "arquivadas": 8,
+      "em_tramitacao": 63
+    },
     "por_tipo": {
       "PL": 33,
       "PLP": 4,
@@ -22248,7 +23878,12 @@
     "id_parlamentar": 178993,
     "confianca_match": 1.0,
     "total_apresentadas": 392,
-    "total_aprovadas": 392,
+    "total_aprovadas": 3,
+    "funil": {
+      "aprovadas": 3,
+      "arquivadas": 56,
+      "em_tramitacao": 333
+    },
     "por_tipo": {
       "PL": 340,
       "PLP": 22,
@@ -22318,7 +23953,12 @@
     "id_parlamentar": 204370,
     "confianca_match": 1.0,
     "total_apresentadas": 222,
-    "total_aprovadas": 222,
+    "total_aprovadas": 6,
+    "funil": {
+      "aprovadas": 6,
+      "arquivadas": 40,
+      "em_tramitacao": 176
+    },
     "por_tipo": {
       "PL": 151,
       "PLP": 6,
