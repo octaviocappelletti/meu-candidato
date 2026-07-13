@@ -10,6 +10,7 @@ import ListaBens from '@/components/ListaBens';
 import PropostaGoverno from '@/components/PropostaGoverno';
 import TransparenciaFinanceira from '@/components/TransparenciaFinanceira';
 import PainelAtuacao from '@/components/PainelAtuacao';
+import PainelDespesas from '@/components/PainelDespesas';
 
 interface Props {
   params: Promise<{ cargo: string; estado: string; numero: string }>;
@@ -180,6 +181,18 @@ export default async function PaginaDetalhe({ params }: Props) {
         <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
           <TransparenciaFinanceira nrSequencial={candidato.nrSequencial} uf={uf} />
         </section>
+
+        {/* Despesas parlamentares (CEAP) — deputado federal e senador */}
+        {(cargo === 'deputado-federal' || cargo === 'senador') && (
+          <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
+            <PainelDespesas
+              nrSequencial={candidato.nrSequencial}
+              cargo={cargo}
+              estado={estado}
+              numero={numero}
+            />
+          </section>
+        )}
 
         {/* Atuação parlamentar — apenas para deputado federal e senador */}
         {(cargo === 'deputado-federal' || cargo === 'senador') && (
